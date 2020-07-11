@@ -1,18 +1,14 @@
 extends KinematicBody
 
-var gravity = -30
+# if it doesn't work, create a planet that is a sibling and switch to transform
+
+var velocity: Vector3
+var gravity = Vector3(0, -40, 0)
 var speed = 20
-var jump = 30
 
-var velocity = Vector3()
-var acceleration = Vector3()
+onready var planet = $"../Planet"
 
-var gravity_origin = Vector3()
-
-func _ready():
-	pass
-
-func input_direction():
+func local_input_direction():
 	var dir = Vector3()
 	
 	if Input.is_action_pressed("forward"):
@@ -27,60 +23,37 @@ func input_direction():
 	return dir.normalized()
 
 func _physics_process(delta):
-	$"/root/DebugDraw".reset($Debug)
+	var world_up = (global_transform.origin - planet.global_transform.origin).normalized()
+	var world_down = (planet.global_transform.origin - global_transform.origin).normalized()
 	
-	#attempt_1(delta)
-	#attempt_2(delta)
+	#velocity +=  world_down * 20 * delta
 	
-	attempt_3(delta)
-
-func attempt_3(delta):
-	pass
-
-func attempt_2(delta):
-	# target rotation
-	# current rotation
-	# quaternion.slerp()
-	
-	# In Global space
-	var player_up = global_transform.basis.y.normalized()
-	var world_up = (global_transform.origin - gravity_origin).normalized()
-	
-	var player_forward = global_transform.basis.z.normalized()
-	
-	var target = global_transform.origin + world_up.cross(player_forward)
-	
-	$"/root/DebugDraw".global_sphere($Debug, target)
-	
-	global_transform = global_transform.looking_at(target, player_up)
-	
-	var p0 = global_transform.origin
-	var p1 = global_transform.origin + -global_transform.basis.y.normalized()
-	
-	$"/root/DebugDraw".global_line($Debug, p0, p1)
-	
-	#var current_rot = Quat(transform.basis)
-	#var new_rot = current_rot.slerp(Matrix3(x, y, z), dt*3.0)
-
-func attempt_1(delta):
-	# Get the input direction in local space
-	var dir = input_direction()
+	var dir = local_input_direction()
 	
 	# Convert direction to global space (probaby a better way...)
-	dir = to_global(dir) - global_transform.origin
-	
+	#dir = (to_global(dir) - global_transform.origin).normalized()
+	#velocity += dir # The problem is that we continuously add but never reset
+
+
 	velocity.x = dir.x * speed
 	velocity.z = dir.z * speed
+	velocity.y += -20 * delta
 	
-	if Input.is_action_just_pressed("jump"):
-		velocity.y = dir.y * jump
+	var global_velocity = to_global(velocity) - global_transform.origin
 	
-	# Apply gravity based on global gravity_origin
-	var gravity_up =  global_transform.origin - gravity_origin
-	velocity += gravity_up.normalized() * gravity * delta
+	global_velocity = move_and_slide(global_velocity, Vector3.UP, true)
 	
-	# Apply jump force after gravity so it can override it
-	if Input.is_action_just_pressed("jump"):
-		pass
+	velocity = to_local(global_velocity) - transform.origin
 	
-	velocity = move_and_slide(velocity, Vector3.UP, true)
+	#velocity = move_and_slide_with_snap(velocity, Vector3.DOWN*2, Vector3.UP, true)
+	#velocity = move_and_slide(velocity, Vector3.UP, true)
+	#global_transform = align_with_y(global_transform, world_up)
+	var xform = align_with_y(global_transform, world_up)
+	global_transform = global_transform.interpolate_with(xform, 0.2)
+
+# https://kidscancode.org/godot_recipes/3d/3d_align_surface/
+func align_with_y(xform, new_y):
+	xform.basis.y = new_y
+	xform.basis.x = -xform.basis.z.cross(new_y)
+	xform.basis = xform.basis.orthonormalized()
+	return xform
