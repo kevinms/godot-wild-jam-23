@@ -32,6 +32,7 @@ func fire_missile_occasionally(delta):
 	
 	fire_missile()
 	next_fire = rand_range(0, 3)
+	sec_elapsed = 0
 
 onready var missile_scene = load("res://Missile.tscn")
 
@@ -47,6 +48,8 @@ func fire_missile():
 	var speed = rand_range(20, 50)
 	missile.velocity = ($Planet.global_transform.origin - launch_origin).normalized() * speed
 	add_child(missile)
+	
+	missile.connect("missile_impact", $Planet, "_on_Emitter_missile_impact")
 	
 
 func random_point_on_sphere(radius: float):
