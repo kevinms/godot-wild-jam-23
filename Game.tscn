@@ -62,3 +62,4 @@ transform = Transform( 1, 0, 0, 0, 0.792652, 0.609675, 0, -0.609675, 0.792652, 0
 current = true
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
+radius = 7

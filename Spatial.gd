@@ -12,6 +12,26 @@ func _ready():
 
 var matrix = []
 
+func gen_voxel(x, y, z):
+	var voxel = voxelScene.instance()
+	
+	var pos = Vector3(x, y, z)
+	voxel.translate(pos)
+	add_child(voxel)
+	
+	var color = Color(
+		rand_range(0, 0.1),
+		rand_range(0.5,1),
+		rand_range(0,0.1)
+	)
+	print(color)
+	
+	var material = voxel.get_node("MeshInstance").get_surface_material(0).duplicate()
+	material.albedo_color = color
+	voxel.get_node("MeshInstance").set_surface_material(0, material)
+	
+	return voxel
+
 func generate_world():
 	for x in range(-radius, radius):
 		matrix.append([])
@@ -21,11 +41,7 @@ func generate_world():
 				var dist = sqrt( pow(x, 2) + pow(y, 2) + pow(z, 2) )
 				
 				if dist < radius:
-					var voxel = voxelScene.instance()
-					
-					var pos = Vector3(x, y, z)
-					voxel.translate(pos)
-					add_child(voxel)
+					var voxel = gen_voxel(x, y, z)
 					voxel.connect("missile_impact", self, "_on_Emitter_missile_impact")
 					matrix[x+7][y+7].append(voxel)
 
@@ -36,7 +52,7 @@ func _on_Emitter_missile_impact(impact_site, blast_radius):
 	
 	# Create the intersection shape
 	var sphere = SphereShape.new()
-	sphere.radius = 2.0
+	sphere.radius = 3.0
 	
 	# Configure the query parameters
 	var query = PhysicsShapeQueryParameters.new()
@@ -44,12 +60,16 @@ func _on_Emitter_missile_impact(impact_site, blast_radius):
 	#query.set_transform(get_transform())
 	
 	query.transform = Transform(Basis.IDENTITY, impact_site)
+	#query.set_exclude(excludes)
 	
 	var max_results = 32
 	var results = space_state.intersect_shape(query, max_results)
 	
 	for result in results:
 		var collider = result["collider"]
-		collider.queue_free()
+		if collider.name == "Player":
+			print("Ouchie")
+		else:
+			collider.queue_free()
 #
 #	print("hi")
