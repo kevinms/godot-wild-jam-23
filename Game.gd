@@ -31,14 +31,14 @@ func fire_missile_occasionally(delta):
 		return
 	
 	fire_missile()
-	next_fire = rand_range(0, 3)
+	next_fire = rand_range(0, 1)
 	sec_elapsed = 0
 
 onready var missile_scene = load("res://Missile.tscn")
 
 func fire_missile():
 	print("launching missile")
-	var launch_origin = random_point_on_sphere(30.0)
+	var launch_origin = random_point_on_sphere(100.0)
 	
 	var missile = missile_scene.instance()
 	missile.translate(launch_origin)

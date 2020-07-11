@@ -60,5 +60,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.8625, 1.39177 )
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.792652, 0.609675, 0, -0.609675, 0.792652, 0, 5.47584, 15.2147 )
 current = true
+far = 200.0
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
