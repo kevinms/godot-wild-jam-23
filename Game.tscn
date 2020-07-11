@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ImmediateGeometry.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
+[ext_resource path="res://World.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -26,6 +27,7 @@ transform = Transform( -3.56802e-08, 0.577672, -0.816269, 2.52509e-08, 0.816269,
 shadow_enabled = true
 
 [node name="Ground" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -57.8559, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Ground"]
 transform = Transform( 15.6861, 0, 0, 0, 0.294509, 0, 0, 0, 15.6861, 0, 0, 0 )
@@ -36,14 +38,15 @@ material/0 = SubResource( 2 )
 transform = Transform( 15.6861, 0, 0, 0, 0.294509, 0, 0, 0, 15.6861, 0, 0, 0 )
 shape = SubResource( 3 )
 
-[node name="Planet" type="StaticBody" parent="."]
+[node name="Sphere" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Planet"]
+[node name="MeshInstance" type="MeshInstance" parent="Sphere"]
 transform = Transform( 11.9591, 0.0355373, -0.029886, -0.0355292, 11.9591, 0.0032782, 0.0298956, -0.00318944, 11.9591, 0, 0, 0 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Planet"]
+[node name="CollisionShape" type="CollisionShape" parent="Sphere"]
 transform = Transform( 11.9591, 0.0355373, -0.029886, -0.0355292, 11.9591, 0.0032782, 0.0298956, -0.00318944, 11.9591, 0, 0, 0 )
 shape = SubResource( 6 )
 
@@ -55,5 +58,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.8625, 0 )
 
 [node name="Camera" type="Camera" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 0.856456, 0.51622, 0, -0.51622, 0.856456, 0, 8.54824, 7.93212 )
+transform = Transform( 1, 0, 0, 0, 0.792652, 0.609675, 0, -0.609675, 0.792652, 0, 5.47584, 15.2147 )
 current = true
+
+[node name="Planet" parent="." instance=ExtResource( 4 )]

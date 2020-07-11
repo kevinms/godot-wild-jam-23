@@ -1,7 +1,7 @@
 extends Spatial
 
 var voxelScene = load("res://Voxel.tscn")
-export var radius = 5
+export var radius = 7
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
