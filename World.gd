@@ -1,7 +1,7 @@
 extends Spatial
 
 var voxelScene = load("res://Voxel.tscn")
-export var radius = 7
+export var radius = 8
 
 var noise = OpenSimplexNoise.new()
 
@@ -61,7 +61,7 @@ func simplex_two_color(x, y, z):
 	
 	return color
 
-func gen_voxel(x, y, z):
+func gen_voxel(x, y, z, dist):
 	var voxel = voxelScene.instance()
 	
 	var pos = Vector3(x, y, z)
@@ -72,6 +72,13 @@ func gen_voxel(x, y, z):
 	#var color = simplex_all_color(x, y, z)
 	#var color = simplex_green_color(x, y, z)
 	var color = simplex_two_color(x, y, z)
+	
+	# The core will transition from white to orange/red in the center
+	if dist < radius - 2:
+		var t = dist / (radius - 2)
+		var red = Color(1,0.2, 0)
+		var white = Color(1,.5,.5)
+		color = red.linear_interpolate(white, t)
 	
 	print(color)
 	
@@ -90,7 +97,7 @@ func generate_world():
 				var dist = sqrt( pow(x, 2) + pow(y, 2) + pow(z, 2) )
 				
 				if dist < radius:
-					var voxel = gen_voxel(x, y, z)
+					var voxel = gen_voxel(x, y, z, dist)
 					voxel.connect("missile_impact", self, "_on_Emitter_missile_impact")
 					matrix[x+7][y+7].append(voxel)
 
