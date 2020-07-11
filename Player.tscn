@@ -55,3 +55,5 @@ material/0 = SubResource( 7 )
 transform = Transform( 0.0723377, 0, 0, 0, -3.16198e-09, 0.555103, 0, -0.0723377, -2.42643e-08, 0, 2.1088, 0 )
 mesh = SubResource( 5 )
 material/0 = SubResource( 8 )
+
+[node name="Debug" type="Spatial" parent="."]
