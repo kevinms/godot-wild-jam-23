@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://ImmediateGeometry.gd" type="Script" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game.gd" type="Script" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.384314, 0.827451, 0.72549, 1 )
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="SphereMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.164706, 0.85098, 0.921569, 1 )
+
+[sub_resource type="SphereShape" id=6]
+
+[node name="Game" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -3.56802e-08, 0.577672, -0.816269, 2.52509e-08, 0.816269, 0.577672, 1, 1.77636e-15, -4.37114e-08, -11.9749, 7.13501, 0 )
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.751056, 0.432007, -0.499284, -0.359765, 0.90187, 0.239163, 0.55361, -2.98023e-08, 0.832776, 0, 26.3397, 0 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 1.49012e-08, -2.98023e-08, 5.13552e-08, 0.936336, 0.351106, 2.98023e-08, -0.351106, 0.936336, 9.53674e-07, 13.811, 22.827 )
+current = true
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+transform = Transform( 15.6861, 0, 0, 0, 0.294509, 0, 0, 0, 15.6861, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 15.6861, 0, 0, 0, 0.294509, 0, 0, 0, 15.6861, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="StaticBody2" type="StaticBody" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
+transform = Transform( 11.9591, 0.0355373, -0.029886, -0.0355292, 11.9591, 0.0032782, 0.0298956, -0.00318944, 11.9591, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 11.9591, 0.0355373, -0.029886, -0.0355292, 11.9591, 0.0032782, 0.0298956, -0.00318944, 11.9591, 0, 0, 0 )
+shape = SubResource( 6 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.824176, -0.029452, 0.565568, -2.24821e-08, 0.998647, 0.0520047, -0.566334, -0.042861, 0.82306, 7.41883, 21.5303, 12.1637 )
+
+[node name="DebugDraw" type="ImmediateGeometry" parent="."]
+visible = false
+script = ExtResource( 1 )
