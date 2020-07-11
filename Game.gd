@@ -14,11 +14,52 @@ func _input(event):
 			get_tree().set_input_as_handled()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+# delta is a fraction of a second
+
 func _process(delta):
 	if Input.is_action_just_pressed("enter"):
 		get_tree().reload_current_scene()
+	
+	fire_missile_occasionally(delta)
 
 
+var next_fire: float
+var sec_elapsed = 0.0
+func fire_missile_occasionally(delta):
+	sec_elapsed += delta
+	if sec_elapsed < next_fire:
+		return
+	
+	fire_missile()
+	next_fire = rand_range(0, 3)
+
+onready var missile_scene = load("res://Missile.tscn")
 
 func fire_missile():
-	pass
+	print("launching missile")
+	var launch_origin = random_point_on_sphere(30.0)
+	
+	var missile = missile_scene.instance()
+	missile.translate(launch_origin)
+	
+	#TODO: Could be fun to pick a voxel as a target, so they come in at weird angles
+	missile.target = $Planet
+	var speed = rand_range(20, 50)
+	missile.velocity = ($Planet.global_transform.origin - launch_origin).normalized() * speed
+	add_child(missile)
+	
+
+func random_point_on_sphere(radius: float):
+	# I don't think this is a uniform distribution on the sphere,
+	# but hey... it's good enough, right?! RIGHT?!?!
+	
+	# Generate a random point in a box with a half-width of radius.
+	# The box surrounds the sphere.
+	var point = Vector3(
+		rand_range(-radius, radius),
+		rand_range(-radius, radius),
+		rand_range(-radius, radius)
+	)
+	
+	# Move the point along a normal such that it's magnitude is the radius.
+	return point.normalized() * radius

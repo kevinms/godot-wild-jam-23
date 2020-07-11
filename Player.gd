@@ -72,7 +72,7 @@ func _physics_process(delta):
 	# Update local "velocity" to account for changes move_and_slide() made.
 	velocity = to_local(global_transform.origin + global_velocity) - transform.origin
 	
-	print(velocity)
+	#print(velocity)
 	#draw_velocity()
 	
 	#velocity = move_and_slide_with_snap(velocity, Vector3.DOWN*2, Vector3.UP, true)
