@@ -30,7 +30,12 @@ func _physics_process(delta):
 	$"/root/DebugDraw".reset($Debug)
 	
 	#attempt_1(delta)
-	attempt_2(delta)
+	#attempt_2(delta)
+	
+	attempt_3(delta)
+
+func attempt_3(delta):
+	pass
 
 func attempt_2(delta):
 	# target rotation
