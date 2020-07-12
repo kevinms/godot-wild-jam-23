@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Icosphere.gd" type="Script" id=1]
 [ext_resource path="res://CubeMesh.gd" type="Script" id=2]
+[ext_resource path="res://IcosphereMain.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -11,6 +12,7 @@ albedo_color = Color( 0.231373, 0.878431, 0.862745, 1 )
 [sub_resource type="BoxShape" id=3]
 
 [node name="Spatial" type="Spatial"]
+script = ExtResource( 3 )
 
 [node name="Icosphere" type="StaticBody" parent="."]
 script = ExtResource( 1 )

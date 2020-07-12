@@ -80,6 +80,7 @@ func addVertex(p: Vector3):
 	
 	var height = (n + 1) / 2
 	p *= height
+	p *= 4.0
 	positions.push_back(p)
 	var i = index
 	index += 1
