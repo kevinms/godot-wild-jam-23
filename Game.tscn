@@ -55,7 +55,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.8625, 1.39177 )
 planet_path = NodePath("../Planet")
 
 [node name="CameraRig" type="Position3D" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 3.57628e-07 )
+transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.681546, 0.417288, -0.414009 )
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="Player/CameraRig"]

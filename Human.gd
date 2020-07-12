@@ -14,6 +14,18 @@ var global_velocity = Vector3()
 var jumping = false
 
 var fear = 1.0
+var fear_radius = 4
+var mark_radius = 2.5
+
+func set_fear(v: float):
+	var mark_radius = 1.5
+	if fear < mark_radius and v > mark_radius:
+		$ExclamationPlayer.play("Squishy bounce")
+		$ExclamationMark.show()
+	if fear > mark_radius and v < mark_radius:
+		$ExclamationPlayer.stop()
+		$ExclamationMark.hide()
+	fear = v
 
 func _ready():
 	print(alien)
@@ -27,13 +39,14 @@ func _physics_process(delta):
 		
 		# Distance to alien
 		var ray_to_alien = alien.global_transform.origin - global_transform.origin
-		if ray_to_alien.length() < 4:
-			fear = ray_to_alien.length()
+		if ray_to_alien.length() < fear_radius:
+			set_fear(fear_radius / ray_to_alien.length())
 			#var forward = -global_transform.basis.z.normalized()
 			#var new_dir = forward.rotated(global_transform.basis.y, rand_range(0, 2*PI))
 			var new_dir = -ray_to_alien.normalized()
 			global_velocity += new_dir * speed * fear
 		else:
+			set_fear(1.0)
 			# Determine the direction
 			var forward = -global_transform.basis.z.normalized()
 			var new_dir = forward.rotated(global_transform.basis.y, rand_range(0, 2*PI))
