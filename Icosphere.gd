@@ -1,5 +1,7 @@
 extends StaticBody
 
+export var planet_scale = 20.0
+
 var noise = OpenSimplexNoise.new()
 
 func init_noise():
@@ -144,8 +146,9 @@ func generate_mesh_instance():
 	return array_mesh
 
 func _process(delta):
-	rotate_y(delta)
-	rotate_x(delta)
+	#rotate_y(delta)
+	#rotate_x(delta)
+	pass
 
 class TriangleIndices:
 	var v1: int
@@ -169,7 +172,7 @@ func addVertex(p: Vector3):
 	
 	var height = (n + 1) / 2
 	p *= height
-	p *= 4.0
+	p *= planet_scale
 	positions.push_back(p)
 	var i = index
 	index += 1
@@ -226,32 +229,32 @@ func create():
 	var faces = []
 	
 	# 5 faces around point 0
-	faces.push_back(TriangleIndices.new(0, 11, 5))
-	faces.push_back(TriangleIndices.new(0, 5, 1))
-	faces.push_back(TriangleIndices.new(0, 1, 7))
-	faces.push_back(TriangleIndices.new(0, 7, 10))
-	faces.push_back(TriangleIndices.new(0, 10, 11))
+	faces.push_back(TriangleIndices.new(0, 5, 11))
+	faces.push_back(TriangleIndices.new(0, 1, 5))
+	faces.push_back(TriangleIndices.new(0, 7, 1))
+	faces.push_back(TriangleIndices.new(0, 10, 7))
+	faces.push_back(TriangleIndices.new(0, 11, 10))
 	
-	# 5 adjacent faces 
-	faces.push_back(TriangleIndices.new(1, 5, 9))
-	faces.push_back(TriangleIndices.new(5, 11, 4))
-	faces.push_back(TriangleIndices.new(11, 10, 2))
-	faces.push_back(TriangleIndices.new(10, 7, 6))
-	faces.push_back(TriangleIndices.new(7, 1, 8))
+	# 5 adjacent faces
+	faces.push_back(TriangleIndices.new(1, 9, 5))
+	faces.push_back(TriangleIndices.new(5, 4, 11))
+	faces.push_back(TriangleIndices.new(11, 2, 10))
+	faces.push_back(TriangleIndices.new(10, 6, 7))
+	faces.push_back(TriangleIndices.new(7, 8, 1))
 	
 	# 5 faces around point 3
-	faces.push_back(TriangleIndices.new(3, 9, 4))
-	faces.push_back(TriangleIndices.new(3, 4, 2))
-	faces.push_back(TriangleIndices.new(3, 2, 6))
-	faces.push_back(TriangleIndices.new(3, 6, 8))
-	faces.push_back(TriangleIndices.new(3, 8, 9))
+	faces.push_back(TriangleIndices.new(3, 4, 9))
+	faces.push_back(TriangleIndices.new(3, 2, 4))
+	faces.push_back(TriangleIndices.new(3, 6, 2))
+	faces.push_back(TriangleIndices.new(3, 8, 6))
+	faces.push_back(TriangleIndices.new(3, 9, 8))
 	
 	# 5 adjacent faces 
-	faces.push_back(TriangleIndices.new(4, 9, 5))
-	faces.push_back(TriangleIndices.new(2, 4, 11))
-	faces.push_back(TriangleIndices.new(6, 2, 10))
-	faces.push_back(TriangleIndices.new(8, 6, 7))
-	faces.push_back(TriangleIndices.new(9, 8, 1))
+	faces.push_back(TriangleIndices.new(4, 5, 9))
+	faces.push_back(TriangleIndices.new(2, 11, 4))
+	faces.push_back(TriangleIndices.new(6, 10, 2))
+	faces.push_back(TriangleIndices.new(8, 7, 6))
+	faces.push_back(TriangleIndices.new(9, 1, 8))
 	
 	var recursionLevel = 3
 	
