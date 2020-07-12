@@ -55,16 +55,19 @@ shape = SubResource( 6 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.8625, 1.39177 )
 planet_path = NodePath("../Planet")
 
-[node name="CameraRig" type="Position3D" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.681546, 0.417288, -0.414009 )
+[node name="CameraPivot" type="Position3D" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0 )
 script = ExtResource( 1 )
 
-[node name="Camera" type="Camera" parent="Player/CameraRig"]
-transform = Transform( 1, 0, 0, 0, 0.346494, 0.938052, 0, -0.938052, 0.346494, 0, 7.75222, 3.95476 )
+[node name="CameraTarget" type="Position3D" parent="Player/CameraPivot"]
+transform = Transform( 1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0.694164, 0.537163, -0.891383 )
+
+[node name="Camera" type="Camera" parent="Player/CameraPivot"]
+transform = Transform( 1, 0, 0, 0, 0.346494, 0.938052, 0, -0.938052, 0.346494, 0.918371, 7.75222, 3.95476 )
 current = true
 far = 200.0
 
-[node name="Crosshair" type="Sprite" parent="Player/CameraRig/Camera"]
+[node name="Crosshair" type="Sprite" parent="Player/CameraPivot/Camera"]
 texture = ExtResource( 5 )
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]

@@ -6,9 +6,6 @@ export var zoom_sensitivity = 0.1
 onready var min_dist = $Camera.translation.normalized() * 5
 onready var max_dist = $Camera.translation.normalized() * 20
 
-func _ready():
-	$Camera.look_at(global_transform.origin, Vector3.UP)
-
 func _unhandled_input(event):
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
@@ -28,3 +25,6 @@ func _unhandled_input(event):
 func _process(delta):
 	var screen_center = get_viewport().size / 2
 	$Camera/Crosshair.position = screen_center
+	
+	# Since our camera pivot differs from the look_at() target, update this every frame to fix zooming
+	$Camera.look_at($CameraTarget.global_transform.origin, global_transform.basis.y.normalized())
