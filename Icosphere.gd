@@ -1,4 +1,4 @@
-extends Spatial
+extends StaticBody
 
 var noise = OpenSimplexNoise.new()
 
@@ -14,6 +14,21 @@ func init_noise():
 func _ready():
 	init_noise()
 	
+	var mesh = generate_mesh_instance()
+	
+	# Generate collision shape
+	var shape = ConcavePolygonShape.new()
+	shape.set_faces(mesh.get_faces())
+	
+	var id = create_shape_owner(self)
+	shape_owner_add_shape(id, shape)
+
+func add_surface(st: SurfaceTool, p: Vector3):
+	st.add_color(Color(1, 0, 0))
+	st.add_uv(Vector2(0, 0))
+	st.add_vertex(p)
+
+func generate_mesh_instance():
 	var material = SpatialMaterial.new()
 	material.albedo_color = Color(0.8, 0.0, 0.0)
 	
@@ -36,15 +51,12 @@ func _ready():
 	var mesh_inst = MeshInstance.new()
 	mesh_inst.mesh = array_mesh
 	add_child(mesh_inst)
+	
+	return array_mesh
 
 func _process(delta):
 	rotate_y(delta)
 	rotate_x(delta)
-
-func add_surface(st: SurfaceTool, p: Vector3):
-	st.add_color(Color(1, 0, 0))
-	st.add_uv(Vector2(0, 0))
-	st.add_vertex(p)
 
 class TriangleIndices:
 	var v1: int
