@@ -1,6 +1,19 @@
 extends Spatial
 
+var noise = OpenSimplexNoise.new()
+
+func init_noise():
+	noise.seed = randi()
+	noise.octaves = 7
+	noise.period = 20.0
+	noise.persistence = 0.8
+
+#TODO: Optionally create a hexasphere by starting with a vertex and turning all connected triangles into a hex
+#TODO: I think the winding direction is wrong and I'm seeing it's insides lol....
+
 func _ready():
+	init_noise()
+	
 	var material = SpatialMaterial.new()
 	material.albedo_color = Color(0.8, 0.0, 0.0)
 	
@@ -49,7 +62,13 @@ var middlePointIndexCache = {}
 
 # add vertex to mesh, fix position to be on unit sphere, return index
 func addVertex(p: Vector3):
-	positions.push_back(p.normalized())
+	
+	p = p.normalized()
+	var n = noise.get_noise_3d(p.x, p.y, p.z)
+	
+	var height = (n + 1) / 2
+	p *= height
+	positions.push_back(p)
 	var i = index
 	index += 1
 	return i
@@ -71,7 +90,7 @@ func getMiddlePoint(p1: int, p2: int):
 	# not in cache, calculate it
 	var point1 = positions[p1]
 	var point2 = positions[p2]
-	var middle = point1 + point2 / 2.0
+	var middle = (point1 + point2) * 0.5
 
 	# add vertex makes sure point is on unit sphere
 	var i = addVertex(middle)
@@ -80,6 +99,8 @@ func getMiddlePoint(p1: int, p2: int):
 	middlePointIndexCache[key] = i
 	return i
 
+# Translated from C# to GDScript using this resource:
+#   http://blog.andreaskahler.com/2009/06/creating-icosphere-mesh-in-code.html
 func create():
 	var t = (1.0 + sqrt(5.0)) / 2.0
 	
