@@ -11,6 +11,79 @@ func init_noise():
 #TODO: Optionally create a hexasphere by starting with a vertex and turning all connected triangles into a hex
 #TODO: I think the winding direction is wrong and I'm seeing it's insides lol....
 
+#TODO:
+# Method to determine triangle based on point on surface
+# Method to remove triangle from mesh and shape
+#
+#func pointToTriangleIndex(p: Vector3):
+
+class Octree:
+	var aabb: AABB
+	var center: Vector3
+	var half_size: Vector3
+	var max_points: int
+	var points = []
+	var children = []
+	
+	func _init(center: Vector3, half_size: Vector3, max_points: int):
+		aabb = AABB(center-half_size, half_size*2)
+		self.max_points = max_points
+	
+	# Returns true if point was successfully added
+	func add(point: Vector3, data):
+		if !aabb.has_point(point):
+			return
+		
+		# Do we have children? They hold all our points.
+		if children:
+			for child in children:
+				if child.add(point, data):
+					return true
+			print("Your point is outside of the octree bounds?!")
+			return false
+		
+		# Is there space left?
+		if points.size() < max_points:
+			points.push_back([point, data])
+			return true
+		
+		# Dang, we need to subdivide and share the load
+		# https://www.youtube.com/watch?v=wlJgD4GuDVs
+		
+		# Create children
+		var child_size = aabb.size / 2
+		for x in range(2):
+			for y in range(2):
+				for z in range(2):
+					var child = Octree.new(aabb.position + Vector3(child_size.x*x, child_size.y*y, child_size.z*z), child_size, max_points)
+					children.push_back(child)
+
+		# Distribute amongst children -- just call ourself again!
+		for this_point in points:
+			add(this_point[0], this_point[1])
+		points.clear()
+		
+		return add(point, data)
+	
+	# Non-recursive!
+	func knn(point: Vector3, k: int):
+		var voxel = self
+		
+		while true:
+			if voxel.aabb.has_point(point):
+				# Search children, if any.
+				if voxel.children:
+						for child in voxel.children:
+							if child.aabb.has_point(point):
+								voxel = child
+								continue
+						break
+				
+				# No children -- check all the points in this voxel
+				return voxel.points
+
+var octree = Octree.new(Vector3(), Vector3(40,40,40), 256)
+
 func _ready():
 	init_noise()
 	
@@ -43,6 +116,9 @@ func generate_mesh_instance():
 		add_surface(st, positions[tri.v1])
 		add_surface(st, positions[tri.v2])
 		add_surface(st, positions[tri.v3])
+		
+		var center = (positions[tri.v1] + positions[tri.v2] + positions[tri.v3]) / 3
+		octree.add(center, tri)
 	
 	st.generate_normals()
 	
