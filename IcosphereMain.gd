@@ -13,3 +13,6 @@ func _input(event):
 		
 		if result:
 			print("Ray hit: ", result.position)
+			
+			var closest = $Icosphere.octree.knn(result.position, 32)
+			print(closest)

@@ -80,7 +80,20 @@ class Octree:
 						break
 				
 				# No children -- check all the points in this voxel
-				return voxel.points
+				var sorter = MyCustomSorter.new(point)
+				points.sort_custom(sorter, "sort_ascending")
+				return voxel.points.slice(0, k)
+		
+		return []
+
+class MyCustomSorter:
+	var point: Vector3
+	func _init(point: Vector3):
+		self.point = point
+	func sort_ascending(a, b):
+		if (a - point).length() < (b - point).length():
+			return true
+		return false
 
 var octree = Octree.new(Vector3(), Vector3(40,40,40), 256)
 
