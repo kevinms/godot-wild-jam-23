@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://MultiMeshInstance.gd" type="Script" id=1]
+
+[node name="CubeMultiMesh" type="Spatial"]
+
+[node name="MultiMeshInstance" type="MultiMeshInstance" parent="."]
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.866025, -0.203958, 0.45651, 0, 0.913019, 0.407916, -0.5, -0.353266, 0.790698, 29, 34.2432, 44 )

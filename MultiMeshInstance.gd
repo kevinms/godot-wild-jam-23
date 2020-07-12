@@ -1,6 +1,6 @@
 extends MultiMeshInstance
 
-var radius = 80
+var radius = 40
 
 func _ready():
 	# Create the multimesh.
