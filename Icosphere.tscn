@@ -11,9 +11,9 @@ script = ExtResource( 3 )
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.871402, 0.490569, 0, -0.490569, 0.871402, 0, 3.55457, 6.11787 )
+transform = Transform( 1, 0, 0, 0, 0.871402, 0.490569, 0, -0.490569, 0.871402, 0, 10.4579, 18.3803 )
 
 [node name="Human" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.12244, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.15601, 6.17499 )
 collision_layer = 1024
 planet_path = NodePath("../Icosphere")

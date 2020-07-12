@@ -99,6 +99,8 @@ class MyCustomSorter:
 
 var octree = Octree.new(Vector3(), Vector3(40,40,40), 256)
 
+var owner_id: int
+
 func _ready():
 	init_noise()
 	
@@ -108,13 +110,18 @@ func _ready():
 	var shape = ConcavePolygonShape.new()
 	shape.set_faces(mesh.get_faces())
 	
-	var id = create_shape_owner(self)
-	shape_owner_add_shape(id, shape)
+	owner_id = create_shape_owner(self)
+	shape_owner_add_shape(owner_id, shape)
 
 func add_surface(st: SurfaceTool, p: Vector3):
 	st.add_color(Color(1, 0, 0))
 	st.add_uv(Vector2(0, 0))
 	st.add_vertex(p)
+
+var mesh_inst: MeshInstance
+
+func get_bounding_box():
+	return mesh_inst.get_aabb()
 
 func generate_mesh_instance():
 	var material = SpatialMaterial.new()
@@ -139,7 +146,7 @@ func generate_mesh_instance():
 	
 	var array_mesh = st.commit()
 	
-	var mesh_inst = MeshInstance.new()
+	mesh_inst = MeshInstance.new()
 	mesh_inst.mesh = array_mesh
 	add_child(mesh_inst)
 	

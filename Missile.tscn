@@ -15,19 +15,19 @@ clearcoat_gloss = 0.79
 
 [sub_resource type="CapsuleShape" id=3]
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.844444, 1 )
 colors = PoolColorArray( 0.984314, 0.0156863, 0.0156863, 1, 0, 0, 0, 1 )
 
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 1
 emission_sphere_radius = 1.0
 gravity = Vector3( 0, 0, 9.8 )
 scale_random = 0.17
-color_ramp = SubResource( 6 )
+color_ramp = SubResource( 5 )
 hue_variation = 0.02
 hue_variation_random = 0.52
 
@@ -59,7 +59,7 @@ transform = Transform( 0.868456, 0, 0, 0, 0.868456, 0, 0, 0, 0.868456, 0, 0, 1.8
 amount = 40
 lifetime = 2.0
 speed_scale = 2.0
-process_material = SubResource( 4 )
+process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 8 )
 
 [node name="SpotLight" type="SpotLight" parent="."]

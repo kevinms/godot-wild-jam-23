@@ -1,62 +1,55 @@
 extends KinematicBody
 
-var noise = OpenSimplexNoise.new()
-
-var velocity: Vector3
-var gravity = Vector3(0, -40, 0)
-var speed = 20
+var max_speed = 50
+var speed = 1000
 var jump = 20
+var gravity = 100
 
 #onready var planet = $"../Planet"
 export(NodePath) var planet_path
 onready var planet = get_node(planet_path)
 
-func init_noise():
-	noise.seed = randi()
-	noise.octaves = 7
-	noise.period = 20.0
-	noise.persistence = 0.8
-
-func local_input_direction():
-	var dir = Vector3()
-	
-	var pos = global_transform.origin
-	
-	if noise.get_noise_3dv(pos) > 0:
-		dir += Vector3.FORWARD
-	elif noise.get_noise_3dv(pos) > 0:
-		dir += Vector3.BACK
-	elif noise.get_noise_3dv(pos) > 0:
-		dir += Vector3.LEFT
-	elif noise.get_noise_3dv(pos) > 0:
-		dir += Vector3.RIGHT
-	
-	return dir.normalized()
+var global_velocity = Vector3()
 
 func _physics_process(delta):
 	
-	#rotate_object_local(Vector3.UP, 0.01)
+	rotate_object_local(Vector3.UP, 0.01)
+
+	var accel = Vector3()
+	
+	# Move forward
+	#if randf() < 0.4:
+	#	accel += global_transform.basis.z * speed * delta
+	
+	#var forward_vector = global_velocity.project(global_transform.basis.z)
+	#if forward_vector.length() > max_speed:
+	#	global_velocity -= forward_vector.normalized() * (forward_vector.length() - max_speed)
+	
+	# Gravity
+	accel += -global_transform.basis.y * gravity * delta
+	
+	# Apply acceleration
+	global_velocity += accel * delta
+	
+	# Jump
+	#if randf() < 0.1 and is_on_floor():
+		# We want the jump to initially cancel out all force due to gravity
+		
+		# Project our velocity onto the local Y axis
+		# This gets the component of velocity in the direction of gravity
+		#var scalar_projection = global_velocity.dot(-global_transform.basis.y) / global_velocity.length()
+		#var vector_projection = -global_transform.basis.y * scalar_projection
+		
+		# Subtract that component from the velocity to cancel out all gravity
+		#global_velocity -= vector_projection
+		#global_velocity += global_transform.basis.y * jump
 	
 	var world_up = (global_transform.origin - planet.global_transform.origin).normalized()
-	var world_down = (planet.global_transform.origin - global_transform.origin).normalized()
 	
-	var dir = local_input_direction()
-
-	# "velocity" is always in local space.
-	velocity.x = dir.x * speed
-	velocity.z = dir.z * speed
-	velocity.y = -20
+	global_velocity = move_and_slide_with_snap(global_velocity, -world_up*2, world_up, true)
 	
-	if Input.is_action_pressed("jump"):
-		velocity.y = jump
-	
-	# Convert "velocity" to global space because that's what move_and_slide() expects.
-	var global_velocity = to_global(velocity) - global_transform.origin
-	
-	global_velocity = move_and_slide(global_velocity, world_up, true)
-	
-	# Update local "velocity" to account for changes move_and_slide() made.
-	velocity = to_local(global_transform.origin + global_velocity) - transform.origin
+	if get_slide_count() > 0:
+		print("Collided with planet... hopefully")
 	
 	var xform = align_with_y(global_transform, world_up)
 	global_transform = global_transform.interpolate_with(xform, 0.2)
@@ -66,4 +59,5 @@ func align_with_y(xform, new_y):
 	xform.basis.y = new_y
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
+	#TODO: reset scale
 	return xform
