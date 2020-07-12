@@ -51,6 +51,7 @@ shape = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.8625, 1.39177 )
+planet_path = NodePath("../Planet")
 
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.346494, 0.938052, 0, -0.938052, 0.346494, 0, 7.75222, 3.95476 )

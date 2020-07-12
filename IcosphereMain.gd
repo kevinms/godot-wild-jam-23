@@ -36,6 +36,9 @@ func spawn_humans():
 		
 		human.planet_path = $Icosphere.get_path()
 		human.planet = $Icosphere
+		human.alien_path = $Player.get_path()
+		human.alien = $Player
+		print(human.alien)
 		add_child(human)
 
 func random_point_on_sphere(radius: float):

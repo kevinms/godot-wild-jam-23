@@ -1,31 +1,48 @@
 extends KinematicBody
 
 var speed = 1
-var jump = 2
+var jump = 3
 var gravity = 2
 
 export(NodePath) var planet_path
 onready var planet = get_node(planet_path)
 
+export(NodePath) var alien_path
+onready var alien = get_node(alien_path)
+
 var global_velocity = Vector3()
 var jumping = false
 
+var fear = 1.0
+
+func _ready():
+	print(alien)
+
 func _physics_process(delta):
 	# Jump
-	if is_on_floor() and randf() < 0.01:
+	if is_on_floor() and randf() < 1.0:
 		# Always jump up
-		global_velocity = global_transform.basis.y * jump
+		global_velocity = global_transform.basis.y * rand_range(0, jump)
 		jumping = true
 		
-		# Determine the direction
-		var forward = -global_transform.basis.z.normalized()
-		var new_dir = forward.rotated(global_transform.basis.y, rand_range(0, 2*PI))
-		global_velocity += new_dir * speed
+		# Distance to alien
+		var ray_to_alien = alien.global_transform.origin - global_transform.origin
+		if ray_to_alien.length() < 4:
+			fear = ray_to_alien.length()
+			#var forward = -global_transform.basis.z.normalized()
+			#var new_dir = forward.rotated(global_transform.basis.y, rand_range(0, 2*PI))
+			var new_dir = -ray_to_alien.normalized()
+			global_velocity += new_dir * speed * fear
+		else:
+			# Determine the direction
+			var forward = -global_transform.basis.z.normalized()
+			var new_dir = forward.rotated(global_transform.basis.y, rand_range(0, 2*PI))
+			global_velocity += new_dir * speed
 
 	var accel = Vector3()
 
 	# Gravity
-	accel += -global_transform.basis.y * gravity * delta
+	accel += -global_transform.basis.y * 500 * delta
 	
 	# Apply acceleration
 	global_velocity += accel * delta

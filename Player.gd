@@ -8,7 +8,8 @@ var speed = 20
 var jump = 20
 export var mouse_sensitivity = 0.002 # radians / pixel
 
-onready var planet = $"../Planet"
+export(NodePath) var planet_path
+onready var planet = get_node(planet_path)
 
 func local_input_direction():
 	var dir = Vector3()
