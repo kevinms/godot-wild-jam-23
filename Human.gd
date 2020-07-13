@@ -37,6 +37,9 @@ func _ready():
 	print(alien)
 
 func _physics_process(delta):
+	if is_on_floor() and randf() < 0.1:
+		emit_launch_surface_missile_signal(global_transform.origin)
+	
 	# Jump
 	if is_on_floor() and randf() < 1.0:
 		# Always jump up
@@ -87,3 +90,9 @@ func align_with_y(xform, new_y):
 	xform.basis = xform.basis.orthonormalized()
 	#TODO: Set scale back to before orthonormalized()?
 	return xform
+
+
+signal launch_surface_missile(launch_site, human)
+
+func emit_launch_surface_missile_signal(launch_site):
+	emit_signal("launch_surface_missile", launch_site, self)

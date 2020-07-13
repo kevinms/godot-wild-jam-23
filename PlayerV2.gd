@@ -93,7 +93,7 @@ func get_floor_normal():
 	var result = space_state.intersect_ray(from, to, [self])
 	
 	if result:
-		print("beneath me: ", result.normal)
+		#print("beneath me: ", result.normal)
 		return result.normal
 	return global_transform.basis.y.normalized()
 

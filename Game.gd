@@ -92,6 +92,19 @@ func launch_surface_missile(start: Vector3, end: Vector3):
 		
 		missile.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
 
+func _on_Emitter_launch_surface_missile(launch_site, human):
+	print("Launch me!")
+	var all_humans = get_tree().get_nodes_in_group("humans")
+	
+	var population = all_humans.size()
+	var which = randi() % population
+	var target = all_humans[which]
+	if target == human:
+		which = (which+1)%population
+	
+	var impact_site = target.global_transform.origin
+	launch_surface_missile(launch_site, impact_site)
+
 func spawn_humans():
 	var aabb = $Planet.get_bounding_box()
 	var radius = aabb.size.length() / 2
@@ -108,6 +121,8 @@ func spawn_humans():
 		human.alien = $Player
 		#print(human.alien)
 		add_child(human)
+		
+		human.connect("launch_surface_missile", self, "_on_Emitter_launch_surface_missile")
 
 var next_fire: float
 var sec_elapsed = 0.0
