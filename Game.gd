@@ -50,9 +50,9 @@ func click_raycast(event):
 			#print(closest)
 			
 			if prev_click_position != Vector3.ZERO:
-				prev_click_position = Vector3.ZERO
 				# Fire missle between two clicks
 				launch_surface_missile(prev_click_position, result.position)
+				prev_click_position = Vector3.ZERO
 			else:
 				prev_click_position = result.position
 
@@ -103,7 +103,7 @@ func spawn_humans():
 		human.planet = $Planet
 		human.alien_path = $Player.get_path()
 		human.alien = $Player
-		print(human.alien)
+		#print(human.alien)
 		add_child(human)
 
 var next_fire: float
