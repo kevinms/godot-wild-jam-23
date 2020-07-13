@@ -26,7 +26,7 @@ func set_fear(v: float):
 		$ExclamationMark.show()
 		if randf() < 1.1:
 			$AudioStreamPlayer.stream = AudioLibrary.random_human_noise()
-			$AudioStreamPlayer.play()
+			#$AudioStreamPlayer.play()
 	if fear > mark_radius and v < mark_radius:
 		$ExclamationPlayer.stop()
 		$ExclamationMark.hide()

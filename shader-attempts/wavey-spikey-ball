@@ -1,0 +1,20 @@
+shader_type spatial;
+//render_mode unshaded;
+
+//time_scale is a uniform float
+const float time_scale = 2.0;
+const float side_to_side = 1.0;
+uniform vec3 impact_site;
+const vec3 core = vec3(0);
+
+void vertex() {
+	float time = TIME * time_scale;
+	//side_to_side is a uniform float
+	//VERTEX.x += cos(time) * side_to_side;
+	//VERTEX.y += cos(VERTEX.x) * sin(VERTEX.z);
+	
+	float dist = length(impact_site - VERTEX);
+	
+	vec3 ray = VERTEX - core;
+	VERTEX = ray + (normalize(ray) * sin(dist*time));
+}
