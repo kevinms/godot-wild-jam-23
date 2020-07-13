@@ -89,6 +89,8 @@ func launch_surface_missile(start: Vector3, end: Vector3):
 		var missile = surface_missile_scene.instance()
 		missile.init(start, end, from, height_from_mid)
 		add_child(missile)
+		
+		missile.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
 
 func spawn_humans():
 	var aabb = $Planet.get_bounding_box()

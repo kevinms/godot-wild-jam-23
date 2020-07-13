@@ -10,6 +10,37 @@ func init_noise():
 	noise.period = 20.0
 	noise.persistence = 0.8
 
+
+func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
+	print("impact_site ", impact_site, " blast_raduis ", blast_radius)
+	
+	trigger_impact_ripple(impact_site)
+	
+	var space_state = get_world().direct_space_state
+	
+	# Create the intersection shape
+	var sphere = SphereShape.new()
+	sphere.radius = 3.0
+	
+	# Configure the query parameters
+	var query = PhysicsShapeQueryParameters.new()
+	query.set_shape(sphere)
+	#query.set_transform(get_transform())
+	
+	query.transform = Transform(Basis.IDENTITY, impact_site)
+	#query.set_exclude(excludes)
+	
+	var max_results = 32
+	var results = space_state.intersect_shape(query, max_results)
+	
+	for result in results:
+		var collider = result["collider"]
+		if collider.name == "Player":
+			print("Ouchie")
+		else:
+			#collider.queue_free()
+			pass
+
 #TODO: Optionally create a hexasphere by starting with a vertex and turning all connected triangles into a hex
 #TODO: I think the winding direction is wrong and I'm seeing it's insides lol....
 
@@ -123,9 +154,12 @@ var mesh_inst: MeshInstance
 func get_bounding_box():
 	return mesh_inst.get_aabb()
 
+var material
+
 func generate_mesh_instance():
-	var material = SpatialMaterial.new()
-	material.albedo_color = Color(0.8, 0.0, 0.0)
+	#var material = SpatialMaterial.new()
+	#material.albedo_color = Color(0.8, 0.0, 0.0)
+	material = load("res://ShaderTest.tres")
 	
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -140,7 +174,7 @@ func generate_mesh_instance():
 		add_surface(st, positions[tri.v3])
 		
 		var center = (positions[tri.v1] + positions[tri.v2] + positions[tri.v3]) / 3
-		octree.add(center, tri)
+		#octree.add(center, tri)
 	
 	st.generate_normals()
 	
@@ -152,10 +186,19 @@ func generate_mesh_instance():
 	
 	return array_mesh
 
+
+func trigger_impact_ripple(impact_site: Vector3):
+	#material.set_shader_param("site0", impact_site)
+	material.set_shader_param("site0", to_local(impact_site))
+	#material.set_shader_param("site0", Vector3(1,0,0))
+	material.set_shader_param("start_time_0", float(OS.get_ticks_msec()) / 1000.0)
+
+var time = 0
 func _process(delta):
 	#rotate_y(delta)
 	#rotate_x(delta)
-	pass
+	material.set_shader_param("global_time", time)
+	time += delta
 
 class TriangleIndices:
 	var v1: int
@@ -263,7 +306,7 @@ func create():
 	faces.push_back(TriangleIndices.new(8, 7, 6))
 	faces.push_back(TriangleIndices.new(9, 1, 8))
 	
-	var recursionLevel = 3
+	var recursionLevel = 4
 	
 	# refine triangles
 	

@@ -11,11 +11,20 @@ func init(start: Vector3, end: Vector3, core: Vector3, height_from_mid: float):
 	self.core = core
 	self.height_from_mid = height_from_mid
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-var ticks = 0
+var blast_radius: float
+
+func _ready():
+	blast_radius = 1.0
+
+signal surface_missile_impact(impact_site, blast_radius)
+
+func emit_surface_missile_impact_signal(impact_site, blast_radius):
+	print("emitting signal")
+	emit_signal("surface_missile_impact", impact_site, blast_radius)
+	
+
+var impacted = false
 
 var t = 0
 func _process(delta):
@@ -23,9 +32,12 @@ func _process(delta):
 	if t > 1.0:
 		t = 1.0
 	
-	ticks += 1
-	if ticks % 10 && t < 1.0:
+	if !impacted:
 		global_transform.origin = sine_lerp(t)
+
+	if t >= 1.0 and !impacted:
+		impacted = true
+		emit_surface_missile_impact_signal(end, blast_radius)
 	
 	#TODO: Shoot a ray out from the core again, to make sure the surface tile is still intact for impact.
 
@@ -36,7 +48,7 @@ func sine_lerp(t: float):
 	
 	
 	var height = height_from_mid * unit_height
-	print("height ", height, " start ", start, " end ", end)
+	#print("height ", height, " start ", start, " end ", end)
 	
 	
 	var spot = start.linear_interpolate(end, t)
