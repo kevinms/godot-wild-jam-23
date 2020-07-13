@@ -59,3 +59,6 @@ material/0 = SubResource( 4 )
 
 [node name="ExclamationPlayer" type="AnimationPlayer" parent="."]
 "anims/Squishy bounce" = SubResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -9.087

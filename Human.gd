@@ -4,6 +4,8 @@ var speed = 1
 var jump = 3
 var gravity = 2
 
+
+
 export(NodePath) var planet_path
 onready var planet = get_node(planet_path)
 
@@ -22,6 +24,9 @@ func set_fear(v: float):
 	if fear < mark_radius and v > mark_radius:
 		$ExclamationPlayer.play("Squishy bounce")
 		$ExclamationMark.show()
+		if randf() < 1.1:
+			$AudioStreamPlayer.stream = AudioLibrary.random_human_noise()
+			$AudioStreamPlayer.play()
 	if fear > mark_radius and v < mark_radius:
 		$ExclamationPlayer.stop()
 		$ExclamationMark.hide()
