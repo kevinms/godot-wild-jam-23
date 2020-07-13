@@ -67,8 +67,7 @@ func _physics_process(delta):
 	# Convert "velocity" to global space because that's what move_and_slide() expects.
 	var global_velocity = to_global(velocity) - global_transform.origin
 	
-	# Using floor_normal causes jitter when player is at rest
-	#var floor_normal = get_floor_normal()
+	var floor_normal = get_floor_normal()
 	
 	global_velocity = move_and_slide(global_velocity, world_up, true)
 	#global_velocity = move_and_slide(global_velocity, -global_transform.basis.y, true)

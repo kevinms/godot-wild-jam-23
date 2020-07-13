@@ -26,7 +26,8 @@ uniform float strength;
 const float planet_scale = 5.0;
 
 const vec3 core = vec3(0);
-const float max_dist = 1.3 * planet_scale;
+//const float max_dist = 1.3 * planet_scale;
+const float max_dist = 2.0 * planet_scale;
 const float wave_scale = 0.2 * planet_scale;
 
 const float PI = 3.14159265358979323846;
@@ -96,9 +97,15 @@ void vertex() {
 }
 
 void fragment(){
+	// Shinier
 	ALBEDO = COLOR.xyz;
-	ROUGHNESS = 1.0;
+	ROUGHNESS = 0.5;
 	METALLIC = 0.5;
+	
+	// Flatter
+	//ALBEDO = COLOR.xyz;
+	//ROUGHNESS = 1.0;
+	//METALLIC = 0.5;
 	
 }"
 
