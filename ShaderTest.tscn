@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ShaderTest.tres" type="Material" id=1]
+[ext_resource path="res://ShaderTest.gd" type="Script" id=2]
+[ext_resource path="res://MeshInstance.gd" type="Script" id=3]
 
 [sub_resource type="SphereMesh" id=1]
 
 [node name="ShaderTest" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.758134, 2.85041e-08, 0.652098, -2.85041e-08, 1, -1.05723e-08, -0.652098, -1.05723e-08, 0.758134, 2.9372, 3.31653e-08, 2.2021 )
