@@ -28,6 +28,7 @@ func set_fear(v: float):
 	fear = v
 
 func _ready():
+	add_to_group("humans")
 	print(alien)
 
 func _physics_process(delta):

@@ -24,13 +24,15 @@ func _process(delta):
 	if Input.is_action_just_pressed("enter"):
 		get_tree().reload_current_scene()
 	
-	fire_missile_occasionally(delta)
+	#fire_missile_occasionally(delta)
 
 
 
 const ray_length = 1000
 export var num_humans = 100
 onready var human_scene = load("res://Human.tscn")
+
+var prev_click_position = Vector3.ZERO
 
 func click_raycast(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:
@@ -44,10 +46,48 @@ func click_raycast(event):
 		if result:
 			print("Ray hit: ", result.position)
 			
-			var closest = $Planet.octree.knn(result.position, 32)
-			print(closest)
+			#var closest = $Planet.octree.knn(result.position, 32)
+			#print(closest)
+			
+			if prev_click_position != Vector3.ZERO:
+				prev_click_position = Vector3.ZERO
+				# Fire missle between two clicks
+				launch_surface_missile(prev_click_position, result.position)
+			else:
+				prev_click_position = result.position
 
 
+
+onready var surface_missile_scene = load("res://SurfaceMissile.tscn")
+var surface_missile_height = 5
+
+func launch_surface_missile(start: Vector3, end: Vector3):
+	var mid = start.linear_interpolate(end, 0.5)
+	var core_to_mid = mid - $Planet.global_transform.origin
+	var up = core_to_mid.normalized()
+	
+	var from = $Planet.global_transform.origin
+	var to = up * 1000
+	
+	var space_state = get_world().direct_space_state
+	var result = space_state.intersect_ray(from, to, [self])
+	
+	if result:
+		if $Planet.get_instance_id() != result.collider_id:
+			print("Woah, what are you shooting at? We'll consider this a misfire.")
+			return
+		
+		var height_from_core = (result.position - from).length()
+		
+		# How high above the surface do we want the missile?
+		height_from_core += surface_missile_height
+		
+		var height_from_mid = height_from_core - core_to_mid.length()
+		
+		# Create a new surface missile
+		var missile = surface_missile_scene.instance()
+		missile.init(start, end, from, height_from_mid)
+		add_child(missile)
 
 func spawn_humans():
 	var aabb = $Planet.get_bounding_box()
