@@ -161,12 +161,31 @@ func generate_mesh_instance():
 	
 	return array_mesh
 
+var active_impacts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+func find_free_impact_site():
+	var effect_length = 2.0
+	var time = float(OS.get_ticks_msec()) / 1000.0
+	for i in range(active_impacts.size()):
+		var start_time = active_impacts[i]
+		if time > start_time + effect_length:
+			# It's complete, free slot!
+			return i
+	return -1
 
+onready var mutex = Mutex.new()
 func trigger_impact_ripple(impact_site: Vector3):
-	#material.set_shader_param("site0", impact_site)
-	material.set_shader_param("site0", to_local(impact_site))
-	#material.set_shader_param("site0", Vector3(1,0,0))
-	material.set_shader_param("start_time_0", float(OS.get_ticks_msec()) / 1000.0)
+	mutex.lock()
+	var i = find_free_impact_site()
+	if i < 0:
+		print("Already at maximum impacts")
+		mutex.unlock()
+		return
+	
+	var t = float(OS.get_ticks_msec()) / 1000.0
+	material.set_shader_param("site"+str(i), to_local(impact_site))
+	material.set_shader_param("start_time_"+str(i), t)
+	active_impacts[i] = t
+	mutex.unlock()
 
 var time = 0
 func _process(delta):

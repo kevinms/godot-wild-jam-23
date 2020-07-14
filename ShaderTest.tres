@@ -16,9 +16,23 @@ uniform float global_time;
 uniform vec3 site0;
 uniform vec3 site1;
 uniform vec3 site2;
+uniform vec3 site3;
+uniform vec3 site4;
+uniform vec3 site5;
+uniform vec3 site6;
+uniform vec3 site7;
+uniform vec3 site8;
+uniform vec3 site9;
 uniform float start_time_0;
 uniform float start_time_1;
 uniform float start_time_2;
+uniform float start_time_3;
+uniform float start_time_4;
+uniform float start_time_5;
+uniform float start_time_6;
+uniform float start_time_7;
+uniform float start_time_8;
+uniform float start_time_9;
 
 //uniform float start_time;
 uniform float strength;
@@ -57,10 +71,13 @@ vec3 wave(vec3 vertex, vec3 site, float time, float start_time) {
 		amplitude *= sin(time_falloff);
 		
 		//float amplitude = 0.04;
-		vertex = core + ray + (normalize(ray) * sin(x-(PI/2.0)-time) *  amplitude);
+		//vertex = core + ray + (normalize(ray) * sin(x-(PI/2.0)-time) *  amplitude);
+		
+		// return displacement
+		return normalize(ray) * sin(x-(PI/2.0)-time) *  amplitude;
 	}
 	
-	return vertex;
+	return vec3(0);
 }
 
 void vertex() {
@@ -71,9 +88,19 @@ void vertex() {
 	COLOR.xyz = vec3(dist0 / 2.0);
 	*/
 	
-	VERTEX = wave(VERTEX, site0, time, start_time_0 * time_scale);
-	//VERTEX = wave(VERTEX, site1, time, start_time_1 * time_scale);
-	//VERTEX = wave(VERTEX, site2, time, start_time_2 * time_scale);
+	vec3 disp = wave(VERTEX, site0, time, start_time_0 * time_scale);
+	disp + wave(VERTEX, site1, time, start_time_1 * time_scale);
+	disp += wave(VERTEX, site2, time, start_time_2 * time_scale);
+	disp += wave(VERTEX, site3, time, start_time_3 * time_scale);
+	disp += wave(VERTEX, site4, time, start_time_4 * time_scale);
+	disp += wave(VERTEX, site5, time, start_time_5 * time_scale);
+	disp += wave(VERTEX, site6, time, start_time_6 * time_scale);
+	disp += wave(VERTEX, site7, time, start_time_7 * time_scale);
+	disp += wave(VERTEX, site8, time, start_time_8 * time_scale);
+	disp += wave(VERTEX, site9, time, start_time_9 * time_scale);
+	
+	vec3 ray = VERTEX - core;
+	VERTEX = core + ray + disp;
 	
 	COLOR.xyz = albedo;
 	
@@ -117,7 +144,21 @@ shader_param/global_time = null
 shader_param/site0 = Vector3( 1, 0, 0 )
 shader_param/site1 = Vector3( 0, 0, 0 )
 shader_param/site2 = null
+shader_param/site3 = null
+shader_param/site4 = null
+shader_param/site5 = null
+shader_param/site6 = null
+shader_param/site7 = null
+shader_param/site8 = null
+shader_param/site9 = null
 shader_param/start_time_0 = null
 shader_param/start_time_1 = null
 shader_param/start_time_2 = null
+shader_param/start_time_3 = null
+shader_param/start_time_4 = null
+shader_param/start_time_5 = null
+shader_param/start_time_6 = null
+shader_param/start_time_7 = null
+shader_param/start_time_8 = null
+shader_param/start_time_9 = null
 shader_param/strength = 1.0
