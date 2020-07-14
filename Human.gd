@@ -37,7 +37,7 @@ func _ready():
 	print(alien)
 
 func _physics_process(delta):
-	if is_on_floor() and randf() < 0.1:
+	if is_on_floor() and randf() < 0.01:
 		emit_launch_surface_missile_signal(global_transform.origin)
 	
 	# Jump

@@ -91,11 +91,45 @@ func launch_surface_missile(start: Vector3, end: Vector3):
 		add_child(missile)
 		
 		missile.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
+		missile.connect("surface_missile_impact", self, "_on_Emitter_surface_missile_impact")
+
+func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
+	print("impact_site ", impact_site, " blast_raduis ", blast_radius)
+	
+	var space_state = get_world().direct_space_state
+	
+	# Create the intersection shape
+	var sphere = SphereShape.new()
+	sphere.radius = 3.0
+	
+	# Configure the query parameters
+	var query = PhysicsShapeQueryParameters.new()
+	query.set_shape(sphere)
+	#query.set_transform(get_transform())
+	
+	query.transform = Transform(Basis.IDENTITY, impact_site)
+	#query.set_exclude(excludes)
+	
+	var max_results = 32
+	var results = space_state.intersect_shape(query, max_results)
+	
+	for result in results:
+		var collider = result["collider"]
+		if collider == $Planet:
+			continue
+		if collider.name == "Player":
+			print("Ouchie")
+			GlobalStats.health -= 10
+		else:
+			if collider.get_groups().find("humans") >= 0:
+				GlobalStats.population -= 1
+			collider.queue_free()
 
 func _on_Emitter_launch_surface_missile(launch_site, human):
 	print("Launch me!")
 	var all_humans = get_tree().get_nodes_in_group("humans")
 	
+	# Pick a target human
 	var population = all_humans.size()
 	var which = randi() % population
 	var target = all_humans[which]
@@ -121,6 +155,8 @@ func spawn_humans():
 		human.alien = $Player
 		#print(human.alien)
 		add_child(human)
+		
+		GlobalStats.population += 1
 		
 		human.connect("launch_surface_missile", self, "_on_Emitter_launch_surface_missile")
 

@@ -12,34 +12,9 @@ func init_noise():
 
 
 func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
-	print("impact_site ", impact_site, " blast_raduis ", blast_radius)
+	#print("impact_site ", impact_site, " blast_raduis ", blast_radius)
 	
 	trigger_impact_ripple(impact_site)
-	
-	var space_state = get_world().direct_space_state
-	
-	# Create the intersection shape
-	var sphere = SphereShape.new()
-	sphere.radius = 3.0
-	
-	# Configure the query parameters
-	var query = PhysicsShapeQueryParameters.new()
-	query.set_shape(sphere)
-	#query.set_transform(get_transform())
-	
-	query.transform = Transform(Basis.IDENTITY, impact_site)
-	#query.set_exclude(excludes)
-	
-	var max_results = 32
-	var results = space_state.intersect_shape(query, max_results)
-	
-	for result in results:
-		var collider = result["collider"]
-		if collider.name == "Player":
-			print("Ouchie")
-		else:
-			#collider.queue_free()
-			pass
 
 #TODO: Optionally create a hexasphere by starting with a vertex and turning all connected triangles into a hex
 #TODO: I think the winding direction is wrong and I'm seeing it's insides lol....

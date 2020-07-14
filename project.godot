@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 DebugDraw="*res://DebugDraw.gd"
 AudioLibrary="*res://AudioLibrary.gd"
+GlobalStats="*res://GlobalStats.gd"
 
 [input]
 
