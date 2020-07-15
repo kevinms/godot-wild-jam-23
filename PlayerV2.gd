@@ -77,6 +77,9 @@ func _physics_process(delta):
 	# Updated velocity
 	var dir = global_input_direction()
 	
+	if Input.is_action_just_pressed("shield"):
+		$Shield.activate()
+	
 	if jumping:
 		velocity += dir * air_speed * delta
 		if velocity.length() > speed:

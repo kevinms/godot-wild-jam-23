@@ -4,13 +4,14 @@ var start: Vector3
 var end: Vector3
 var core: Vector3
 var height_from_mid: float
+var speed: float
 
 func init(start: Vector3, end: Vector3, core: Vector3, height_from_mid: float):
 	self.start = start
 	self.end = end
 	self.core = core
 	self.height_from_mid = height_from_mid
-
+	self.speed = 0.2
 
 var blast_radius: float
 
@@ -22,13 +23,12 @@ signal surface_missile_impact(impact_site, blast_radius)
 func emit_surface_missile_impact_signal(impact_site, blast_radius):
 	print("emitting signal")
 	emit_signal("surface_missile_impact", impact_site, blast_radius)
-	
 
 var impacted = false
 
 var t = 0
 func _process(delta):
-	t += delta
+	t += speed * delta
 	if t > 1.0:
 		t = 1.0
 	

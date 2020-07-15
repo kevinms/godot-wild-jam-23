@@ -40,11 +40,11 @@ func _physics_process(delta):
 	var xform = align_with_y(global_transform, world_up)
 	global_transform = global_transform.interpolate_with(xform, 0.2)
 	
-	if is_on_floor() and randf() < 0.01:
+	if !jumping and randf() < 0.01:
 		emit_launch_surface_missile_signal(global_transform.origin)
 	
 	# Jump
-	if is_on_floor() and randf() < 1.0:
+	if !jumping and randf() < 1.0:
 		# Always jump up
 		global_velocity = global_transform.basis.y * rand_range(0, jump)
 		jumping = true
