@@ -13,6 +13,24 @@ func init_noise():
 
 func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
 	#print("impact_site ", impact_site, " blast_raduis ", blast_radius)
+	var mdt = MeshDataTool.new()
+	mdt.create_from_surface(mesh_inst.mesh, 0)
+	var magnitude = rand_range(0.1,0.2)*25
+	for i in range(mdt.get_vertex_count()):
+		var vertex = mdt.get_vertex(i)
+		var dir = vertex.normalized()
+		
+		var dist = (impact_site - vertex).length()
+		var factor = 3
+		var normdist = 1 - (dist/(blast_radius*factor))
+		if dist < blast_radius*factor:
+			vertex -= (dir * normdist * magnitude)
+			mdt.set_vertex(i, vertex)
+	
+	mesh_inst.mesh.surface_remove(0)
+	mdt.commit_to_surface(mesh_inst.mesh)
+	buildConcavePolygonShape(mesh_inst.mesh)
+
 	
 	trigger_impact_ripple(impact_site)
 
@@ -105,7 +123,17 @@ class MyCustomSorter:
 
 var octree = Octree.new(Vector3(), Vector3(40,40,40), 256)
 
-var owner_id: int
+var owner_id: int = -1
+
+func buildConcavePolygonShape(mesh):
+	var shape = ConcavePolygonShape.new()
+	shape.set_faces(mesh.get_faces())
+	
+	if owner_id == -1:
+		owner_id = create_shape_owner(self)
+	shape_owner_clear_shapes(owner_id)
+	shape_owner_add_shape(owner_id, shape)
+
 
 func _ready():
 	init_noise()
@@ -113,11 +141,7 @@ func _ready():
 	var mesh = generate_mesh_instance()
 	
 	# Generate collision shape
-	var shape = ConcavePolygonShape.new()
-	shape.set_faces(mesh.get_faces())
-	
-	owner_id = create_shape_owner(self)
-	shape_owner_add_shape(owner_id, shape)
+	buildConcavePolygonShape(mesh)
 
 func add_surface(st: SurfaceTool, p: Vector3):
 	st.add_color(Color(1, 0, 0))

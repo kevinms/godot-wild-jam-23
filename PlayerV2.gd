@@ -2,28 +2,10 @@ extends KinematicBody
 
 # if it doesn't work, create a planet that is a sibling and switch to transform
 
-var velocity: Vector3
-var gravity = Vector3(0, -40, 0)
-var speed = 20
-var jump = 20
 export var mouse_sensitivity = 0.002 # radians / pixel
 
 export(NodePath) var planet_path
 onready var planet = get_node(planet_path)
-
-func local_input_direction():
-	var dir = Vector3()
-	
-	if Input.is_action_pressed("forward"):
-		dir += Vector3.FORWARD
-	if Input.is_action_pressed("back"):
-		dir += Vector3.BACK
-	if Input.is_action_pressed("left"):
-		dir += Vector3.LEFT
-	if Input.is_action_pressed("right"):
-		dir += Vector3.RIGHT
-	
-	return dir.normalized()
 
 func draw_velocity():
 	var offset = Vector3.UP * 4
@@ -42,47 +24,85 @@ func _unhandled_input(event):
 			
 			rotate_object_local(Vector3.UP, angle)
 
+func local_input_direction():
+	var dir = Vector3()
+	
+	if Input.is_action_pressed("forward"):
+		dir += Vector3.FORWARD
+	if Input.is_action_pressed("back"):
+		dir += Vector3.BACK
+	if Input.is_action_pressed("left"):
+		dir += Vector3.LEFT
+	if Input.is_action_pressed("right"):
+		dir += Vector3.RIGHT
+	
+	return dir.normalized()
+
+func global_input_direction():
+	var dir = Vector3.ZERO
+	
+	if Input.is_action_pressed("forward"):
+		dir += -global_transform.basis.z.normalized()
+	if Input.is_action_pressed("back"):
+		dir += global_transform.basis.z.normalized()
+	if Input.is_action_pressed("left"):
+		dir += -global_transform.basis.x.normalized()
+	if Input.is_action_pressed("right"):
+		dir += global_transform.basis.x.normalized()
+	
+	return dir.normalized()
+	#return dir
+
+var velocity: Vector3
+var gravity_magnitude = 40
+var speed = 10
+var jump = 10
+
+var jumping = false
+
 func _physics_process(delta):
 	var world_up = (global_transform.origin - planet.global_transform.origin).normalized()
-	var world_down = (planet.global_transform.origin - global_transform.origin).normalized()
-	
-	#velocity +=  world_down * 20 * delta
-	
-	var dir = local_input_direction()
-	
-	# Convert direction to global space (probaby a better way...)
-	#dir = (to_global(dir) - global_transform.origin).normalized()
-	#velocity += dir # The problem is that we continuously add but never reset
 
-	# "velocity" is always in local space.
-	velocity.x = dir.x * speed
-	velocity.z = dir.z * speed
-	#velocity.y += -20 * delta
-	#velocity.y = 0
-	velocity.y = -20
-	
-	if Input.is_action_pressed("jump"):
-		velocity.y = jump
-	
-	# Convert "velocity" to global space because that's what move_and_slide() expects.
-	var global_velocity = to_global(velocity) - global_transform.origin
-	
-	var floor_normal = get_floor_normal()
-	
-	global_velocity = move_and_slide(global_velocity, world_up, true)
-	#global_velocity = move_and_slide(global_velocity, -global_transform.basis.y, true)
-	
-	# Update local "velocity" to account for changes move_and_slide() made.
-	velocity = to_local(global_transform.origin + global_velocity) - transform.origin
-	
-	#print(velocity)
-	#draw_velocity()
-	
-	#velocity = move_and_slide_with_snap(velocity, Vector3.DOWN*2, Vector3.UP, true)
-	#velocity = move_and_slide(velocity, Vector3.UP, true)
-	#global_transform = align_with_y(global_transform, world_up)
 	var xform = align_with_y(global_transform, world_up)
-	global_transform = global_transform.interpolate_with(xform, 0.2)
+	global_transform = global_transform.interpolate_with(xform, 1.0)
+
+	# Round 1:
+	#   Keep track of global velocity
+	#   We want acceleration
+	
+	# Save what component of velocity is gravity
+	var gravity_component = velocity.project(-world_up)
+	
+	# Updated velocity
+	var dir = global_input_direction()
+	velocity = dir * speed
+	
+	if !jumping && Input.is_action_pressed("jump"):
+		# Override gravity if we jumped
+		velocity += global_transform.basis.y.normalized() * jump
+		jumping = true
+	else:
+		# Add back gravity, but in the current direction of gravity
+		#velocity += -world_up * gravity_component.length() # gravity_component points either up or down (it's not just gravity), so if it points up, we get it's magnitude and apply it down... oops
+		velocity += gravity_component
+		velocity += -world_up * (gravity_magnitude * delta)
+	
+	# Option #1
+	#var collision = move_and_collide(velocity * delta)
+	#if collision:
+	#	jumping = false
+	#	velocity = velocity.slide(collision.normal)
+	
+	# Option #2
+	velocity = move_and_slide(velocity, world_up, true, 4, PI/2)
+	if get_slide_count() > 0:
+		jumping = false
+	
+	# Option #3
+	#var snap = (-global_transform.basis.y + dir) * 2.0
+	#velocity = move_and_slide_with_snap(velocity, snap, world_up, true)
+	#if get_slide_count() > 0:
+	#	jumping = false
 
 # Get the surface normal of w/e is beneath us. This is used as the up vector for move_and_slide() to prevent the extra sliding!
 func get_floor_normal():

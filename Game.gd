@@ -123,7 +123,7 @@ func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
 		else:
 			if collider.get_groups().find("humans") >= 0:
 				GlobalStats.population -= 1
-			collider.queue_free()
+				collider.queue_free()
 
 func _on_Emitter_launch_surface_missile(launch_site, human):
 	print("Launch me!")
