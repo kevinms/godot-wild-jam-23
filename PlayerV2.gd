@@ -56,6 +56,7 @@ func global_input_direction():
 var velocity: Vector3
 var gravity_magnitude = 40
 var speed = 10
+var air_speed = 40
 var jump = 10
 
 var jumping = false
@@ -75,16 +76,29 @@ func _physics_process(delta):
 	
 	# Updated velocity
 	var dir = global_input_direction()
-	velocity = dir * speed
+	
+	if jumping:
+		velocity += dir * air_speed * delta
+		if velocity.length() > speed:
+			velocity = velocity.normalized() * speed
+	else:
+		velocity = dir * speed
 	
 	if !jumping && Input.is_action_pressed("jump"):
 		# Override gravity if we jumped
+		velocity -= gravity_component
+	
+		# Only cancel out gravity_component if it points down -- this let's jumps compound velocity.
+		#if gravity_component.dot(-world_up) > 0:
+		#       velocity -= gravity_component
+
 		velocity += global_transform.basis.y.normalized() * jump
 		jumping = true
 	else:
 		# Add back gravity, but in the current direction of gravity
 		#velocity += -world_up * gravity_component.length() # gravity_component points either up or down (it's not just gravity), so if it points up, we get it's magnitude and apply it down... oops
-		velocity += gravity_component
+		if !jumping:
+			velocity += gravity_component
 		velocity += -world_up * (gravity_magnitude * delta)
 	
 	# Option #1
