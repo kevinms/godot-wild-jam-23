@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SurfaceMissile.gd" type="Script" id=1]
 
@@ -39,25 +39,6 @@ vertex_color_use_as_albedo = true
 [sub_resource type="CubeMesh" id=8]
 material = SubResource( 7 )
 
-[sub_resource type="Curve" id=9]
-_data = [ Vector2( 0, 1 ), 0.0, -0.0305611, 0, 0, Vector2( 1, 0 ), -2.19679, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
-
-[sub_resource type="ParticlesMaterial" id=11]
-direction = Vector3( 0, 1, 0 )
-initial_velocity = 6.0
-scale = 0.2
-scale_curve = SubResource( 10 )
-color = Color( 0.94902, 0.854902, 0.0745098, 1 )
-
-[sub_resource type="SpatialMaterial" id=12]
-vertex_color_use_as_albedo = true
-
-[sub_resource type="SphereMesh" id=13]
-material = SubResource( 12 )
-
 [node name="SurfaceMissile" type="KinematicBody"]
 script = ExtResource( 1 )
 
@@ -77,12 +58,3 @@ randomness = 0.2
 local_coords = false
 process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 8 )
-
-[node name="Explosion" type="Particles" parent="."]
-emitting = false
-amount = 50
-lifetime = 2.0
-one_shot = true
-explosiveness = 0.81
-process_material = SubResource( 11 )
-draw_pass_1 = SubResource( 13 )

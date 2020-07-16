@@ -29,10 +29,10 @@ var at_end = false
 
 var t = 0
 func _physics_process(delta):
-	var world_up = (global_transform.origin - core).normalized()
+	#var world_up = (global_transform.origin - core).normalized()
 
-	var xform = align_with_y(global_transform, world_up)
-	global_transform = global_transform.interpolate_with(xform, 1.0)
+	#var xform = align_with_y(global_transform, world_up)
+	#global_transform = global_transform.interpolate_with(xform, 1.0)
 	
 	if impacted:
 		return
@@ -63,7 +63,7 @@ func _physics_process(delta):
 
 func explode():
 	$Particles.emitting = false
-	$Explosion.emitting = true
+	#$Explosion.emitting = true
 	
 	#var up = (global_transform.origin - core).normalized()
 	#$Explosion.pwrocess_material.initial_
