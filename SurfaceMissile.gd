@@ -15,6 +15,8 @@ func init(start: Vector3, end: Vector3, core: Vector3, height_from_mid: float):
 	
 	self.speed = 0.2
 	self.blast_radius = 1.0
+	
+	$Particles.emitting = true
 
 signal surface_missile_impact(impact_site, blast_radius)
 
@@ -26,7 +28,12 @@ var impacted = false
 var at_end = false
 
 var t = 0
-func _process(delta):
+func _physics_process(delta):
+	var world_up = (global_transform.origin - core).normalized()
+
+	var xform = align_with_y(global_transform, world_up)
+	global_transform = global_transform.interpolate_with(xform, 1.0)
+	
 	if impacted:
 		return
 	
@@ -50,10 +57,18 @@ func _process(delta):
 		if collision:
 			print("hi")
 			impacted = true
-			emit_surface_missile_impact_signal(end, blast_radius)
+			explode()
 	else:
 		global_transform.origin = new_global_origin
 
+func explode():
+	$Particles.emitting = false
+	$Explosion.emitting = true
+	
+	#var up = (global_transform.origin - core).normalized()
+	#$Explosion.pwrocess_material.initial_
+	
+	emit_surface_missile_impact_signal(end, blast_radius)
 
 #func update_end_point():
 #	# Shoot a ray towards the planet and see what is in the way.
@@ -90,3 +105,10 @@ func sine_lerp(t: float):
 	#var ray = spot - core
 	#ray = ray.normalized() * (ray.length() + height)
 	#return core + ray
+
+# https://kidscancode.org/godot_recipes/3d/3d_align_surface/
+func align_with_y(xform, new_y):
+	xform.basis.y = new_y
+	xform.basis.x = -xform.basis.z.cross(new_y)
+	xform.basis = xform.basis.orthonormalized()
+	return xform

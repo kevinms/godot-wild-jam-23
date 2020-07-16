@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://CameraRig.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -25,39 +25,7 @@ albedo_color = Color( 0.164706, 0.85098, 0.921569, 1 )
 
 [sub_resource type="SphereMesh" id=7]
 
-[sub_resource type="SphereShape" id=9]
-
-[sub_resource type="Curve" id=11]
-_data = [ Vector2( 0, 0.272727 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.19291, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=8]
-curve = SubResource( 11 )
-
-[sub_resource type="Gradient" id=12]
-offsets = PoolRealArray( 0.2, 1 )
-colors = PoolColorArray( 0.976562, 0.976562, 0.976562, 1, 0, 0, 0, 1 )
-
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 12 )
-
-[sub_resource type="ParticlesMaterial" id=13]
-trail_divisor = 10
-trail_color_modifier = SubResource( 10 )
-emission_shape = 1
-emission_sphere_radius = 1.0
-gravity = Vector3( 0, 0.8, 0 )
-initial_velocity = 2.0
-initial_velocity_random = 0.29
-angular_velocity = 115.86
-scale = 0.1
-scale_curve = SubResource( 8 )
-color = Color( 0.631373, 0.976471, 0.0745098, 1 )
-
-[sub_resource type="SpatialMaterial" id=14]
-vertex_color_use_as_albedo = true
-
-[sub_resource type="CubeMesh" id=15]
-material = SubResource( 14 )
+[sub_resource type="SphereShape" id=8]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 3 )
@@ -125,12 +93,4 @@ material/0 = ExtResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Lava"]
 transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0 )
-shape = SubResource( 9 )
-
-[node name="Particles2" type="Particles" parent="."]
-amount = 40
-lifetime = 2.0
-randomness = 0.2
-visibility_aabb = AABB( -14.4627, -13.7916, -14.1928, 28.9253, 27.5832, 28.3855 )
-process_material = SubResource( 13 )
-draw_pass_1 = SubResource( 15 )
+shape = SubResource( 8 )

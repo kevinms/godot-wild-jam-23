@@ -10,11 +10,11 @@ initial_velocity = 5.0
 scale = 0.2
 color = Color( 0.8, 0.784314, 0.733333, 1 )
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=2]
 vertex_color_use_as_albedo = true
 
-[sub_resource type="CubeMesh" id=10]
-material = SubResource( 9 )
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.185185, 1 )
@@ -49,7 +49,7 @@ transform = Transform( 1, -9.826e-05, 0.000112648, 9.83035e-05, 1, -0.000193277,
 amount = 50
 randomness = 0.18
 process_material = SubResource( 1 )
-draw_pass_1 = SubResource( 10 )
+draw_pass_1 = SubResource( 3 )
 
 [node name="Spatial2" type="Particles" parent="."]
 transform = Transform( 1, -9.826e-05, 0.000112648, 9.83035e-05, 1, -0.000193277, -0.00011261, 0.000193299, 1, 0, 0, 0 )

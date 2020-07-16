@@ -52,6 +52,8 @@ class Octree:
 	var children = []
 	
 	func _init(center: Vector3, half_size: Vector3, max_points: int):
+		self.center = center
+		self.half_size = half_size
 		aabb = AABB(center-half_size, half_size*2)
 		self.max_points = max_points
 	
