@@ -5,18 +5,16 @@ var end: Vector3
 var core: Vector3
 var height_from_mid: float
 var speed: float
+var blast_radius: float
 
 func init(start: Vector3, end: Vector3, core: Vector3, height_from_mid: float):
 	self.start = start
 	self.end = end
 	self.core = core
 	self.height_from_mid = height_from_mid
+	
 	self.speed = 0.2
-
-var blast_radius: float
-
-func _ready():
-	blast_radius = 1.0
+	self.blast_radius = 1.0
 
 signal surface_missile_impact(impact_site, blast_radius)
 
@@ -25,31 +23,62 @@ func emit_surface_missile_impact_signal(impact_site, blast_radius):
 	emit_signal("surface_missile_impact", impact_site, blast_radius)
 
 var impacted = false
+var at_end = false
 
 var t = 0
 func _process(delta):
-	t += speed * delta
-	if t > 1.0:
-		t = 1.0
+	if impacted:
+		return
 	
-	if !impacted:
-		global_transform.origin = sine_lerp(t)
+	#update_end_point()
+	
+	#t = clamp(t + delta, 0, 1.0)
+	t = clamp(t + speed * delta, 0, 1.0)
+	
+	var new_global_origin = global_transform.origin
+	if !at_end:
+		new_global_origin = sine_lerp(t)
+		if t >= 1.0:
+			at_end = true
+	
+	print("hi")
+	
+	var dist_from_start = global_transform.origin - start
+	if t > 0.3:
+		var velocity_delta = new_global_origin - global_transform.origin
+		var collision = move_and_collide(velocity_delta)
+		if collision:
+			print("hi")
+			impacted = true
+			emit_surface_missile_impact_signal(end, blast_radius)
+	else:
+		global_transform.origin = new_global_origin
 
-	if t >= 1.0 and !impacted:
-		impacted = true
-		emit_surface_missile_impact_signal(end, blast_radius)
-	
-	#TODO: Shoot a ray out from the core again, to make sure the surface tile is still intact for impact.
+
+#func update_end_point():
+#	# Shoot a ray towards the planet and see what is in the way.
+#	var from = global_transform.origin
+#	var to = global_transform.origin + (dir * 10.0)
+#
+#	var space_state = get_world().direct_space_state
+#	var result = space_state.intersect_ray(from, to, [self])
+#
+#	if !result:
+#		# Rotate a little counter-clockwise and try again
+#		dir = dir.rotated(global_transform.basis.y, rand_range(0, PI/2)).normalized()
+#	elif result.collider == planet:
+#		# This looks safe-ish...
+#		print("Safe direction!")
+#		return dir
+#
+#	return Vector3.ZERO
 
 # 0 to 1
 func sine_lerp(t: float):
 	var x = lerp(0, PI, t)
 	var unit_height = sin(x)
 	
-	
 	var height = height_from_mid * unit_height
-	#print("height ", height, " start ", start, " end ", end)
-	
 	
 	var spot = start.linear_interpolate(end, t)
 	var mid = start.linear_interpolate(end, 0.5)
