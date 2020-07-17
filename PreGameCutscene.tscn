@@ -885,7 +885,7 @@ material/0 = ExtResource( 14 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51682, 0, 0 )
 
 [node name="prop-text-8-a-new-friend" type="MeshInstance" parent="A New Friend"]
-transform = Transform( 2.642, 0, 0.331982, 0, 2.66278, 0, -0.331982, 0, 2.642, 2.10161, 1.55742, -0.26408 )
+transform = Transform( 2.642, 0, 0.331982, 0, 2.66278, 0, -0.331982, 0, 2.642, 2.10161, 0.348258, -0.26408 )
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 14 )
 
@@ -1169,3 +1169,6 @@ material/0 = ExtResource( 14 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NotThisTime/prop-text-9-not-this-time"]
 autoplay = "pulsey-pulsey"
 anims/pulsey-pulsey = SubResource( 29 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -1.62921e-07, 0.573577, -0.819152, 0, 0.819152, 0.573577, 1, 9.34475e-08, -1.33457e-07, 0, 0, 0 )

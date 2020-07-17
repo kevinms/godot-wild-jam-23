@@ -23,6 +23,9 @@ tracks/0/keys = {
 
 [node name="MainMenu" type="Spatial"]
 
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -1.62921e-07, 0.573577, -0.819152, 0, 0.819152, 0.573577, 1, 9.34475e-08, -1.33457e-07, 0, 0, 0 )
+
 [node name="FirstContact" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.981379, 8.39659e-09, 0.192081, -8.39517e-09, 1, -8.21232e-10, -0.192081, -8.06613e-10, 0.981379, -1.09368, 0, 0 )
 

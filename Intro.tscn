@@ -2102,7 +2102,7 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.854515, -0.413997, 0.313706, 0.127414, 0.752559, 0.646081, -0.503558, -0.512115, 0.695821, 7.43739, 15.3883, 14.5131 )
+transform = Transform( 0.936562, -0.14212, 0.320395, 0, 0.914105, 0.405477, -0.350502, -0.379754, 0.856117, -222.806, 12.36, 16.5637 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
 anims/destruction-anim = SubResource( 56 )
@@ -2937,7 +2937,7 @@ material/0 = ExtResource( 20 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3731, 0, 0 )
 
 [node name="prop-text-7-never-again" type="MeshInstance" parent="NeverAgain"]
-transform = Transform( 1.71062, -0.0312702, 0.724983, -0.193172, 1.76983, 0.532132, -0.699473, -0.565245, 1.62605, 0, 0, 0 )
+transform = Transform( 1.59954, -0.0292397, 0.677906, -0.180628, 1.65491, 0.497578, -0.654053, -0.52854, 1.52046, 0, 0, 0 )
 mesh = ExtResource( 29 )
 material/0 = ExtResource( 20 )
 
