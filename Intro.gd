@@ -14,7 +14,7 @@ func _ready():
 	
 	$"NeverAgain/prop-text-7-never-again/AnimationPlayer".play("never-again-pulse")
 
-var state = 0
+var state = 3
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
@@ -35,3 +35,6 @@ func _process(delta):
 	elif state == 3:
 		state += 1
 		$Camera/AnimationPlayer.play("final")
+	elif state == 4:
+		state += 1
+		Global.goto_scene("res://MainMenu.tscn")

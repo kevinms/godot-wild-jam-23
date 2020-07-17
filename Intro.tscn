@@ -61,7 +61,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "final"
-length = 20.0
+length = 11.0
+step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:translation")
 tracks/0/interp = 2
@@ -69,7 +70,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7, 2, 6, 6.2, 6.7, 14.2 ),
+"times": PoolRealArray( 0, 0.5, 0.7, 2, 6, 6.2, 6.7, 11 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 7.43739, 15.3883, 14.5131 ), Vector3( 44.8512, 4.81921, 6.53363 ), Vector3( 44.8512, 4.81921, 6.53363 ), Vector3( 43.4047, 4.81921, 6.98418 ), Vector3( 43.4047, 4.81921, 6.98418 ), Vector3( 43.4047, 4.81921, 6.98418 ), Vector3( 70.9676, 4.81921, 6.53363 ), Vector3( 70.9676, 4.81921, 6.53363 ) ]
@@ -81,7 +82,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7, 2, 6, 6.2, 6.7, 14.2 ),
+"times": PoolRealArray( 0, 0.5, 0.7, 2, 6, 6.2, 6.7, 11 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( -40.2468, 24.2679, 9.60948 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ) ]
@@ -2101,7 +2102,7 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.936562, -0.14212, 0.320395, 0, 0.914105, 0.405477, -0.350502, -0.379754, 0.856117, -222.806, 12.36, 16.5637 )
+transform = Transform( 0.945839, -0.0927004, 0.311119, -0.0788817, 0.864014, 0.49725, -0.314907, -0.494859, 0.809906, 70.9676, 4.81921, 6.53363 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
 anims/destruction-anim = SubResource( 1 )
