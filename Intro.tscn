@@ -30,7 +30,7 @@
 [ext_resource path="res://Intro.gd" type="Script" id=28]
 [ext_resource path="res://assets/intro/prop-text-7-never-again.obj" type="ArrayMesh" id=29]
 
-[sub_resource type="Animation" id=56]
+[sub_resource type="Animation" id=1]
 resource_name = "destruction-anim"
 length = 10.0
 step = 1.0
@@ -59,7 +59,7 @@ tracks/1/keys = {
 "values": [ Vector3( -40.2468, 24.2679, 9.60948 ) ]
 }
 
-[sub_resource type="Animation" id=54]
+[sub_resource type="Animation" id=2]
 resource_name = "final"
 length = 20.0
 tracks/0/type = "value"
@@ -87,7 +87,7 @@ tracks/1/keys = {
 "values": [ Vector3( -40.2468, 24.2679, 9.60948 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ) ]
 }
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.858824, 0.239216, 0.67451, 1 )
 metallic = 0.82
 roughness = 0.29
@@ -100,7 +100,7 @@ clearcoat_enabled = true
 clearcoat = 1.0
 clearcoat_gloss = 0.82
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.133333, 0.027451, 0.215686, 1 )
 metallic = 0.83
 roughness = 0.18
@@ -108,7 +108,7 @@ clearcoat_enabled = true
 clearcoat = 1.0
 clearcoat_gloss = 0.82
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0.0431373, 0.74902, 0.909804, 0.0862745 )
 metallic = 0.29
 roughness = 0.32
@@ -116,8 +116,7 @@ clearcoat_enabled = true
 clearcoat = 1.0
 clearcoat_gloss = 0.67
 
-[sub_resource type="Animation" id=5]
-resource_name = "ufo-wiggle"
+[sub_resource type="Animation" id=6]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -145,9 +144,9 @@ tracks/1/keys = {
 "values": [ Vector3( 42.0687, 5.41428, 19.6081 ), Vector3( 53.8021, -14.5557, -9.7545 ), Vector3( 42.0687, 5.41428, 19.6081 ) ]
 }
 
-[sub_resource type="CubeMesh" id=6]
+[sub_resource type="CubeMesh" id=7]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -2017,7 +2016,7 @@ tracks/12/keys = PoolRealArray( 0, 1, -1.19209e-07, 2.38419e-07, 0, -1.30385e-08
 [sub_resource type="SpatialMaterial" id=53]
 albedo_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Animation" id=55]
+[sub_resource type="Animation" id=54]
 resource_name = "never-again-pulse"
 length = 2.0
 loop = true
@@ -2105,8 +2104,8 @@ __meta__ = {
 transform = Transform( 0.936562, -0.14212, 0.320395, 0, 0.914105, 0.405477, -0.350502, -0.379754, 0.856117, -222.806, 12.36, 16.5637 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
-anims/destruction-anim = SubResource( 56 )
-anims/final = SubResource( 54 )
+anims/destruction-anim = SubResource( 1 )
+anims/final = SubResource( 2 )
 anims/first-half = ExtResource( 16 )
 anims/second-half = ExtResource( 27 )
 
@@ -2116,13 +2115,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -225.194, 0, 0 )
 [node name="prop-ufo" type="MeshInstance" parent="Arrival"]
 transform = Transform( 0.990514, -0.103142, -0.0907954, -0.0033435, 0.642467, -0.766306, 0.137371, 0.75934, 0.636028, -2.50068, 12.48, 0.286449 )
 mesh = ExtResource( 5 )
-material/0 = SubResource( 2 )
-material/1 = SubResource( 3 )
-material/2 = SubResource( 4 )
+material/0 = SubResource( 3 )
+material/1 = SubResource( 4 )
+material/2 = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Arrival/prop-ufo"]
 autoplay = "ufo-wiggle"
-anims/ufo-wiggle = SubResource( 5 )
+anims/ufo-wiggle = SubResource( 6 )
 
 [node name="prop-planet" type="MeshInstance" parent="Arrival"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45684, 0, -2.38028 )
@@ -2131,37 +2130,37 @@ material/0 = ExtResource( 1 )
 
 [node name="Human" type="MeshInstance" parent="Arrival/prop-planet"]
 transform = Transform( 0.535012, 0.159084, -0.146422, -0.153293, 0.554686, 0.042535, 0.152474, -0.000539303, 0.55654, 9.68331, -2.74438, 2.38028 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human2" type="MeshInstance" parent="Arrival/prop-planet"]
 transform = Transform( 0.450305, 0.064529, 0, -0.064529, 0.450305, 0, 0, 0, 0.454906, -4.15664, 3.6686, 1.02923 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human3" type="MeshInstance" parent="Arrival/prop-planet"]
 transform = Transform( 0.421486, 0.111045, -0.130222, -0.106097, 0.441144, 0.0327795, 0.134284, 0, 0.434634, 7.18653, 1.5196, 6.27827 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human4" type="MeshInstance" parent="Arrival/prop-planet"]
 transform = Transform( 0.452517, 0.0234989, 0.0401877, -0.0162018, 0.447644, -0.0793174, -0.0436435, 0.0774696, 0.446131, 0.170482, 5.06184, 5.12766 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human5" type="MeshInstance" parent="Arrival/prop-planet"]
 transform = Transform( 0.328022, 0.289217, 0.125276, -0.298998, 0.342738, -0.00836434, -0.099704, -0.0763094, 0.437236, 7.92444, 5.66379, -0.13877 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human6" type="MeshInstance" parent="Arrival/prop-planet"]
 transform = Transform( 0.434347, -5.91018e-09, -0.135209, 0.0394975, 0.435063, 0.126882, 0.129312, -0.132888, 0.415402, 5.16519, 6.10729, -0.529417 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Arrival/prop-planet"]
 autoplay = "planet-spin"
-anims/planet-spin = SubResource( 7 )
+anims/planet-spin = SubResource( 8 )
 
 [node name="prop-text-0-arrival" type="MeshInstance" parent="Arrival"]
 transform = Transform( 0.812302, -0.556907, 1.0862, -0.538115, 1.00773, 0.919094, -1.09564, -0.90783, 0.353902, -6.30019, 4.84427, 10.8388 )
@@ -2174,9 +2173,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -191.003, 0, 0 )
 [node name="prop-ufo" type="MeshInstance" parent="Greeting"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.457, 1.12816, -2.7362 )
 mesh = ExtResource( 5 )
-material/0 = SubResource( 2 )
-material/1 = SubResource( 3 )
-material/2 = SubResource( 4 )
+material/0 = SubResource( 3 )
+material/1 = SubResource( 4 )
+material/2 = SubResource( 5 )
 
 [node name="prop-planet" type="MeshInstance" parent="Greeting"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45685, 0, -2.38028 )
@@ -2291,32 +2290,32 @@ anims/run-loop = SubResource( 20 )
 
 [node name="Human" type="MeshInstance" parent="Greeting"]
 transform = Transform( 0.535012, 0.159084, -0.146422, -0.153293, 0.554686, 0.042535, 0.152474, -0.000539303, 0.55654, 4.05105, 5.79977, 0 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human2" type="MeshInstance" parent="Greeting"]
 transform = Transform( 0.450305, 0.064529, 0, -0.064529, 0.450305, 0, 0, 0, 0.454906, 4.32246, 6.18158, -1.35105 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human3" type="MeshInstance" parent="Greeting"]
 transform = Transform( 0.421486, 0.111045, -0.130222, -0.106097, 0.441144, 0.0327795, 0.134284, 0, 0.434634, 5.72969, 5.3084, -1.3357 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human4" type="MeshInstance" parent="Greeting"]
 transform = Transform( 0.452517, 0.0234989, 0.0401877, -0.0162018, 0.447644, -0.0793174, -0.0436435, 0.0774696, 0.446131, 4.99799, 6.18158, -2.62534 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human5" type="MeshInstance" parent="Greeting"]
 transform = Transform( 0.328022, 0.289217, 0.125276, -0.298998, 0.342738, -0.00836434, -0.099704, -0.0763094, 0.437236, 6.46759, 5.66379, -2.51905 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="Human6" type="MeshInstance" parent="Greeting"]
 transform = Transform( 0.434347, -5.91018e-09, -0.135209, 0.0394975, 0.435063, 0.126882, 0.129312, -0.132888, 0.415402, 3.70835, 6.10729, -2.9097 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-text-1-first-contact" type="MeshInstance" parent="Greeting"]
@@ -2447,7 +2446,7 @@ anims/run-loop = SubResource( 27 )
 
 [node name="Human" type="MeshInstance" parent="Bike"]
 transform = Transform( -0.120478, -0.11551, -0.552384, 1.74618e-08, 0.564831, -0.118113, 0.564332, -0.0246598, -0.117927, 1.66129, 8.6229, 0.284904 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-text-2-bikie" type="MeshInstance" parent="Bike"]
@@ -2571,7 +2570,7 @@ anims/run-loop = SubResource( 31 )
 
 [node name="Human" type="MeshInstance" parent="Beach"]
 transform = Transform( 0.535012, 0.159084, -0.146422, -0.153293, 0.554686, 0.042535, 0.152474, -0.000539303, 0.55654, 2.55958, 6.22558, -1.98888 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-umbrella" type="MeshInstance" parent="Beach"]
@@ -2661,7 +2660,7 @@ material/0 = ExtResource( 1 )
 
 [node name="Human" type="MeshInstance" parent="War"]
 transform = Transform( 0.577048, 0, 0, 0, 0.577048, 0, 0, 0, 0.577049, 1.67649, 6.42711, 0 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-sword" type="MeshInstance" parent="War/Human"]
@@ -2677,7 +2676,7 @@ anims/sword-swing = SubResource( 39 )
 
 [node name="Human2" type="MeshInstance" parent="War"]
 transform = Transform( 0.562297, -1.2898e-08, -0.129641, 0.037154, 0.552843, 0.16115, 0.124203, -0.165377, 0.538711, -0.0293465, 6.42711, -2.3686 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-sword" type="MeshInstance" parent="War/Human2"]
@@ -2693,7 +2692,7 @@ anims/sword-swing = SubResource( 40 )
 
 [node name="Human3" type="MeshInstance" parent="War"]
 transform = Transform( 0.522447, -0.0538414, 0.239029, 0.0791871, 0.569837, -0.0447236, -0.231869, 0.0732931, 0.523307, -1.51956, 7.65351, 0.724319 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-sword" type="MeshInstance" parent="War/Human3"]
@@ -2709,7 +2708,7 @@ anims/sword-swing = SubResource( 41 )
 
 [node name="Human4" type="MeshInstance" parent="War"]
 transform = Transform( -0.411498, 0.304804, -0.265987, 0.343468, 0.463696, 0, 0.213738, -0.158319, -0.51209, 5.74793, 5.57871, -2.35688 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-sword" type="MeshInstance" parent="War/Human4"]
@@ -2725,7 +2724,7 @@ anims/sword-swing = SubResource( 43 )
 
 [node name="Human5" type="MeshInstance" parent="War"]
 transform = Transform( 0.420558, 0.140326, -0.369357, -0.0487022, 0.553726, 0.154919, 0.392102, -0.0817326, 0.415405, 5.88742, 4.74981, 0.886948 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-sword" type="MeshInstance" parent="War/Human5"]
@@ -2741,7 +2740,7 @@ anims/sword-swing = SubResource( 44 )
 
 [node name="Human6" type="MeshInstance" parent="War"]
 transform = Transform( -0.28743, 0.128712, -0.483531, 0.235838, 0.526655, -7.84778e-09, 0.441304, -0.197617, -0.314934, 3.53101, 5.64528, -4.06474 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-sword" type="MeshInstance" parent="War/Human6"]
@@ -2899,7 +2898,7 @@ anims/run-loop = SubResource( 51 )
 
 [node name="Human7" type="MeshInstance" parent="Death"]
 transform = Transform( 0.535012, 0.159084, -0.146422, -0.153293, 0.554686, 0.042535, 0.152474, -0.000539303, 0.55654, 3.25918, 1.08445, 0.550867 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 4 )
 
 [node name="DeadEye" type="Spatial" parent="Death/Human7"]
@@ -2937,9 +2936,9 @@ material/0 = ExtResource( 20 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3731, 0, 0 )
 
 [node name="prop-text-7-never-again" type="MeshInstance" parent="NeverAgain"]
-transform = Transform( 1.59954, -0.0292397, 0.677906, -0.180628, 1.65491, 0.497578, -0.654053, -0.52854, 1.52046, 0, 0, 0 )
+transform = Transform( 2.04212, -0.0373301, 0.865477, -0.230606, 2.11281, 0.635253, -0.835023, -0.674783, 1.94116, 0, 0, 0 )
 mesh = ExtResource( 29 )
 material/0 = ExtResource( 20 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NeverAgain/prop-text-7-never-again"]
-anims/never-again-pulse = SubResource( 55 )
+anims/never-again-pulse = SubResource( 54 )

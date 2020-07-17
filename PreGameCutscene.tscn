@@ -885,7 +885,7 @@ material/0 = ExtResource( 14 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51682, 0, 0 )
 
 [node name="prop-text-8-a-new-friend" type="MeshInstance" parent="A New Friend"]
-transform = Transform( 2.642, 0, 0.331982, 0, 2.66278, 0, -0.331982, 0, 2.642, 2.10161, 0.348258, -0.26408 )
+transform = Transform( 2.642, 0, 0.331982, 0, 2.66278, 0, -0.331982, 0, 2.642, 2.10161, 0.0124264, -0.26408 )
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 14 )
 

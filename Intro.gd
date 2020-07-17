@@ -17,6 +17,9 @@ func _ready():
 var state = 0
 
 func _process(delta):
+	if Input.is_action_just_pressed("ui_select"):
+		Global.goto_scene("res://MainMenu.tscn")
+	
 	if $Camera/AnimationPlayer.is_playing():
 		return
 	

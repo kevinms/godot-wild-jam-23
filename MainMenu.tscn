@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://FirstContact.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/intro/menu-credits.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://IntroSubtitleMaterial.tres" type="Material" id=3]
+[ext_resource path="res://assets/intro/menu-intro.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://MainMenu.gd" type="Script" id=5]
+[ext_resource path="res://assets/intro/menu-play.obj" type="ArrayMesh" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "wiggle"
@@ -21,7 +25,47 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 4.7477e-08, 11.174, -4.85341e-07 ), Vector3( 0, 0, 0 ) ]
 }
 
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2.51347, 0.580588, 0.457858 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "wobble"
+length = 2.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 9.877, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "wobble"
+length = 2.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 9.877, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
 [node name="MainMenu" type="Spatial"]
+script = ExtResource( 5 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -1.62921e-07, 0.573577, -0.819152, 0, 0.819152, 0.573577, 1, 9.34475e-08, -1.33457e-07, 0, 0, 0 )
@@ -45,3 +89,35 @@ material/0 = null
 material/1 = null
 material/2 = null
 material/3 = null
+
+[node name="Intro" type="KinematicBody" parent="."]
+transform = Transform( 1.84586, 0, 0, 0, 1.84586, 0, 0, 0, 1.84586, 17.7209, 9.12877, 4.54632 )
+
+[node name="menu-intro" type="MeshInstance" parent="Intro"]
+transform = Transform( 1, 0, -1.49012e-08, 0, 1, -2.98023e-08, -1.49012e-08, -2.98023e-08, 1, 0, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Intro"]
+transform = Transform( 1, 0, -1.49012e-08, 0, 1, -2.98023e-08, -1.49012e-08, -2.98023e-08, 1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Intro"]
+autoplay = "wobble"
+anims/wobble = SubResource( 3 )
+
+[node name="Play" type="KinematicBody" parent="."]
+transform = Transform( 1.84586, 0, 0, 0, 1.84586, 0, 0, 0, 1.84586, 17.7209, 5.87669, 4.54632 )
+
+[node name="menu-play" type="MeshInstance" parent="Play"]
+transform = Transform( 1, 0, -1.49012e-08, 0, 1, -2.98023e-08, -1.49012e-08, -2.98023e-08, 1, 0, 0, 0 )
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Play"]
+transform = Transform( 1, 0, -1.49012e-08, 0, 1, -2.98023e-08, -1.49012e-08, -2.98023e-08, 1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Play"]
+autoplay = "wobble"
+anims/wobble = SubResource( 4 )
