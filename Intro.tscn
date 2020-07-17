@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://ShaderTest.tres" type="Material" id=1]
 [ext_resource path="res://assets/intro/prop-planet.obj" type="ArrayMesh" id=2]
@@ -30,10 +30,38 @@
 [ext_resource path="res://Intro.gd" type="Script" id=28]
 [ext_resource path="res://assets/intro/prop-text-7-never-again.obj" type="ArrayMesh" id=29]
 
+[sub_resource type="Animation" id=56]
+resource_name = "destruction-anim"
+length = 20.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 7.43739, 15.3883, 14.5131 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -40.2468, 24.2679, 9.60948 ) ]
+}
+
 [sub_resource type="Animation" id=54]
 resource_name = "final"
 length = 20.0
-step = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:translation")
 tracks/0/interp = 2
@@ -41,10 +69,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7, 3.4, 6, 9, 9.5, 17 ),
+"times": PoolRealArray( 0, 0.5, 0.7, 2, 6, 6.2, 6.7, 14.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 7.43739, 15.3883, 14.5131 ), Vector3( 44.8512, 4.81921, 6.53363 ), Vector3( 44.8512, 4.81921, 6.53363 ), Vector3( 43.4047, 4.81921, 6.98418 ), Vector3( 44.8512, 4.81921, 6.53363 ), Vector3( 44.8512, 4.81921, 6.53363 ), Vector3( 70.9676, 4.81921, 6.53363 ), Vector3( 70.9676, 4.81921, 6.53363 ) ]
+"values": [ Vector3( 7.43739, 15.3883, 14.5131 ), Vector3( 44.8512, 4.81921, 6.53363 ), Vector3( 44.8512, 4.81921, 6.53363 ), Vector3( 43.4047, 4.81921, 6.98418 ), Vector3( 43.4047, 4.81921, 6.98418 ), Vector3( 43.4047, 4.81921, 6.98418 ), Vector3( 70.9676, 4.81921, 6.53363 ), Vector3( 70.9676, 4.81921, 6.53363 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rotation_degrees")
@@ -53,10 +81,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7, 3.4, 6, 9, 9.5, 17 ),
+"times": PoolRealArray( 0, 0.5, 0.7, 2, 6, 6.2, 6.7, 14.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( -40.2468, 24.2679, 9.60948 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ) ]
+"values": [ Vector3( -40.2468, 24.2679, 9.60948 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 18.2419, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ), Vector3( -29.8182, 21.0139, -5.21646 ) ]
 }
 
 [sub_resource type="SpatialMaterial" id=2]
@@ -2074,9 +2102,10 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.945839, -0.0927005, 0.311119, -0.0788817, 0.864014, 0.49725, -0.314906, -0.49486, 0.809906, 72.6391, 4.81921, 6.53363 )
+transform = Transform( 0.854515, -0.413997, 0.313706, 0.127414, 0.752559, 0.646081, -0.503558, -0.512115, 0.695821, 7.43739, 15.3883, 14.5131 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
+anims/destruction-anim = SubResource( 56 )
 anims/final = SubResource( 54 )
 anims/first-half = ExtResource( 16 )
 anims/second-half = ExtResource( 27 )
@@ -2908,7 +2937,7 @@ material/0 = ExtResource( 20 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3731, 0, 0 )
 
 [node name="prop-text-7-never-again" type="MeshInstance" parent="NeverAgain"]
-transform = Transform( 2.0371, -0.0372383, 0.86335, -0.23004, 2.10762, 0.633692, -0.832972, -0.673125, 1.93639, 0, 0, 0 )
+transform = Transform( 1.5693, -0.028687, 0.665093, -0.177214, 1.62363, 0.488173, -0.64169, -0.51855, 1.49172, 0, 0, 0 )
 mesh = ExtResource( 29 )
 material/0 = ExtResource( 20 )
 
