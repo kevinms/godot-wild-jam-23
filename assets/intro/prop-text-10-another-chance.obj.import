@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/prop-text-10-another-chance.obj-b3730bbf2dbe00e3bd289878815bf7eb.mesh"
+
+[deps]
+
+files=[ "res://.import/prop-text-10-another-chance.obj-b3730bbf2dbe00e3bd289878815bf7eb.mesh" ]
+
+source_file="res://assets/intro/prop-text-10-another-chance.obj"
+dest_files=[ "res://.import/prop-text-10-another-chance.obj-b3730bbf2dbe00e3bd289878815bf7eb.mesh", "res://.import/prop-text-10-another-chance.obj-b3730bbf2dbe00e3bd289878815bf7eb.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

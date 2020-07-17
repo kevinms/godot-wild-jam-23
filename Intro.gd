@@ -8,6 +8,12 @@ func _ready():
 	
 	$"Bike/alien-03/AnimationPlayer".play("idle-loop")
 	
+	$"Later/prop-later-text/AnimationPlayer".play("later-anim")
+	
+	$"Death/alien-04/AnimationPlayer".play("jump")
+	
+	$"NeverAgain/prop-text-7-never-again/AnimationPlayer".play("never-again-pulse")
+	
 const ST_FIRST = 1
 const ST_SECOND = 2
 const ST_FINAL = 3
