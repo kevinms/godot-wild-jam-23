@@ -55,9 +55,11 @@ func global_input_direction():
 
 var velocity: Vector3
 var gravity_magnitude = 40
-var speed = 10
-var air_speed = 40
-var jump = 10
+var speed = 7
+var air_speed = 30
+var jump = 20
+var jump_magnitude = 40
+var jump_time_delta = 0
 
 var jumping = false
 
@@ -86,13 +88,14 @@ func _physics_process(delta):
 		$Shield.activate()
 	
 	if jumping:
+		jump_time_delta += delta
 		velocity += dir * air_speed * delta
 		if velocity.length() > speed:
 			velocity = velocity.normalized() * speed
 	else:
 		velocity = dir * speed
 	
-	if !jumping && Input.is_action_pressed("jump"):
+	if !jumping && Input.is_action_just_pressed("jump"):
 		$Alien/AnimationPlayer.play("jump")
 		# Override gravity if we jumped
 		velocity -= gravity_component
@@ -108,6 +111,9 @@ func _physics_process(delta):
 		#velocity += -world_up * gravity_component.length() # gravity_component points either up or down (it's not just gravity), so if it points up, we get it's magnitude and apply it down... oops
 		if !jumping:
 			velocity += gravity_component
+		if jumping and jump_time_delta < 0.3 and Input.is_action_pressed("jump"):
+			velocity += world_up * (jump_magnitude * delta)
+			
 		velocity += -world_up * (gravity_magnitude * delta)
 	
 	# Option #1
@@ -120,6 +126,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, world_up, true, 4, PI/2)
 	if get_slide_count() > 0:
 		jumping = false
+		jump_time_delta = 0
 	
 	# Option #3
 	#var snap = (-global_transform.basis.y + dir) * 2.0
