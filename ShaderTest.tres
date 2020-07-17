@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=1]
 code = "shader_type spatial;
 //render_mode unshaded;
 //world_vertex_coords
@@ -137,7 +137,7 @@ void fragment(){
 }"
 
 [resource]
-shader = SubResource( 2 )
+shader = SubResource( 1 )
 shader_param/albedo = Vector3( 0.8, 0, 0 )
 shader_param/impact_site = Vector3( 1, 0, 0 )
 shader_param/global_time = null

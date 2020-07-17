@@ -85,4 +85,5 @@ shield={
 
 [rendering]
 
+environment/default_clear_color=Color( 0.109804, 0.133333, 0.164706, 1 )
 environment/default_environment="res://default_env.tres"

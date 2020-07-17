@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/prop-planet.obj-ca7dcb71db86e5ef8e413b7a4e48994f.mesh"
+
+[deps]
+
+files=[ "res://.import/prop-planet.obj-ca7dcb71db86e5ef8e413b7a4e48994f.mesh" ]
+
+source_file="res://assets/intro/prop-planet.obj"
+dest_files=[ "res://.import/prop-planet.obj-ca7dcb71db86e5ef8e413b7a4e48994f.mesh", "res://.import/prop-planet.obj-ca7dcb71db86e5ef8e413b7a4e48994f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
