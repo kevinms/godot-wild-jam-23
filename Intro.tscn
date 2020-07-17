@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://ShaderTest.tres" type="Material" id=1]
 [ext_resource path="res://assets/intro/prop-planet.obj" type="ArrayMesh" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/intro/prop-umbrella.obj" type="ArrayMesh" id=11]
 [ext_resource path="res://assets/intro/prop-bike.obj" type="ArrayMesh" id=12]
 [ext_resource path="res://assets/intro/prop-later-text.obj" type="ArrayMesh" id=13]
+[ext_resource path="res://assets/intro/prop-sword.obj" type="ArrayMesh" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "camera-intro"
@@ -1412,6 +1413,360 @@ tracks/0/keys = {
 "values": [ Vector3( -0.399564, 3.73983, -1.10868 ), Vector3( -0.399564, 2.82692, -1.10868 ), Vector3( -0.399564, 3.73983, -1.10868 ) ]
 }
 
+[sub_resource type="SpatialMaterial" id=36]
+albedo_color = Color( 0.160784, 0.917647, 0.756863, 1 )
+
+[sub_resource type="Animation" id=37]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=39]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=40]
+albedo_color = Color( 0.952941, 0.603922, 0.00392157, 1 )
+
+[sub_resource type="Animation" id=41]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=45]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=46]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=47]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=48]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
+[sub_resource type="Animation" id=49]
+resource_name = "sword-swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.37804, 2.16323, 0.630393 ), Vector3( 0.0596275, 2.59001, 0.694693 ), Vector3( 1.37804, 2.16323, 0.630393 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
+}
+
 [node name="IntroPart1" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
@@ -1945,31 +2300,201 @@ mesh = ExtResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="Human" type="MeshInstance" parent="Anger"]
-transform = Transform( 0.535012, 0.159084, -0.146422, -0.153293, 0.554686, 0.042535, 0.152474, -0.000539303, 0.55654, 4.05105, 5.79977, 0 )
+transform = Transform( 0.577048, 0, 0, 0, 0.577048, 0, 0, 0, 0.577049, 1.67649, 6.42711, 0 )
 mesh = SubResource( 6 )
 material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Anger/Human"]
+transform = Transform( 0.245918, 0.0268683, 0.03609, -0.0368639, 0.235291, 0.0760226, -0.0257962, -0.0801031, 0.23541, 0.184935, 2.54945, 0.688582 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 36 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anger/Human/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 37 )
 
 [node name="Human2" type="MeshInstance" parent="Anger"]
-transform = Transform( 0.450305, 0.064529, 0, -0.064529, 0.450305, 0, 0, 0, 0.454906, 4.32246, 6.18158, -1.35105 )
+transform = Transform( 0.562297, -1.2898e-08, -0.129641, 0.037154, 0.552843, 0.16115, 0.124203, -0.165377, 0.538711, -0.0293465, 6.42711, -2.3686 )
 mesh = SubResource( 6 )
 material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Anger/Human2"]
+transform = Transform( 0.24085, 0.0564691, 0.03609, -0.0651033, 0.22909, 0.0760226, -0.0158997, -0.0826386, 0.23541, 0.638538, 2.40261, 0.666459 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 36 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anger/Human2/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 38 )
 
 [node name="Human3" type="MeshInstance" parent="Anger"]
-transform = Transform( 0.421486, 0.111045, -0.130222, -0.106097, 0.441144, 0.0327795, 0.134284, 0, 0.434634, 5.72969, 5.3084, -1.3357 )
+transform = Transform( 0.522447, -0.0538414, 0.239029, 0.0791871, 0.569837, -0.0447236, -0.231869, 0.0732931, 0.523307, -1.51956, 7.65351, 0.724319 )
 mesh = SubResource( 6 )
 material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Anger/Human3"]
+transform = Transform( 0.225033, 0.102751, 0.03609, -0.108902, 0.211804, 0.0760226, 0.000669524, -0.0841517, 0.23541, 1.37804, 2.16323, 0.630393 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 36 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anger/Human3/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 39 )
 
 [node name="Human4" type="MeshInstance" parent="Anger"]
-transform = Transform( 0.452517, 0.0234989, 0.0401877, -0.0162018, 0.447644, -0.0793174, -0.0436435, 0.0774696, 0.446131, 4.99799, 6.18158, -2.62534 )
+transform = Transform( -0.411498, 0.304804, -0.265987, 0.343468, 0.463696, 0, 0.213738, -0.158319, -0.51209, 5.74793, 5.57871, -2.35688 )
 mesh = SubResource( 6 )
 material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Anger/Human4"]
+transform = Transform( 0.225033, 0.102751, 0.03609, -0.108902, 0.211804, 0.0760226, 0.000669524, -0.0841517, 0.23541, 1.37804, 2.16323, 0.630393 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 40 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anger/Human4/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 41 )
 
 [node name="Human5" type="MeshInstance" parent="Anger"]
-transform = Transform( 0.328022, 0.289217, 0.125276, -0.298998, 0.342738, -0.00836434, -0.099704, -0.0763094, 0.437236, 6.46759, 5.66379, -2.51905 )
+transform = Transform( 0.420558, 0.140326, -0.369357, -0.0487022, 0.553726, 0.154919, 0.392102, -0.0817326, 0.415405, 5.88742, 4.74981, 0.886948 )
 mesh = SubResource( 6 )
 material/0 = ExtResource( 4 )
 
+[node name="prop-sword" type="MeshInstance" parent="Anger/Human5"]
+transform = Transform( 0.225033, 0.102751, 0.03609, -0.108902, 0.211804, 0.0760226, 0.000669524, -0.0841517, 0.23541, 1.37804, 2.16323, 0.630393 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 40 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anger/Human5/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 42 )
+
 [node name="Human6" type="MeshInstance" parent="Anger"]
-transform = Transform( 0.434347, -5.91018e-09, -0.135209, 0.0394975, 0.435063, 0.126882, 0.129312, -0.132888, 0.415402, 3.70835, 6.10729, -2.9097 )
+transform = Transform( -0.28743, 0.128712, -0.483531, 0.235838, 0.526655, -7.84778e-09, 0.441304, -0.197617, -0.314934, 3.53101, 5.64528, -4.06474 )
 mesh = SubResource( 6 )
 material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Anger/Human6"]
+transform = Transform( 0.225033, 0.102751, 0.03609, -0.108902, 0.211804, 0.0760226, 0.000669524, -0.0841517, 0.23541, 1.37804, 2.16323, 0.630393 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 40 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anger/Human6/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 43 )
+
+[node name="Missiles" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 59.5359, 0, 0 )
+
+[node name="prop-planet" type="MeshInstance" parent="Missiles"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45685, 0, -2.38028 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 1 )
+
+[node name="Human" type="MeshInstance" parent="Missiles"]
+transform = Transform( 0.577048, 0, 0, 0, 0.577048, 0, 0, 0, 0.577049, 1.67649, 6.42711, 0 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Missiles/Human"]
+transform = Transform( 0.240008, 0.0599475, 0.03609, -0.0684106, 0.228124, 0.0760226, -0.0147026, -0.08286, 0.23541, 0.692561, 2.38513, 0.663824 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 36 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Missiles/Human/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 44 )
+
+[node name="Human2" type="MeshInstance" parent="Missiles"]
+transform = Transform( 0.562297, -1.2898e-08, -0.129641, 0.037154, 0.552843, 0.16115, 0.124203, -0.165377, 0.538711, -0.0293465, 6.42711, -2.3686 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Missiles/Human2"]
+transform = Transform( 0.24085, 0.0564691, 0.03609, -0.0651033, 0.22909, 0.0760226, -0.0158997, -0.0826386, 0.23541, 0.638538, 2.40261, 0.666459 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 36 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Missiles/Human2/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 45 )
+
+[node name="Human3" type="MeshInstance" parent="Missiles"]
+transform = Transform( 0.522447, -0.0538414, 0.239029, 0.0791871, 0.569837, -0.0447236, -0.231869, 0.0732931, 0.523307, -1.51956, 7.65351, 0.724319 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Missiles/Human3"]
+transform = Transform( 0.225033, 0.102751, 0.03609, -0.108902, 0.211804, 0.0760226, 0.000669524, -0.0841517, 0.23541, 1.37804, 2.16323, 0.630393 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 36 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Missiles/Human3/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 46 )
+
+[node name="Human4" type="MeshInstance" parent="Missiles"]
+transform = Transform( -0.411498, 0.304804, -0.265987, 0.343468, 0.463696, 0, 0.213738, -0.158319, -0.51209, 5.74793, 5.57871, -2.35688 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Missiles/Human4"]
+transform = Transform( 0.225033, 0.102751, 0.03609, -0.108902, 0.211804, 0.0760226, 0.000669524, -0.0841517, 0.23541, 1.37804, 2.16323, 0.630393 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 40 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Missiles/Human4/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 47 )
+
+[node name="Human5" type="MeshInstance" parent="Missiles"]
+transform = Transform( 0.420558, 0.140326, -0.369357, -0.0487022, 0.553726, 0.154919, 0.392102, -0.0817326, 0.415405, 5.88742, 4.74981, 0.886948 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Missiles/Human5"]
+transform = Transform( 0.225033, 0.102751, 0.03609, -0.108902, 0.211804, 0.0760226, 0.000669524, -0.0841517, 0.23541, 1.37804, 2.16323, 0.630393 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 40 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Missiles/Human5/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 48 )
+
+[node name="Human6" type="MeshInstance" parent="Missiles"]
+transform = Transform( -0.28743, 0.128712, -0.483531, 0.235838, 0.526655, -7.84778e-09, 0.441304, -0.197617, -0.314934, 3.53101, 5.64528, -4.06474 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 4 )
+
+[node name="prop-sword" type="MeshInstance" parent="Missiles/Human6"]
+transform = Transform( 0.225033, 0.102751, 0.03609, -0.108902, 0.211804, 0.0760226, 0.000669524, -0.0841517, 0.23541, 1.37804, 2.16323, 0.630393 )
+mesh = ExtResource( 14 )
+material/0 = SubResource( 40 )
+material/1 = null
+material/2 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Missiles/Human6/prop-sword"]
+autoplay = "sword-swing"
+anims/sword-swing = SubResource( 49 )
