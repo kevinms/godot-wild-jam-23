@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/prop-planet.dae-d6c00b933539319edb052641fb1fc740.scn"
+path="res://.import/alien-01.dae-9d7e21bab470ecd8d0bca0286bd1c7c0.scn"
 
 [deps]
 
-source_file="res://assets/intro/prop-planet.dae"
-dest_files=[ "res://.import/prop-planet.dae-d6c00b933539319edb052641fb1fc740.scn" ]
+source_file="res://assets/alien-01.dae"
+dest_files=[ "res://.import/alien-01.dae-9d7e21bab470ecd8d0bca0286bd1c7c0.scn" ]
 
 [params]
 

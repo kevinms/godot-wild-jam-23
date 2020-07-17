@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/prop-umbrella.dae-93cb964afcfed0237fb855e20beec3c1.scn"
+path="res://.import/alien-02.dae-1c2b1e13153cff5da178a99f8559779a.scn"
 
 [deps]
 
-source_file="res://assets/intro/prop-umbrella.dae"
-dest_files=[ "res://.import/prop-umbrella.dae-93cb964afcfed0237fb855e20beec3c1.scn" ]
+source_file="res://assets/alien-02.dae"
+dest_files=[ "res://.import/alien-02.dae-1c2b1e13153cff5da178a99f8559779a.scn" ]
 
 [params]
 

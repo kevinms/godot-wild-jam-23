@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/prop-ufo.dae-53b1f88ed469c755d4ad52a36e9221d4.scn"
+path="res://.import/alien-00.dae-462881b4ceac96278c0f7b15a8feba11.scn"
 
 [deps]
 
-source_file="res://assets/intro/prop-ufo.dae"
-dest_files=[ "res://.import/prop-ufo.dae-53b1f88ed469c755d4ad52a36e9221d4.scn" ]
+source_file="res://assets/alien-00.dae"
+dest_files=[ "res://.import/alien-00.dae-462881b4ceac96278c0f7b15a8feba11.scn" ]
 
 [params]
 
