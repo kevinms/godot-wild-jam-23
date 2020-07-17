@@ -14,7 +14,7 @@ func _ready():
 	
 	$"NeverAgain/prop-text-7-never-again/AnimationPlayer".play("never-again-pulse")
 
-var state = 2
+var state = 0
 
 func _process(delta):
 	if $Camera/AnimationPlayer.is_playing():

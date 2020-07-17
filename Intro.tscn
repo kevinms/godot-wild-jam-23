@@ -32,7 +32,7 @@
 
 [sub_resource type="Animation" id=56]
 resource_name = "destruction-anim"
-length = 20.0
+length = 10.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:translation")
@@ -2937,7 +2937,7 @@ material/0 = ExtResource( 20 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3731, 0, 0 )
 
 [node name="prop-text-7-never-again" type="MeshInstance" parent="NeverAgain"]
-transform = Transform( 1.5693, -0.028687, 0.665093, -0.177214, 1.62363, 0.488173, -0.64169, -0.51855, 1.49172, 0, 0, 0 )
+transform = Transform( 1.64017, -0.0299824, 0.695125, -0.185216, 1.69694, 0.510216, -0.670666, -0.541966, 1.55908, 0, 0, 0 )
 mesh = ExtResource( 29 )
 material/0 = ExtResource( 20 )
 

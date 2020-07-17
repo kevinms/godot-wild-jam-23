@@ -748,7 +748,12 @@ tracks/1/keys = {
 "values": [ Vector3( -17.7034, 8.71596, -27.2107 ), Vector3( -17.7034, 8.71596, -6.98173 ), Vector3( -17.7034, 8.71596, -27.2107 ) ]
 }
 
-[node name="Spatial" type="Spatial"]
+[node name="PreGameCutscene" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.998077, 0, 0.0619892, -0.0197864, 0.94769, 0.318577, -0.0587466, -0.319191, 0.945868, -37.2226, 11.4708, 18.9438 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
 
 [node name="SecondArrival" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2117, 0, 0 )
