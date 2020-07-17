@@ -2,7 +2,7 @@
 
 [ext_resource path="res://PlayerV2.gd" type="Script" id=1]
 [ext_resource path="res://Shield.gd" type="Script" id=2]
-[ext_resource path="res://Alien.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/alien/AlienV2.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleMesh" id=1]
 

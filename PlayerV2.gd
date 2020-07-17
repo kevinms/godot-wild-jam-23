@@ -79,10 +79,11 @@ func _physics_process(delta):
 	# Updated velocity
 	var dir = global_input_direction()
 	
-	if dir == Vector3.ZERO:
-		$Alien/AnimationPlayer.play("idle-loop")
-	else:
-		$Alien/AnimationPlayer.play("run-loop")
+	if !jumping:
+		if dir == Vector3.ZERO:
+			$Alien/AnimationPlayer.play("idle-loop")
+		else:
+			$Alien/AnimationPlayer.play("run-loop", -1, 2.0)
 	
 	if Input.is_action_just_pressed("shield"):
 		$Shield.activate()
@@ -96,7 +97,7 @@ func _physics_process(delta):
 		velocity = dir * speed
 	
 	if !jumping && Input.is_action_just_pressed("jump"):
-		$Alien/AnimationPlayer.play("jump")
+		$Alien/AnimationPlayer.play("jump-spin")
 		# Override gravity if we jumped
 		velocity -= gravity_component
 	
