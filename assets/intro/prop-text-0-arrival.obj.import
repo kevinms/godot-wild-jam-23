@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/prop-text-0-arrival.obj-5fec2cfbf0d596efc24c32958f287755.mesh"
+
+[deps]
+
+files=[ "res://.import/prop-text-0-arrival.obj-5fec2cfbf0d596efc24c32958f287755.mesh" ]
+
+source_file="res://assets/intro/prop-text-0-arrival.obj"
+dest_files=[ "res://.import/prop-text-0-arrival.obj-5fec2cfbf0d596efc24c32958f287755.mesh", "res://.import/prop-text-0-arrival.obj-5fec2cfbf0d596efc24c32958f287755.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

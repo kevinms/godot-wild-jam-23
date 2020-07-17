@@ -1,0 +1,30 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "second-half"
+length = 40.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 2.5, 3, 5.4, 5.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -125.423, 12.8309, 9.30128 ), Vector3( -99.5619, 6.81856, 7.59281 ), Vector3( -99.5619, 6.81856, 7.59281 ), Vector3( -71.5102, 11.4773, 7.59281 ), Vector3( -71.5102, 11.4773, 7.59281 ), Vector3( -71.5102, 11.4773, 7.59281 ), Vector3( 7.43739, 15.3883, 14.5131 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 2.5, 3, 5.4, 5.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -23.921, 3.44502, 7.95673e-07 ), Vector3( -23.921, 3.44502, 7.95673e-07 ), Vector3( -23.921, 3.44502, 7.95673e-07 ), Vector3( -27.896, 3.44502, 8.22958e-07 ), Vector3( -27.896, 3.44502, 8.22958e-07 ), Vector3( -27.896, 3.44502, 8.22958e-07 ), Vector3( -40.2468, 24.2679, 9.60948 ) ]
+}
