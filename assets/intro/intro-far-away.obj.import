@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/intro-far-away.obj-619f87966c560c7b39452162ba1cbf9f.mesh"
+
+[deps]
+
+files=[ "res://.import/intro-far-away.obj-619f87966c560c7b39452162ba1cbf9f.mesh" ]
+
+source_file="res://assets/intro/intro-far-away.obj"
+dest_files=[ "res://.import/intro-far-away.obj-619f87966c560c7b39452162ba1cbf9f.mesh", "res://.import/intro-far-away.obj-619f87966c560c7b39452162ba1cbf9f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

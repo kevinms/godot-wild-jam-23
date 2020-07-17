@@ -14,7 +14,7 @@ func _ready():
 	
 	$"NeverAgain/prop-text-7-never-again/AnimationPlayer".play("never-again-pulse")
 
-var state = 3
+var state = 0
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
