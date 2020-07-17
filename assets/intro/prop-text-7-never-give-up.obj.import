@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/prop-text-7-never-give-up.obj-8f38a6b7e54d2e02e97715f80a5e33af.mesh"
+
+[deps]
+
+files=[ "res://.import/prop-text-7-never-give-up.obj-8f38a6b7e54d2e02e97715f80a5e33af.mesh" ]
+
+source_file="res://assets/intro/prop-text-7-never-give-up.obj"
+dest_files=[ "res://.import/prop-text-7-never-give-up.obj-8f38a6b7e54d2e02e97715f80a5e33af.mesh", "res://.import/prop-text-7-never-give-up.obj-8f38a6b7e54d2e02e97715f80a5e33af.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/prop-text-9-not-this-time.obj-7011a689798ee91f30ec8a0eb022b474.mesh"
+
+[deps]
+
+files=[ "res://.import/prop-text-9-not-this-time.obj-7011a689798ee91f30ec8a0eb022b474.mesh" ]
+
+source_file="res://assets/intro/prop-text-9-not-this-time.obj"
+dest_files=[ "res://.import/prop-text-9-not-this-time.obj-7011a689798ee91f30ec8a0eb022b474.mesh", "res://.import/prop-text-9-not-this-time.obj-7011a689798ee91f30ec8a0eb022b474.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
