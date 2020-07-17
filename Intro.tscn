@@ -2485,7 +2485,7 @@ mesh = SubResource( 6 )
 material/0 = ExtResource( 4 )
 
 [node name="prop-sword" type="MeshInstance" parent="War/Human"]
-transform = Transform( 0.242798, 0.0474, 0.03609, -0.056469, 0.23137, 0.0760226, -0.0189867, -0.0819845, 0.23541, 0.498509, 2.44794, 0.673288 )
+transform = Transform( 0.245342, 0.0317029, 0.03609, -0.0414874, 0.23452, 0.0760226, -0.0242147, -0.0805952, 0.23541, 0.25843, 2.52566, 0.684997 )
 mesh = ExtResource( 14 )
 material/0 = SubResource( 36 )
 material/1 = null
