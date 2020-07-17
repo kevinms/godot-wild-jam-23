@@ -2115,7 +2115,7 @@ anims/second-half = ExtResource( 27 )
 transform = Transform( -0.0196162, 4.3703e-08, 0.999808, -4.3703e-08, 1, -4.45688e-08, -0.999808, -4.45688e-08, -0.0196162, -287.451, 0, 34.5738 )
 
 [node name="intro-far-away" type="MeshInstance" parent="InSpace"]
-transform = Transform( 0.879824, -0.221993, 0.420273, 0.00951821, 0.892279, 0.451385, -0.475205, -0.393139, 0.787161, 0, 0, 0 )
+transform = Transform( 0.879824, -0.221993, 0.420274, 0.00951823, 0.892279, 0.451385, -0.475205, -0.393139, 0.787161, 2.28478, 10.1241, 8.24402 )
 mesh = ExtResource( 30 )
 material/0 = ExtResource( 20 )
 
