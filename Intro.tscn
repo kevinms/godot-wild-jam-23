@@ -2937,7 +2937,7 @@ material/0 = ExtResource( 20 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3731, 0, 0 )
 
 [node name="prop-text-7-never-again" type="MeshInstance" parent="NeverAgain"]
-transform = Transform( 1.64017, -0.0299824, 0.695125, -0.185216, 1.69694, 0.510216, -0.670666, -0.541966, 1.55908, 0, 0, 0 )
+transform = Transform( 1.71062, -0.0312702, 0.724983, -0.193172, 1.76983, 0.532132, -0.699473, -0.565245, 1.62605, 0, 0, 0 )
 mesh = ExtResource( 29 )
 material/0 = ExtResource( 20 )
 

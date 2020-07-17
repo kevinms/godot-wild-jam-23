@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/menu-credits.obj-566a279bb2a7544ab556e09a9702e36e.mesh"
+
+[deps]
+
+files=[ "res://.import/menu-credits.obj-566a279bb2a7544ab556e09a9702e36e.mesh" ]
+
+source_file="res://assets/intro/menu-credits.obj"
+dest_files=[ "res://.import/menu-credits.obj-566a279bb2a7544ab556e09a9702e36e.mesh", "res://.import/menu-credits.obj-566a279bb2a7544ab556e09a9702e36e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

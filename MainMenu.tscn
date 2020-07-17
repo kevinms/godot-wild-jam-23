@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://FirstContact.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/intro/menu-credits.obj" type="ArrayMesh" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "wiggle"
+length = 4.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 4.7477e-08, 11.174, -4.85341e-07 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="MainMenu" type="Spatial"]
+
+[node name="FirstContact" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.981379, 8.39659e-09, 0.192081, -8.39517e-09, 1, -8.21232e-10, -0.192081, -8.06613e-10, 0.981379, -1.09368, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FirstContact"]
+autoplay = "wiggle"
+anims/wiggle = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.99323, -0.0341813, 0.111025, 0, 0.955731, 0.294241, -0.116168, -0.292248, 0.949261, 15.7325, 10.8326, 17.6729 )
+
+[node name="Credits" type="Spatial" parent="."]
+
+[node name="menu-credits" type="MeshInstance" parent="Credits"]
+transform = Transform( 0.99584, -0.0690774, 0.0594139, 0.0342252, 0.887932, 0.458699, -0.0844413, -0.454758, 0.886603, 15.4201, 2.3173, 8.88007 )
+mesh = ExtResource( 2 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
