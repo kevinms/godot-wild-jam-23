@@ -11,3 +11,10 @@ func _ready():
 	$"NotThisTime/prop-text-9-not-this-time/AnimationPlayer".play("pulsey-pulsey")
 	
 	$Camera/AnimationPlayer.play("cutscene")
+
+func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		Global.goto_scene("res://Game.tscn")
+
+	if !$Camera/AnimationPlayer.is_playing():
+		Global.goto_scene("res://Game.tscn")

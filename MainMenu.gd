@@ -41,7 +41,7 @@ func _input(event):
 			if result.collider == $Intro:
 				Global.goto_scene("res://Intro.tscn")
 			elif result.collider == $Play:
-				Global.goto_scene("res://Game.tscn")
+				Global.goto_scene("res://PreGameCutscene.tscn")
 
 func _process(delta):
 	if Input.is_action_just_pressed("enter"):
