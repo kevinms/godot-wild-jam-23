@@ -8,6 +8,7 @@ var speed: float
 var blast_radius: float
 
 var sound = true
+var sound_db = 0.0
 
 func init(start: Vector3, end: Vector3, core: Vector3, height_from_mid: float):
 	self.start = start
@@ -20,7 +21,8 @@ func init(start: Vector3, end: Vector3, core: Vector3, height_from_mid: float):
 	
 	$Particles.emitting = true
 	
-	if sound and randf() < 0.1:
+	if sound and randf() < 1.1:
+		$Launch.volume_db = sound_db
 		$Launch.play()
 
 signal surface_missile_impact(impact_site, blast_radius)

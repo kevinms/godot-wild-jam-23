@@ -1,0 +1,152 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://ShieldPickup.gd" type="Script" id=1]
+[ext_resource path="res://assets/sfx/flagreturn.wav" type="AudioStream" id=2]
+
+[sub_resource type="SphereShape" id=10]
+radius = 1.26817
+
+[sub_resource type="SphereMesh" id=13]
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 0.164706, 0.85098, 0.643137, 1 )
+
+[sub_resource type="Gradient" id=8]
+colors = PoolColorArray( 0.992279, 0.0117188, 1, 1, 0, 0.996094, 0.295715, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.00399999, 0.645455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.290909 ), -1.95925, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+trail_divisor = 10
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+linear_accel = -24.06
+radial_accel = -100.0
+tangential_accel = 67.6
+damping = 2.26
+scale = 0.1
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 9 )
+hue_variation = 0.08
+
+[sub_resource type="SpatialMaterial" id=6]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CubeMesh" id=7]
+material = SubResource( 6 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "blink"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("VisibleStuff/MeshInstance:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "bobble"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("VisibleStuff:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.743874, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="ParticlesMaterial" id=15]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 22.58
+linear_accel = -24.06
+damping = 2.26
+scale = 0.1
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 9 )
+hue_variation = 0.08
+
+[node name="ShieldPickup" type="Area"]
+gravity_vec = Vector3( 0, 0, 0 )
+gravity = 0.0
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 10 )
+
+[node name="VisibleStuff" type="Spatial" parent="."]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="VisibleStuff"]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
+mesh = SubResource( 13 )
+material/0 = SubResource( 14 )
+
+[node name="Particles" type="Particles" parent="VisibleStuff"]
+amount = 100
+lifetime = 0.5
+local_coords = false
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Blink" type="AnimationPlayer" parent="."]
+anims/blink = SubResource( 12 )
+
+[node name="Bobble" type="AnimationPlayer" parent="."]
+anims/bobble = SubResource( 11 )
+
+[node name="Explosion" type="Spatial" parent="."]
+
+[node name="Particles" type="Particles" parent="Explosion"]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.47
+local_coords = false
+process_material = SubResource( 15 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="ExplosionTimer" type="Timer" parent="Explosion"]
+one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="Explosion"]
+stream = ExtResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_ShieldPickup_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Expire_timeout"]
+[connection signal="timeout" from="Explosion/ExplosionTimer" to="." method="_on_ExplosionTimer_timeout"]
+[connection signal="finished" from="Explosion/Sound" to="." method="_on_Sound_finished"]

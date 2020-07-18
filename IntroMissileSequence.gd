@@ -67,6 +67,7 @@ func launch_surface_missile(start: Vector3, end: Vector3):
 		
 		# Create a new surface missile
 		var missile = surface_missile_scene.instance()
+		missile.sound = false
 		missile.init(start, end, from, height_from_mid)
 		add_child(missile)
 		

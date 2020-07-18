@@ -29,6 +29,8 @@ func _process(delta):
 	
 	#occasionally_fire_surface_missile()
 
+	if randf() < 0.01:
+		spawn_powerup()
 
 
 const ray_length = 1000
@@ -111,14 +113,28 @@ func launch_surface_missile(start: Vector3, end: Vector3):
 		
 		# Create a new surface missile
 		var missile = surface_missile_scene.instance()
+		
+		var max_sound_dist = 12.0
+		var min_sound_dist = 4.0
+		
+		var dist = ($Player.global_transform.origin - start).length()
+		if dist > min_sound_dist:
+			#var norm_dist = 1.0 - (dist - min_sound_dist / max_sound_dist - min_sound_dist)
+			
+			var norm_dist = 1.0 - clamp((dist - min_sound_dist) / (max_sound_dist - min_sound_dist), 0.0, 1.0)
+			
+			print(norm_dist)
+			missile.sound_db = range_lerp(norm_dist, 0.0, 1.0, -12.0, 0.0)
+			print("sound db: ", missile.sound_db)
+		
 		missile.init(start, end, from, height_from_mid)
 		add_child(missile)
 		
 		missile.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
 		missile.connect("surface_missile_impact", self, "_on_Emitter_surface_missile_impact")
 
-func nearest_surface_point(pos: Vector3):
-	var up = pos - ($Planet.global_transform.origin).normalized()
+func nearest_surface_point(pos: Vector3, height: float = 0.0):
+	var up = (pos - $Planet.global_transform.origin).normalized()
 	
 	var from = $Planet.global_transform.origin
 	var to = up * 1000
@@ -131,7 +147,8 @@ func nearest_surface_point(pos: Vector3):
 			print("Woah, what are you shooting at? We'll consider this a misfire.")
 			return Vector3.ZERO
 		
-		return result.position
+		print("new pos")
+		return result.position + (up * height)
 	return Vector3.ZERO
 
 func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
@@ -252,3 +269,20 @@ func random_point_on_sphere(radius: float):
 
 func _on_Game_tree_exited():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+onready var shield_scene = load("res://ShieldPickup.tscn")
+
+func spawn_powerup():
+	var spawn_point = random_point_on_sphere(1.0)
+	spawn_point = nearest_surface_point(spawn_point, 1.0)
+	
+	print("power up ", spawn_point)
+	
+	if spawn_point == Vector3.ZERO:
+		print("whhhhhhhhhhaaaaaaaatt??!?!?!")
+		return
+
+	var pickup = shield_scene.instance()
+	#pickup.global_transform.origin = spawn_point
+	pickup.translate(spawn_point)
+	add_child(pickup)

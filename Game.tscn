@@ -23,7 +23,7 @@ transform = Transform( -3.56802e-08, 0.577672, -0.816269, 2.52509e-08, 0.816269,
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.8625, 1.39177 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 44.4279, 1.39177 )
 planet_path = NodePath("../Planet")
 
 [node name="CameraPivot" type="Position3D" parent="Player"]
