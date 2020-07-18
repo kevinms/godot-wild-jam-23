@@ -1,0 +1,121 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/sfx/flagdrop.wav" type="AudioStream" id=1]
+[ext_resource path="res://Shield.gd" type="Script" id=2]
+[ext_resource path="res://assets/sfx/itemback.wav" type="AudioStream" id=3]
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+albedo_color = Color( 0.972549, 0.980392, 0.0352941, 0 )
+metallic = 0.27
+roughness = 0.16
+emission_enabled = true
+emission = Color( 0.968627, 1, 0, 1 )
+emission_energy = 0.3
+emission_operator = 0
+emission_on_uv2 = false
+clearcoat_enabled = true
+clearcoat = 0.99
+clearcoat_gloss = 0.72
+refraction_enabled = true
+refraction_scale = 0.01
+refraction_texture_channel = 0
+
+[sub_resource type="SphereShape" id=11]
+radius = 3.0
+
+[sub_resource type="Gradient" id=16]
+colors = PoolColorArray( 0.769438, 0.917969, 0.0537872, 1, 0.996094, 0, 0.98053, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 16 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.00399999, 0.645455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.290909 ), -1.95925, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 1
+emission_sphere_radius = 3.0
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+linear_accel = -24.06
+damping = 2.26
+scale = 0.1
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 9 )
+hue_variation = 0.08
+
+[sub_resource type="SpatialMaterial" id=6]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color( 0.0705882, 0.721569, 0.509804, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CubeMesh" id=7]
+material = SubResource( 6 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "expand"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mesh:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 4, 4, 4 ), Vector3( 2, 2, 2 ), Vector3( 3, 3, 3 ) ]
+}
+
+[node name="Shield" type="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.604713, 0 )
+collision_layer = 512
+collision_mask = 2048
+script = ExtResource( 2 )
+
+[node name="Mesh" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 11 )
+
+[node name="DurationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Drop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Deploy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.47
+local_coords = false
+process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="Expand" type="AnimationPlayer" parent="."]
+autoplay = "expand"
+anims/expand = SubResource( 12 )
+[connection signal="body_entered" from="." to="." method="_on_Shield_body_entered"]
+[connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]
+[connection signal="finished" from="Drop" to="." method="_on_Drop_finished"]

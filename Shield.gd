@@ -1,14 +1,15 @@
 extends Spatial
 
-var cooldown: float = 4.0
-var duration: float = 1.0
-
-func activate():
-	if $CooldownTimer.is_stopped():
-		$Mesh.show()
-		$DurationTimer.start(duration)
-
+func _ready():
+	$Particles.emitting = true
 
 func _on_DurationTimer_timeout():
-	$Mesh.hide()
-	$CooldownTimer.start(cooldown)
+	$Drop.play()
+
+
+func _on_Drop_finished():
+	queue_free()
+
+func _on_Shield_body_entered(body):
+	if body.is_in_group("missile"):
+		print("Shield hit detected!!!!!!!!!!!!!")

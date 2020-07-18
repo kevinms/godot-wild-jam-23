@@ -2,6 +2,7 @@
 
 [ext_resource path="res://ShieldPickup.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/flagreturn.wav" type="AudioStream" id=2]
+[ext_resource path="res://ShieldPickup.tres" type="Material" id=3]
 
 [sub_resource type="SphereShape" id=10]
 radius = 1.26817
@@ -9,38 +10,20 @@ radius = 1.26817
 [sub_resource type="SphereMesh" id=13]
 
 [sub_resource type="SpatialMaterial" id=14]
-albedo_color = Color( 0.164706, 0.85098, 0.643137, 1 )
-
-[sub_resource type="Gradient" id=8]
-colors = PoolColorArray( 0.992279, 0.0117188, 1, 1, 0, 0.996094, 0.295715, 1 )
-
-[sub_resource type="GradientTexture" id=9]
-gradient = SubResource( 8 )
-
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0.00399999, 0.645455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.290909 ), -1.95925, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
-
-[sub_resource type="ParticlesMaterial" id=5]
-trail_divisor = 10
-emission_shape = 1
-emission_sphere_radius = 1.0
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 1.0
-linear_accel = -24.06
-radial_accel = -100.0
-tangential_accel = 67.6
-damping = 2.26
-scale = 0.1
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 9 )
-hue_variation = 0.08
+albedo_color = Color( 0, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 0.843137, 0.168627, 0.898039, 1 )
+emission_energy = 2.32
+emission_operator = 0
+emission_on_uv2 = false
 
 [sub_resource type="SpatialMaterial" id=6]
 vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color( 0.0705882, 0.721569, 0.509804, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
 
 [sub_resource type="CubeMesh" id=7]
 material = SubResource( 6 )
@@ -79,6 +62,18 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.743874, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
+[sub_resource type="Gradient" id=16]
+colors = PoolColorArray( 0.769438, 0.917969, 0.0537872, 1, 0.996094, 0, 0.98053, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 16 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.00399999, 0.645455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.290909 ), -1.95925, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
 [sub_resource type="ParticlesMaterial" id=15]
 emission_shape = 1
 emission_sphere_radius = 1.0
@@ -114,7 +109,7 @@ material/0 = SubResource( 14 )
 amount = 100
 lifetime = 0.5
 local_coords = false
-process_material = SubResource( 5 )
+process_material = ExtResource( 3 )
 draw_pass_1 = SubResource( 7 )
 
 [node name="Timer" type="Timer" parent="."]

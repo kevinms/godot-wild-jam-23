@@ -26,10 +26,21 @@ func _process(delta):
 		get_tree().reload_current_scene()
 	
 	fire_missile_occasionally(delta)
-	
 	#occasionally_fire_surface_missile()
-
 	spawn_every_n_seconds(delta)
+	
+	if Input.is_action_just_pressed("shield"):
+		spawn_shield()
+
+onready var shield_scene = load("res://Shield.tscn")
+
+func spawn_shield():
+	if GlobalStats.num_shields > 0:
+		GlobalStats.num_shields -= 1
+	
+	var shield = shield_scene.instance()
+	shield.translate($Player.global_transform.origin)
+	add_child(shield)
 
 var since_spawn_sec: float = 0.0
 var spawn_interval_sec: float = 3.0
@@ -276,7 +287,7 @@ func random_point_on_sphere(radius: float):
 func _on_Game_tree_exited():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-onready var shield_scene = load("res://ShieldPickup.tscn")
+onready var shield_pickup_scene = load("res://ShieldPickup.tscn")
 
 func spawn_powerup():
 	var spawn_point = random_point_on_sphere(1.0)
@@ -288,7 +299,7 @@ func spawn_powerup():
 		print("whhhhhhhhhhaaaaaaaatt??!?!?!")
 		return
 
-	var pickup = shield_scene.instance()
+	var pickup = shield_pickup_scene.instance()
 	#pickup.global_transform.origin = spawn_point
 	pickup.translate(spawn_point)
 	add_child(pickup)

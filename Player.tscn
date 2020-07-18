@@ -1,9 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://PlayerV2.gd" type="Script" id=1]
-[ext_resource path="res://Shield.gd" type="Script" id=2]
 [ext_resource path="res://assets/alien/AlienV2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/sfx/flagdrop.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sfx/itemback.wav" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleMesh" id=1]
@@ -25,22 +23,6 @@ albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0, 1, 0.180392, 1 )
-
-[sub_resource type="SphereMesh" id=9]
-
-[sub_resource type="OpenSimplexNoise" id=10]
-seed = 3
-
-[sub_resource type="NoiseTexture" id=11]
-seamless = true
-as_normalmap = true
-bump_strength = 9.6
-noise = SubResource( 10 )
-
-[sub_resource type="SpatialMaterial" id=12]
-flags_transparent = true
-albedo_color = Color( 0.12549, 0.956863, 0.705882, 0.439216 )
-albedo_texture = SubResource( 11 )
 
 [node name="Player" type="KinematicBody"]
 collision_layer = 1025
@@ -83,27 +65,8 @@ material/0 = SubResource( 8 )
 [node name="Debug" type="Spatial" parent="."]
 transform = Transform( 0.432, 0, 0, 0, 0.432, 0, 0, 0, 0.432, 0, 0, 0 )
 
-[node name="Shield" type="Spatial" parent="."]
-transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.604713, 0 )
-script = ExtResource( 2 )
-
-[node name="Mesh" type="MeshInstance" parent="Shield"]
-visible = false
-mesh = SubResource( 9 )
-material/0 = SubResource( 12 )
-
-[node name="DurationTimer" type="Timer" parent="Shield"]
-one_shot = true
-
-[node name="CooldownTimer" type="Timer" parent="Shield"]
-one_shot = true
-
-[node name="Deploy" type="AudioStreamPlayer" parent="Shield"]
-stream = ExtResource( 4 )
-
 [node name="Alien" parent="." instance=ExtResource( 3 )]
 transform = Transform( -0.374162, 0, -5.64969e-08, 0, 0.374162, 0, 5.64969e-08, 0, -0.374162, 0, -0.658784, 0 )
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-[connection signal="timeout" from="Shield/DurationTimer" to="Shield" method="_on_DurationTimer_timeout"]

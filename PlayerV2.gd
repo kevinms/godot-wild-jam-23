@@ -85,8 +85,8 @@ func _physics_process(delta):
 		else:
 			$Alien/AnimationPlayer.play("run-loop", -1, 2.0)
 	
-	if Input.is_action_just_pressed("shield"):
-		$Shield.activate()
+#	if Input.is_action_just_pressed("shield"):
+#		$Shield.activate()
 	
 	if jumping:
 		jump_time_delta += delta
