@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hehe-05.wav-0129b8302eec8b57629ff24e05bda590.sample"
+
+[deps]
+
+source_file="res://assets/audio/clips/hehe-05.wav"
+dest_files=[ "res://.import/hehe-05.wav-0129b8302eec8b57629ff24e05bda590.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

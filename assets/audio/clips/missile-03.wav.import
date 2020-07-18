@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/missile-03.wav-83ea4e0d73bba71b735f6e8a69afcf38.sample"
+
+[deps]
+
+source_file="res://assets/audio/clips/missile-03.wav"
+dest_files=[ "res://.import/missile-03.wav-83ea4e0d73bba71b735f6e8a69afcf38.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

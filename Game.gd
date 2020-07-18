@@ -198,14 +198,15 @@ func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
 		var collider = result["collider"]
 		if collider == $Planet:
 			continue
-		if collider.name == "Player":
+		elif collider.name == "Player":
 			print("Ouchie")
 			GlobalStats.health -= 100
-		else:
-			if collider.get_groups().find("humans") >= 0:
-				GlobalStats.population -= 1
-				GlobalStats.deaths += 1
-				collider.queue_free()
+		elif collider.is_in_group("humans"):
+			#if collider.get_groups().find("humans") >= 0:
+			GlobalStats.population -= 1
+			GlobalStats.deaths += 1
+			collider.death()
+			#collider.queue_free()
 
 #func _on_Emitter_launch_surface_missile(launch_site, human):
 #	print("Launch me!")

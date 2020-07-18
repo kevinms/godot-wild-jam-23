@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://SurfaceMissile.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/WarpDrive_00.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/sfx/Laser_08.wav" type="AudioStream" id=3]
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -40,6 +41,32 @@ vertex_color_use_as_albedo = true
 [sub_resource type="CubeMesh" id=8]
 material = SubResource( 7 )
 
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.2703, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+linear_accel = 15.04
+damping = 15.0
+scale = 0.4
+scale_curve = SubResource( 13 )
+
+[sub_resource type="SpatialMaterial" id=10]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color( 0.0156863, 0.654902, 0.964706, 1 )
+emission_energy = 3.54
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CubeMesh" id=11]
+material = SubResource( 10 )
+
 [node name="SurfaceMissile" type="KinematicBody" groups=[
 "missile",
 ]]
@@ -69,3 +96,24 @@ stream = ExtResource( 2 )
 volume_db = -6.282
 
 [node name="Explode" type="AudioStreamPlayer" parent="."]
+
+[node name="Death" type="Spatial" parent="."]
+
+[node name="DeathParticles" type="Particles" parent="Death" groups=[
+"humans",
+]]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.79
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="DeathTimer" type="Timer" parent="Death"]
+process_mode = 0
+one_shot = true
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Death"]
+stream = ExtResource( 3 )
+volume_db = -6.0
+[connection signal="timeout" from="Death/DeathTimer" to="." method="_on_DeathTimer_timeout"]

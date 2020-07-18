@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ahhh-03.wav-f0a0ec1492c8eb55239b93e4fd56efc2.sample"
+
+[deps]
+
+source_file="res://assets/audio/clips/ahhh-03.wav"
+dest_files=[ "res://.import/ahhh-03.wav-f0a0ec1492c8eb55239b93e4fd56efc2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

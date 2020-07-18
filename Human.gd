@@ -135,4 +135,5 @@ func death():
 	$Death/DeathTimer.start()
 
 func _on_DeathTimer_timeout():
+	$Death/DeathParticles.emitting = false
 	queue_free()

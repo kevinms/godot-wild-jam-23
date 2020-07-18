@@ -67,7 +67,11 @@ func _physics_process(delta):
 
 func explode():
 	$Particles.emitting = false
-	#$Explosion.emitting = true
+	$MeshInstance.visible = false
+	$CollisionShape.disabled = true
+	$Death/DeathParticles.emitting = true
+	$Death/DeathTimer.start()
+	$Death/DeathSound.play()
 	
 	#var up = (global_transform.origin - core).normalized()
 	#$Explosion.pwrocess_material.initial_
@@ -116,3 +120,8 @@ func align_with_y(xform, new_y):
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
 	return xform
+
+
+func _on_DeathTimer_timeout():
+	$Death/DeathParticles.emitting = false
+	queue_free()
