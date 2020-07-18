@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://CameraRig.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/audio/music/One Man Symphony - Royalty Free Soundtrack Collection - 70 Landing Mission on Kepler-186f.mp3.wav" type="AudioStream" id=6]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://LavaMaterial.tres" type="Material" id=8]
+[ext_resource path="res://Settings.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -94,3 +95,6 @@ material/0 = ExtResource( 8 )
 [node name="CollisionShape" type="CollisionShape" parent="Lava"]
 transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0 )
 shape = SubResource( 8 )
+
+[node name="Settings" parent="." instance=ExtResource( 9 )]
+[connection signal="tree_exited" from="." to="." method="_on_Game_tree_exited"]

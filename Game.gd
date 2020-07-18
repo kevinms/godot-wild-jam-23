@@ -203,3 +203,7 @@ func random_point_on_sphere(radius: float):
 	
 	# Move the point along a normal such that it's magnitude is the radius.
 	return point.normalized() * radius
+
+
+func _on_Game_tree_exited():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

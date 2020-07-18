@@ -22,9 +22,13 @@ func set_selected(mesh):
 	if selected_mesh != null and selected_mesh != mesh:
 		selected_mesh.scale = Vector3.ONE
 	
+	if selected_mesh == null && mesh != null:
+		$HoverSound.play()
+	
 	selected_mesh = mesh
 	
 	if selected_mesh != null:
+		
 		selected_mesh.scale = Vector3.ONE * 1.3
 
 func _input(event):

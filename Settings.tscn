@@ -1,0 +1,140 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://SettingsTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Fullscreen.gd" type="Script" id=2]
+[ext_resource path="res://Exit Game.gd" type="Script" id=3]
+[ext_resource path="res://Main Menu.gd" type="Script" id=4]
+[ext_resource path="res://Settings.gd" type="Script" id=5]
+[ext_resource path="res://Master Volume.gd" type="Script" id=6]
+
+[node name="Settings" type="PopupPanel"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -242.5
+margin_top = -83.5
+margin_right = 242.5
+margin_bottom = 83.5
+theme = ExtResource( 1 )
+popup_exclusive = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 485.0
+margin_bottom = 167.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vertical" type="VBoxContainer" parent="Panel"]
+margin_right = 485.0
+margin_bottom = 167.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Vertical"]
+margin_right = 485.0
+margin_bottom = 24.0
+
+[node name="RichTextLabel" type="Label" parent="Panel/Vertical/HBoxContainer"]
+margin_right = 485.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="Fullscreen" type="HBoxContainer" parent="Panel/Vertical"]
+margin_top = 28.0
+margin_right = 485.0
+margin_bottom = 60.0
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Panel/Vertical/Fullscreen"]
+margin_top = 4.0
+margin_right = 107.0
+margin_bottom = 28.0
+text = "Fullscreen"
+
+[node name="CheckBox" type="CheckBox" parent="Panel/Vertical/Fullscreen"]
+margin_left = 111.0
+margin_right = 135.0
+margin_bottom = 32.0
+pressed = true
+
+[node name="Master Volume" type="HBoxContainer" parent="Panel/Vertical"]
+margin_top = 64.0
+margin_right = 485.0
+margin_bottom = 88.0
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="Panel/Vertical/Master Volume"]
+margin_right = 154.0
+margin_bottom = 24.0
+text = "Master Volume"
+
+[node name="Slider" type="HSlider" parent="Panel/Vertical/Master Volume"]
+margin_left = 158.0
+margin_right = 458.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 300, 0 )
+min_value = -80.0
+max_value = 24.0
+tick_count = 1
+
+[node name="Mouse Sensitivity" type="HBoxContainer" parent="Panel/Vertical"]
+margin_top = 92.0
+margin_right = 485.0
+margin_bottom = 116.0
+
+[node name="Label" type="Label" parent="Panel/Vertical/Mouse Sensitivity"]
+margin_right = 181.0
+margin_bottom = 24.0
+text = "Mouse Sensitivity"
+
+[node name="Slider" type="HSlider" parent="Panel/Vertical/Mouse Sensitivity"]
+margin_left = 185.0
+margin_right = 485.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 300, 0 )
+value = 10.0
+tick_count = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Panel/Vertical"]
+margin_top = 120.0
+margin_right = 485.0
+margin_bottom = 150.0
+
+[node name="Close Settings" type="Button" parent="Panel/Vertical/Buttons"]
+margin_right = 179.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Close Settings"
+
+[node name="Main Menu" type="Button" parent="Panel/Vertical/Buttons"]
+margin_left = 183.0
+margin_right = 362.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Main Menu"
+script = ExtResource( 4 )
+
+[node name="Exit Game" type="Button" parent="Panel/Vertical/Buttons"]
+margin_left = 366.0
+margin_right = 485.0
+margin_bottom = 30.0
+text = "Quit Game"
+script = ExtResource( 3 )
+[connection signal="popup_hide" from="." to="." method="_on_Settings_popup_hide"]
+[connection signal="toggled" from="Panel/Vertical/Fullscreen/CheckBox" to="Panel/Vertical/Fullscreen" method="_on_CheckBox_toggled"]
+[connection signal="value_changed" from="Panel/Vertical/Master Volume/Slider" to="Panel/Vertical/Master Volume" method="_on_Slider_value_changed"]
+[connection signal="pressed" from="Panel/Vertical/Buttons/Close Settings" to="." method="_on_Close_Settings_pressed"]
+[connection signal="pressed" from="Panel/Vertical/Buttons/Main Menu" to="Panel/Vertical/Buttons/Main Menu" method="_on_Main_Menu_pressed"]
+[connection signal="pressed" from="Panel/Vertical/Buttons/Exit Game" to="Panel/Vertical/Buttons/Exit Game" method="_on_Exit_Game_pressed"]

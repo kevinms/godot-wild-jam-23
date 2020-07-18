@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WereWasI.ogg-01eed89fe6d84f790bcef6be5f11ca7c.oggstr"
+
+[deps]
+
+source_file="res://assets/music/WereWasI.ogg"
+dest_files=[ "res://.import/WereWasI.ogg-01eed89fe6d84f790bcef6be5f11ca7c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
