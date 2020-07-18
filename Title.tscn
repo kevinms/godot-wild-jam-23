@@ -642,7 +642,7 @@ grow_vertical = 2
 rect_pivot_offset = Vector2( 879.944, -469.653 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Press [SPACE] to continue"
+text = "Press [ESCAPE, ENTER, SPACE] to continue"
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false

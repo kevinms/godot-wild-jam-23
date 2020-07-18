@@ -10,7 +10,7 @@ var once = false
 var saved_mouse_mode
 
 func _input(event):
-	if Input.is_action_just_pressed("menu"):
+	if Input.is_action_just_pressed("ui_cancel"):
 #		if !once:
 #			saved_mouse_mode = Input.get_mouse_mode()
 #			once = true
