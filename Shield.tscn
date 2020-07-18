@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sfx/flagdrop.wav" type="AudioStream" id=1]
 [ext_resource path="res://Shield.gd" type="Script" id=2]
-[ext_resource path="res://assets/sfx/itemback.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/acid5.wav" type="AudioStream" id=3]
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -93,10 +93,13 @@ material/0 = SubResource( 2 )
 shape = SubResource( 11 )
 
 [node name="DurationTimer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
+autostart = true
 
-[node name="Drop" type="AudioStreamPlayer" parent="."]
+[node name="Down" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -6.0
 
 [node name="Deploy" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
@@ -118,4 +121,4 @@ autoplay = "expand"
 anims/expand = SubResource( 12 )
 [connection signal="body_entered" from="." to="." method="_on_Shield_body_entered"]
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]
-[connection signal="finished" from="Drop" to="." method="_on_Drop_finished"]
+[connection signal="finished" from="Down" to="." method="_on_Down_finished"]

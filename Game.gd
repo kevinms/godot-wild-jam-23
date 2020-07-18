@@ -5,7 +5,7 @@ extends Spatial
 func _ready():
 	#AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), 0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	GlobalStats.reset()
 	spawn_humans()
 
 func _input(event):
@@ -35,8 +35,9 @@ func _process(delta):
 onready var shield_scene = load("res://Shield.tscn")
 
 func spawn_shield():
-	if GlobalStats.num_shields > 0:
-		GlobalStats.num_shields -= 1
+	if GlobalStats.num_shields <= 0:
+		return
+	GlobalStats.num_shields -= 1
 	
 	var shield = shield_scene.instance()
 	shield.translate($Player.global_transform.origin)
@@ -51,7 +52,6 @@ func spawn_every_n_seconds(delta):
 		since_spawn_sec = 0.0
 
 const ray_length = 1000
-export var num_humans = 100
 onready var human_scene = load("res://Human.tscn")
 
 var prev_click_position = Vector3.ZERO
@@ -150,7 +150,7 @@ func launch_surface_missile(start: Vector3, end: Vector3):
 		missile.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
 		missile.connect("surface_missile_impact", self, "_on_Emitter_surface_missile_impact")
 
-func nearest_surface_point(pos: Vector3, height: float = 0.0):
+func nearest_surface_point(pos: Vector3, height: float = 0.2):
 	var up = (pos - $Planet.global_transform.origin).normalized()
 	
 	var from = $Planet.global_transform.origin
@@ -198,6 +198,7 @@ func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
 		else:
 			if collider.get_groups().find("humans") >= 0:
 				GlobalStats.population -= 1
+				GlobalStats.deaths += 1
 				collider.queue_free()
 
 #func _on_Emitter_launch_surface_missile(launch_site, human):
@@ -233,7 +234,7 @@ func spawn_humans():
 	var aabb = $Planet.get_bounding_box()
 	var radius = aabb.size.length() / 2
 	
-	for i in range(num_humans):
+	for i in range(GlobalStats.humans_to_spawn):
 		var spawn_point = random_point_on_sphere(radius)
 		
 		var human = human_scene.instance()
@@ -291,7 +292,7 @@ onready var shield_pickup_scene = load("res://ShieldPickup.tscn")
 
 func spawn_powerup():
 	var spawn_point = random_point_on_sphere(1.0)
-	spawn_point = nearest_surface_point(spawn_point, 1.0)
+	spawn_point = nearest_surface_point(spawn_point, 2.5)
 	
 	print("power up ", spawn_point)
 	

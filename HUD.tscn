@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/hud/health-bar-bg.png" type="Texture" id=1]
 [ext_resource path="res://assets/hud/background-tile.png" type="Texture" id=2]
@@ -7,12 +7,30 @@
 [ext_resource path="res://assets/hud/health-bar.png" type="Texture" id=5]
 [ext_resource path="res://assets/hud/dash.png" type="Texture" id=6]
 [ext_resource path="res://SettingsTheme.tres" type="Theme" id=7]
+[ext_resource path="res://StatsText.gd" type="Script" id=8]
+[ext_resource path="res://assets/hud/star.png" type="Texture" id=9]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 9.02
+tangential_accel = -33.08
+scale = 0.7
+hue_variation = 0.33
+hue_variation_random = 0.89
 
 [node name="HUD" type="MarginContainer"]
 anchor_right = 1.0
 margin_left = 20.0
 margin_top = 20.0
 margin_right = -20.0
+mouse_filter = 1
 theme = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -52,6 +70,20 @@ texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 5 )
 script = ExtResource( 3 )
 
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Bar"]
+margin_left = 458.0
+margin_right = 458.0
+margin_bottom = 100.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Bar/Panel"]
+margin_right = 40.0
+margin_bottom = 24.0
+text = "Time Survived:
+      00:00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HelpKey" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 784.0
 margin_right = 984.0
@@ -63,7 +95,7 @@ margin_bottom = 100.0
 
 [node name="BG-ChangeSize" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/HelpKey/Margin"]
 margin_right = 200.0
-margin_bottom = 120.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 200, 100 )
 texture = ExtResource( 2 )
 
@@ -80,10 +112,48 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Abilities" type="VBoxContainer" parent="VBoxContainer"]
+[node name="Stats" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 104.0
 margin_right = 984.0
 margin_bottom = 204.0
+
+[node name="Margin" type="MarginContainer" parent="VBoxContainer/Stats"]
+margin_right = 200.0
+margin_bottom = 100.0
+
+[node name="BG-ChangeSize" type="NinePatchRect" parent="VBoxContainer/Stats/Margin"]
+margin_right = 200.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 100 )
+texture = ExtResource( 2 )
+
+[node name="Text" type="Label" parent="VBoxContainer/Stats/Margin/BG-ChangeSize"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Deaths: 0
+Shields: 0
+"
+align = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="BlingBling" type="Particles2D" parent="VBoxContainer/Stats/Margin/BG-ChangeSize/Text"]
+position = Vector2( 171.349, 44.0972 )
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.53
+process_material = SubResource( 1 )
+texture = ExtResource( 9 )
+
+[node name="Abilities" type="VBoxContainer" parent="VBoxContainer"]
+visible = false
+margin_top = 208.0
+margin_right = 984.0
+margin_bottom = 308.0
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Abilities"]
 margin_right = 984.0

@@ -19,6 +19,7 @@ func _on_Expire_timeout():
 
 func _on_ShieldPickup_body_entered(body):
 	GlobalStats.num_shields += 1
+	$Blink.stop()
 	$CollisionShape.disabled = true
 	$VisibleStuff/MeshInstance.visible = false
 	$VisibleStuff/Particles.emitting = false
