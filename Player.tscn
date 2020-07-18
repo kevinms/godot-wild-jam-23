@@ -1,8 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://PlayerV2.gd" type="Script" id=1]
 [ext_resource path="res://Shield.gd" type="Script" id=2]
 [ext_resource path="res://assets/alien/AlienV2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sfx/flagdrop.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/itemback.wav" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -94,6 +96,12 @@ one_shot = true
 [node name="CooldownTimer" type="Timer" parent="Shield"]
 one_shot = true
 
+[node name="Deploy" type="AudioStreamPlayer" parent="Shield"]
+stream = ExtResource( 4 )
+
 [node name="Alien" parent="." instance=ExtResource( 3 )]
 transform = Transform( -0.374162, 0, -5.64969e-08, 0, 0.374162, 0, 5.64969e-08, 0, -0.374162, 0, -0.658784, 0 )
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 [connection signal="timeout" from="Shield/DurationTimer" to="Shield" method="_on_DurationTimer_timeout"]

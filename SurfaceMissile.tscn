@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://SurfaceMissile.gd" type="Script" id=1]
+[ext_resource path="res://assets/sfx/WarpDrive_00.wav" type="AudioStream" id=2]
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -58,3 +59,9 @@ randomness = 0.2
 local_coords = false
 process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 8 )
+
+[node name="Launch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -6.282
+
+[node name="Explode" type="AudioStreamPlayer" parent="."]

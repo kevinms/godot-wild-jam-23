@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://assets/intro/prop-text-8-a-new-friend.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/alien/AlienBodyMaterial.tres" type="Material" id=2]
@@ -18,34 +18,47 @@
 [ext_resource path="res://assets/intro/prop-text-0-arrival.obj" type="ArrayMesh" id=16]
 [ext_resource path="res://assets/intro/prop-text-9-not-this-time.obj" type="ArrayMesh" id=17]
 [ext_resource path="res://PreGameCutscene.gd" type="Script" id=18]
+[ext_resource path="res://assets/intro/pregame-1.obj" type="ArrayMesh" id=19]
+[ext_resource path="res://assets/intro/pregame-2.obj" type="ArrayMesh" id=20]
 
-[sub_resource type="Animation" id=1]
-resource_name = "cutscene"
-length = 20.0
-step = 0.5
+[sub_resource type="Animation" id=30]
+resource_name = "lolololol"
+length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Spatial/pregame-1:translation")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3.5, 4, 7.5, 8, 11.5, 12, 15.5, 16 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( -37.2226, 11.4708, 18.9438 ), Vector3( -37.2226, 11.4708, 18.9438 ), Vector3( 1.35357, 5.50836, 11.8375 ), Vector3( 1.35357, 5.50836, 11.8375 ), Vector3( 43.8058, 11.0992, 11.8375 ), Vector3( 43.8058, 11.0992, 11.8375 ), Vector3( 88.8252, 11.0992, 11.8375 ), Vector3( 88.8252, 11.0992, 11.8375 ), Vector3( 124.917, 8.98292, 8.42825 ) ]
+"values": [ Vector3( 0, 1.348, -100 ), Vector3( 0, 1.348, -100 ), Vector3( 0, 1.348, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rotation_degrees")
-tracks/1/interp = 2
+tracks/1/path = NodePath("Spatial/pregame-2:translation")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 3.5, 4, 7.5, 8, 11.5, 12, 15.5, 16 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( -18.5769, 3.74962, -1.19608 ), Vector3( -18.5769, 3.74962, -1.19608 ), Vector3( -18.5769, 3.74962, -1.19608 ), Vector3( -18.5769, 3.74962, -1.19608 ), Vector3( -31.1464, 13.1937, -4.28724 ), Vector3( -31.1464, 13.1937, -4.28724 ), Vector3( -31.1464, 13.1937, -4.28724 ), Vector3( -31.1464, 13.1937, -4.28724 ), Vector3( -31.1464, 9.43373, -4.28724 ) ]
+"values": [ Vector3( 0, -1.599, -100 ), Vector3( 0, -1.599, -100 ), Vector3( 0, -1.59896, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Boom:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
 }
 
 [sub_resource type="SpatialMaterial" id=2]
@@ -814,16 +827,33 @@ tracks/0/keys = {
 }
 
 [node name="PreGameCutscene" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.411037, 0.911619, 0, -0.911619, 0.411037, 0, 0, 0 )
 script = ExtResource( 18 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.998077, -1.86265e-09, 0.0619892, -0.0197864, 0.94769, 0.318577, -0.0587466, -0.319191, 0.945868, -37.2226, 11.4708, 18.9438 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.09151 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
-anims/cutscene = SubResource( 1 )
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="pregame-1" type="MeshInstance" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -33.3333 )
+mesh = ExtResource( 19 )
+material/0 = ExtResource( 14 )
+
+[node name="pregame-2" type="MeshInstance" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.599, -100 )
+mesh = ExtResource( 20 )
+material/0 = ExtResource( 14 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "lolololol"
+anims/lolololol = SubResource( 30 )
+
+[node name="Boom" type="AudioStreamPlayer" parent="."]
 
 [node name="Arrival" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2117, 0, 0 )
+visible = false
 
 [node name="prop-ufo" type="MeshInstance" parent="Arrival"]
 transform = Transform( 0.988824, -0.0426885, -0.142845, -0.0905184, 0.589411, -0.802745, 0.118462, 0.806704, 0.57896, -2.19412, 12.48, 0.286449 )
@@ -882,6 +912,7 @@ material/0 = ExtResource( 14 )
 
 [node name="A New Friend" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51682, 0, 0 )
+visible = false
 
 [node name="prop-text-8-a-new-friend" type="MeshInstance" parent="A New Friend"]
 transform = Transform( 2.642, 0, 0.331982, 0, 2.66278, 0, -0.331982, 0, 2.642, 2.10161, 0.0124264, -0.26408 )
@@ -894,6 +925,7 @@ anims/upy-downy = SubResource( 8 )
 
 [node name="Greeting" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1912, 0, 0 )
+visible = false
 
 [node name="prop-ufo" type="MeshInstance" parent="Greeting"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.457, 1.12816, -2.7362 )
@@ -1050,6 +1082,7 @@ material/0 = ExtResource( 14 )
 
 [node name="War" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.4064, 0, 0 )
+visible = false
 
 [node name="prop-planet" type="MeshInstance" parent="War"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45685, 0, -2.38028 )
@@ -1159,6 +1192,7 @@ material/0 = ExtResource( 14 )
 
 [node name="NotThisTime" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 122.698, 0, 0 )
+visible = false
 
 [node name="prop-text-9-not-this-time" type="MeshInstance" parent="NotThisTime"]
 transform = Transform( 0.999972, -4.65661e-10, -0.00741758, 0.00266173, 0.933399, 0.358831, 0.00692356, -0.35884, 0.933373, 0, 4.56534, 1.89424 )
@@ -1229,7 +1263,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Press [ESCAPE] to skip intro"
+text = "Press [ESCAPE, CLICK] to skip"
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false

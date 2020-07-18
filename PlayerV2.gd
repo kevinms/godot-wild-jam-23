@@ -98,6 +98,7 @@ func _physics_process(delta):
 	
 	if !jumping && Input.is_action_just_pressed("jump"):
 		$Alien/AnimationPlayer.play("jump-spin")
+		$JumpSound.play()
 		# Override gravity if we jumped
 		velocity -= gravity_component
 	
