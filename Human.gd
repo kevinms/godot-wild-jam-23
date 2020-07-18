@@ -26,6 +26,11 @@ func set_fear(v: float):
 		$ExclamationMark.hide()
 	fear = v
 
+#signal launch_surface_missile(launch_site, human)
+#
+#func emit_launch_surface_missile_signal(launch_site):
+#	emit_signal("launch_surface_missile", launch_site, self)
+
 func _ready():
 	add_to_group("humans")
 	print(alien)
@@ -40,8 +45,8 @@ func _physics_process(delta):
 	var xform = align_with_y(global_transform, world_up)
 	global_transform = global_transform.interpolate_with(xform, 0.2)
 	
-	if !jumping and randf() < 0.01:
-		emit_launch_surface_missile_signal(global_transform.origin)
+#	if !jumping and randf() < 0.01:
+#		emit_launch_surface_missile_signal(global_transform.origin)
 	
 	# Jump
 	if !jumping and randf() < 1.0:
@@ -111,7 +116,7 @@ func safe_jump_direction():
 		
 		if result.collider == planet:
 			# This looks safe-ish...
-			print("Safe direction!")
+			#print("Safe direction!")
 			return dir
 	
 	return Vector3.ZERO
@@ -123,9 +128,3 @@ func align_with_y(xform, new_y):
 	xform.basis = xform.basis.orthonormalized()
 	#TODO: Set scale back to before orthonormalized()?
 	return xform
-
-
-signal launch_surface_missile(launch_site, human)
-
-func emit_launch_surface_missile_signal(launch_site):
-	emit_signal("launch_surface_missile", launch_site, self)

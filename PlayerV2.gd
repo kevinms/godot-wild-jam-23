@@ -115,6 +115,7 @@ func _physics_process(delta):
 			velocity += gravity_component
 		if jumping and jump_time_delta < 0.3 and Input.is_action_pressed("jump"):
 			velocity += world_up * (jump_magnitude * delta)
+			#velocity += dir * (jump_magnitude * delta * 2.0)
 			
 		velocity += -world_up * (gravity_magnitude * delta)
 	

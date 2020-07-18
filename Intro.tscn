@@ -36,7 +36,6 @@
 [sub_resource type="Animation" id=1]
 resource_name = "destruction-anim"
 length = 10.0
-step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:translation")
 tracks/0/interp = 1
@@ -82,6 +81,18 @@ tracks/3/enabled = true
 tracks/3/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -80, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 9.75, 10 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Missiles:begin_sequence")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -2151,7 +2162,7 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.998193, -0.0283799, 0.0529667, 1.26908e-08, 0.881446, 0.472285, -0.0600907, -0.471431, 0.879853, -69.4869, 11.8133, 7.59281 )
+transform = Transform( 0.854515, -0.413997, 0.313706, 0.127414, 0.752559, 0.646081, -0.503558, -0.512115, 0.695821, 7.43739, 15.3883, 14.5131 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
 anims/destruction-anim = SubResource( 1 )

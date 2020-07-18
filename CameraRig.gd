@@ -14,7 +14,7 @@ func _unhandled_input(event):
 		var angle = -event.relative.y * GlobalStats.mouse_sensitivity
 		rotate_object_local(Vector3.RIGHT, angle)
 	elif event is InputEventMouseButton:
-		print(typeof(event))
+		#print(typeof(event))
 		if event.button_index == BUTTON_WHEEL_UP:
 			var camera_pos = $Camera.transform.origin
 			$Camera.transform.origin = camera_pos.move_toward(min_dist, camera_pos.length() * zoom_sensitivity)
