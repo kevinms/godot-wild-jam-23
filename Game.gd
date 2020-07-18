@@ -29,9 +29,15 @@ func _process(delta):
 	
 	#occasionally_fire_surface_missile()
 
-	if randf() < 0.01:
-		spawn_powerup()
+	spawn_every_n_seconds(delta)
 
+var since_spawn_sec: float = 0.0
+var spawn_interval_sec: float = 3.0
+func spawn_every_n_seconds(delta):
+	since_spawn_sec += delta
+	if since_spawn_sec > spawn_interval_sec:
+		spawn_powerup()
+		since_spawn_sec = 0.0
 
 const ray_length = 1000
 export var num_humans = 100
