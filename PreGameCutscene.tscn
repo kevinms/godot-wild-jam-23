@@ -23,7 +23,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "lolololol"
-length = 2.0
+length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Spatial/pregame-1:translation")
 tracks/0/interp = 1
@@ -43,7 +43,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.9, 1.2 ),
+"times": PoolRealArray( 0, 1.2, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, -1.599, -100 ), Vector3( 0, -1.599, -100 ), Vector3( 0, -1.59896, 0 ) ]
@@ -1245,7 +1245,7 @@ __meta__ = {
 
 [node name="SubtitleText" type="RichTextLabel" parent="Subtitles/HBoxContainer/Panel/VBoxContainer"]
 margin_right = 300.0
-margin_bottom = 22.0
+margin_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -1256,9 +1256,9 @@ __meta__ = {
 }
 
 [node name="SkipIntro" type="RichTextLabel" parent="Subtitles/HBoxContainer/Panel/VBoxContainer"]
-margin_top = 26.0
+margin_top = 22.0
 margin_right = 300.0
-margin_bottom = 49.0
+margin_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
