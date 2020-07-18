@@ -21,7 +21,7 @@
 [ext_resource path="res://assets/intro/pregame-1.obj" type="ArrayMesh" id=19]
 [ext_resource path="res://assets/intro/pregame-2.obj" type="ArrayMesh" id=20]
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=1]
 resource_name = "lolololol"
 length = 2.0
 tracks/0/type = "value"
@@ -847,7 +847,7 @@ material/0 = ExtResource( 14 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "lolololol"
-anims/lolololol = SubResource( 30 )
+anims/lolololol = SubResource( 1 )
 
 [node name="Boom" type="AudioStreamPlayer" parent="."]
 
@@ -1245,7 +1245,7 @@ __meta__ = {
 
 [node name="SubtitleText" type="RichTextLabel" parent="Subtitles/HBoxContainer/Panel/VBoxContainer"]
 margin_right = 300.0
-margin_bottom = 18.0
+margin_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -1256,14 +1256,14 @@ __meta__ = {
 }
 
 [node name="SkipIntro" type="RichTextLabel" parent="Subtitles/HBoxContainer/Panel/VBoxContainer"]
-margin_top = 22.0
+margin_top = 26.0
 margin_right = 300.0
-margin_bottom = 40.0
+margin_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Press [ESCAPE, CLICK] to skip"
+text = "Press [ESCAPE, ENTER, SPACE] to skip"
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false

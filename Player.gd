@@ -6,7 +6,7 @@ var velocity: Vector3
 var gravity = Vector3(0, -40, 0)
 var speed = 20
 var jump = 20
-export var mouse_sensitivity = 0.002 # radians / pixel
+#export var mouse_sensitivity = 0.002 # radians / pixel
 
 export(NodePath) var planet_path
 onready var planet = get_node(planet_path)
@@ -37,8 +37,8 @@ func draw_velocity():
 func _unhandled_input(event):
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
-			var angle = -event.relative.x * mouse_sensitivity
-			#rotate_y(-event.relative.x * mouse_sensitivity)
+			var angle = -event.relative.x * GlobalStats.mouse_sensitivity
+			#rotate_y(-event.relative.x * GlobalStats.mouse_sensitivity)
 			
 			rotate_object_local(Vector3.UP, angle)
 

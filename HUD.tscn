@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/hud/health-bar-bg.png" type="Texture" id=1]
 [ext_resource path="res://assets/hud/background-tile.png" type="Texture" id=2]
@@ -6,12 +6,14 @@
 [ext_resource path="res://assets/hud/health-text.png" type="Texture" id=4]
 [ext_resource path="res://assets/hud/health-bar.png" type="Texture" id=5]
 [ext_resource path="res://assets/hud/dash.png" type="Texture" id=6]
+[ext_resource path="res://SettingsTheme.tres" type="Theme" id=7]
 
-[node name="MarginContainre" type="MarginContainer"]
+[node name="HUD" type="MarginContainer"]
 anchor_right = 1.0
 margin_left = 20.0
 margin_top = 20.0
 margin_right = -20.0
+theme = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -61,7 +63,7 @@ margin_bottom = 100.0
 
 [node name="BG-ChangeSize" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/HelpKey/Margin"]
 margin_right = 200.0
-margin_bottom = 100.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 200, 100 )
 texture = ExtResource( 2 )
 
@@ -70,6 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 text = "Controls
 Move: wasd
+Jump: space
 Deploy Shield: e"
 align = 1
 __meta__ = {

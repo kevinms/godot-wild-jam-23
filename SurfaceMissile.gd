@@ -53,14 +53,11 @@ func _physics_process(delta):
 		if t >= 1.0:
 			at_end = true
 	
-	print("hi")
-	
 	var dist_from_start = global_transform.origin - start
 	if t > 0.3:
 		var velocity_delta = new_global_origin - global_transform.origin
 		var collision = move_and_collide(velocity_delta)
 		if collision:
-			print("hi")
 			impacted = true
 			explode()
 	else:

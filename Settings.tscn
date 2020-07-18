@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SettingsTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Fullscreen.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Main Menu.gd" type="Script" id=4]
 [ext_resource path="res://Settings.gd" type="Script" id=5]
 [ext_resource path="res://Master Volume.gd" type="Script" id=6]
+[ext_resource path="res://Mouse Sensitivity.gd" type="Script" id=7]
 
 [node name="Settings" type="PopupPanel"]
 pause_mode = 2
@@ -25,8 +26,10 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
-margin_right = 485.0
-margin_bottom = 167.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 481.0
+margin_bottom = 163.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -85,14 +88,15 @@ margin_left = 158.0
 margin_right = 458.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 300, 0 )
-min_value = -80.0
-max_value = 24.0
+min_value = -40.0
+max_value = 12.0
 tick_count = 1
 
 [node name="Mouse Sensitivity" type="HBoxContainer" parent="Panel/Vertical"]
 margin_top = 92.0
 margin_right = 485.0
 margin_bottom = 116.0
+script = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="Panel/Vertical/Mouse Sensitivity"]
 margin_right = 181.0
@@ -104,7 +108,8 @@ margin_left = 185.0
 margin_right = 485.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 300, 0 )
-value = 10.0
+max_value = 100.0
+value = 36.0
 tick_count = 1
 
 [node name="Buttons" type="HBoxContainer" parent="Panel/Vertical"]
@@ -135,6 +140,7 @@ script = ExtResource( 3 )
 [connection signal="popup_hide" from="." to="." method="_on_Settings_popup_hide"]
 [connection signal="toggled" from="Panel/Vertical/Fullscreen/CheckBox" to="Panel/Vertical/Fullscreen" method="_on_CheckBox_toggled"]
 [connection signal="value_changed" from="Panel/Vertical/Master Volume/Slider" to="Panel/Vertical/Master Volume" method="_on_Slider_value_changed"]
+[connection signal="value_changed" from="Panel/Vertical/Mouse Sensitivity/Slider" to="Panel/Vertical/Mouse Sensitivity" method="_on_Slider_value_changed"]
 [connection signal="pressed" from="Panel/Vertical/Buttons/Close Settings" to="." method="_on_Close_Settings_pressed"]
 [connection signal="pressed" from="Panel/Vertical/Buttons/Main Menu" to="Panel/Vertical/Buttons/Main Menu" method="_on_Main_Menu_pressed"]
 [connection signal="pressed" from="Panel/Vertical/Buttons/Exit Game" to="Panel/Vertical/Buttons/Exit Game" method="_on_Exit_Game_pressed"]

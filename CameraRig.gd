@@ -1,6 +1,6 @@
 extends Position3D
 
-export var mouse_sensitivity = 0.002 # radians / pixel
+#export var mouse_sensitivity = 0.002 # radians / pixel
 export var zoom_sensitivity = 0.1
 
 onready var min_dist = $Camera.translation.normalized() * 5
@@ -11,7 +11,7 @@ func _unhandled_input(event):
 		return
 
 	if event is InputEventMouseMotion:
-		var angle = -event.relative.y * mouse_sensitivity
+		var angle = -event.relative.y * GlobalStats.mouse_sensitivity
 		rotate_object_local(Vector3.RIGHT, angle)
 	elif event is InputEventMouseButton:
 		print(typeof(event))
