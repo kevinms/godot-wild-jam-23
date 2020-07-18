@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/hud/health-bar-bg.png" type="Texture" id=1]
 [ext_resource path="res://assets/hud/background-tile.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://SettingsTheme.tres" type="Theme" id=7]
 [ext_resource path="res://StatsText.gd" type="Script" id=8]
 [ext_resource path="res://assets/hud/star.png" type="Texture" id=9]
+[ext_resource path="res://GameClock.gd" type="Script" id=10]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
@@ -80,6 +81,7 @@ margin_right = 40.0
 margin_bottom = 24.0
 text = "Time Survived:
       00:00"
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

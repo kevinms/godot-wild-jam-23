@@ -62,8 +62,12 @@ var jump_magnitude = 40
 var jump_time_delta = 0
 
 var jumping = false
+var dead = false
 
 func _physics_process(delta):
+	if dead:
+		return
+	
 	var world_up = (global_transform.origin - planet.global_transform.origin).normalized()
 
 	var xform = align_with_y(global_transform, world_up)
@@ -156,3 +160,13 @@ func align_with_y(xform, new_y):
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
 	return xform
+
+func death():
+	dead = true
+	$Alien.visible = false
+	$Death/DeathTimer.start()
+	$Death/DeathParticles.emitting = true
+
+func _on_DeathTimer_timeout():
+	#queue_free()
+	$Death/DeathParticles.emitting = false

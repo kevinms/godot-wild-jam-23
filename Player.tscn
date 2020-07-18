@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://PlayerV2.gd" type="Script" id=1]
 [ext_resource path="res://assets/alien/AlienV2.tscn" type="PackedScene" id=3]
@@ -23,6 +23,43 @@ albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0, 1, 0.180392, 1 )
+
+[sub_resource type="Gradient" id=10]
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.88257, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=15]
+curve = SubResource( 14 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+linear_accel = 15.04
+damping = 9.02
+scale = 0.4
+scale_curve = SubResource( 15 )
+color_ramp = SubResource( 11 )
+
+[sub_resource type="SpatialMaterial" id=13]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color( 0.894118, 0.0509804, 0.964706, 1 )
+emission_energy = 3.87
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CapsuleMesh" id=9]
+material = SubResource( 13 )
+radius = 0.3
+mid_height = 0.3
+radial_segments = 8
 
 [node name="Player" type="KinematicBody"]
 collision_layer = 1025
@@ -70,3 +107,17 @@ transform = Transform( -0.374162, 0, -5.64969e-08, 0, 0.374162, 0, 5.64969e-08, 
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="Death" type="Spatial" parent="."]
+
+[node name="DeathParticles" type="Particles" parent="Death"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 12 )
+draw_pass_1 = SubResource( 9 )
+
+[node name="DeathTimer" type="Timer" parent="Death"]
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Death"]

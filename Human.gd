@@ -19,8 +19,8 @@ func set_fear(v: float):
 		$ExclamationPlayer.play("Squishy bounce")
 		$ExclamationMark.show()
 		if randf() < 1.1:
-			$AudioStreamPlayer.stream = AudioLibrary.random_human_noise()
-			$AudioStreamPlayer.play()
+			$Scared.stream = AudioLibrary.random_human_noise()
+			$Scared.play()
 	if fear > mark_radius and v < mark_radius:
 		$ExclamationPlayer.stop()
 		$ExclamationMark.hide()
@@ -128,3 +128,11 @@ func align_with_y(xform, new_y):
 	xform.basis = xform.basis.orthonormalized()
 	#TODO: Set scale back to before orthonormalized()?
 	return xform
+
+func death():
+	$MeshInstance.visible = false
+	$Death/DeathParticles.emitting = true
+	$Death/DeathTimer.start()
+
+func _on_DeathTimer_timeout():
+	queue_free()

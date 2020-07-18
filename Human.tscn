@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Human.gd" type="Script" id=1]
 [ext_resource path="res://assets/exclamation-mark.obj" type="ArrayMesh" id=2]
@@ -33,6 +33,24 @@ tracks/0/keys = {
 "values": [ Vector3( 0.0649664, 0.0423135, 0.0649664 ), Vector3( 0.0851573, 0.0915458, 0.0692231 ) ]
 }
 
+[sub_resource type="ParticlesMaterial" id=5]
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 6.0
+linear_accel = 15.04
+scale = 0.4
+
+[sub_resource type="SpatialMaterial" id=6]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color( 0.0156863, 0.654902, 0.964706, 1 )
+emission_energy = 3.54
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CubeMesh" id=7]
+material = SubResource( 6 )
+
 [node name="Human" type="KinematicBody"]
 script = ExtResource( 1 )
 
@@ -58,5 +76,20 @@ material/0 = SubResource( 3 )
 [node name="ExclamationPlayer" type="AnimationPlayer" parent="."]
 "anims/Squishy bounce" = SubResource( 4 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="Scared" type="AudioStreamPlayer3D" parent="."]
 unit_size = 2.0
+
+[node name="Death" type="Spatial" parent="."]
+
+[node name="DeathParticles" type="Particles" parent="Death"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.62
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="DeathTimer" type="Timer" parent="Death"]
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Death"]
+[connection signal="timeout" from="Death/DeathTimer" to="." method="_on_DeathTimer_timeout"]

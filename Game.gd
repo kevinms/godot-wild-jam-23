@@ -21,9 +21,15 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # delta is a fraction of a second
 
+func check_for_game_over():
+	if GlobalStats.health <= 0:
+		$Player.death()
+
 func _process(delta):
 	if Input.is_action_just_pressed("enter"):
 		get_tree().reload_current_scene()
+	
+	check_for_game_over()
 	
 	fire_missile_occasionally(delta)
 	#occasionally_fire_surface_missile()
@@ -194,7 +200,7 @@ func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
 			continue
 		if collider.name == "Player":
 			print("Ouchie")
-			GlobalStats.health -= 10
+			GlobalStats.health -= 100
 		else:
 			if collider.get_groups().find("humans") >= 0:
 				GlobalStats.population -= 1
