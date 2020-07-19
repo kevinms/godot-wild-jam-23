@@ -78,9 +78,7 @@ func _process(delta):
 	if GlobalStats.game_time < 40.0:
 		GlobalStats.launch_interval_sec = 10.0
 	elif GlobalStats.game_time < 120.0:
-		GlobalStats.launch_interval_sec = 5.0
-	elif GlobalStats.game_time < 360.0:
-		GlobalStats.launch_interval_sec = 4.0
+		GlobalStats.launch_interval_sec = 9.0
 	
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
@@ -105,12 +103,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("shield"):
 		spawn_shield()
 
-var mega_since_spawn_sec: float = 40.0
-var mega_spawn_interval_sec: float = 60.0
+var mega_since_spawn_sec: float = 0.0
+var mega_spawn_interval_sec: float = rand_range(40.0, 60.0)
 func mega_spawn_every_n_seconds(delta):
 	mega_since_spawn_sec += delta
 	if mega_since_spawn_sec > mega_spawn_interval_sec:
 		spawn_mega_missile()
+		mega_spawn_interval_sec = rand_range(40.0, 60.0)
 		mega_since_spawn_sec = 0.0
 
 onready var mega_scene = load("res://MegaSpaceMissile.tscn")
@@ -144,7 +143,7 @@ func spawn_shield():
 	add_child(shield)
 
 var since_spawn_sec: float = 0.0
-var spawn_interval_sec: float = 3.0
+var spawn_interval_sec: float = 2.0
 func spawn_every_n_seconds(delta):
 	since_spawn_sec += delta
 	if since_spawn_sec > spawn_interval_sec:

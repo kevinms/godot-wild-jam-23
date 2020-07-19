@@ -22,6 +22,6 @@ func _process(delta):
 	var minutes = t / 60.0
 	
 	var s = ""
-	s += "Time Survived:\n"
-	s += "      %d:%02d" % [minutes, seconds]
+	s += "Time Survived:        Score:\n"
+	s += "      %02d:%02d                   %d" % [minutes, seconds, GlobalStats.score]
 	text = s

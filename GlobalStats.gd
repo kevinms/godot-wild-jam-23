@@ -15,6 +15,8 @@ var player_dieing = false
 var player_dead = false
 var game_over = false
 
+var score: int = 0
+
 # 10 is fairly slow
 # 5 can't protect them all with this
 # Scale this for difficulty
@@ -36,6 +38,8 @@ func reset():
 	game_over = false
 	
 	launch_interval_sec = 5.0
+	
+	score = 0
 
 func _process(delta):
 	game_time += delta

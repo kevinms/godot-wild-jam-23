@@ -1,6 +1,6 @@
 extends KinematicBody
 
-var speed: float = 15
+var speed: float = 19
 
 var max_distance: float = 1000.0
 var start: Vector3
@@ -83,6 +83,8 @@ func neutralize():
 	if impacted:
 		return
 	impacted = true
+	
+	GlobalStats.score += 500
 	
 	$MeshInstance/Particles.emitting = false
 	#$MeshInstance.visible = false

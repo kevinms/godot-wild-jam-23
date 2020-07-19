@@ -99,6 +99,8 @@ func neutralize():
 		return
 	impacted = true
 	
+	GlobalStats.score += 250
+	
 	$Particles.emitting = false
 	$MeshInstance.visible = false
 	$CollisionShape.disabled = true

@@ -153,6 +153,8 @@ func death():
 	
 	GlobalStats.population -= 1
 	GlobalStats.deaths += 1
+	
+	GlobalStats.score -= 10
 
 func _on_DeathTimer_timeout():
 	$Death/DeathParticles.emitting = false
