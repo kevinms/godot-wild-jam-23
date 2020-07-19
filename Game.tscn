@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://CameraRig.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -10,12 +10,31 @@
 [ext_resource path="res://LavaMaterial.tres" type="Material" id=8]
 [ext_resource path="res://Settings.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/music/WereWasI.ogg" type="AudioStream" id=10]
+[ext_resource path="res://IntroSubtitleMaterial.tres" type="Material" id=11]
+[ext_resource path="res://assets/gameover-text.obj" type="ArrayMesh" id=12]
+
+[sub_resource type="Animation" id=9]
+resource_name = "game-over"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 19.1632, -6.26362 ), Vector3( 0, -0.179443, -6.26362 ) ]
+}
 
 [sub_resource type="SphereMesh" id=7]
 
 [sub_resource type="SphereShape" id=8]
 
 [node name="Game" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.179443, -6.26362 )
 script = ExtResource( 3 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -40,6 +59,14 @@ far = 200.0
 
 [node name="Crosshair" type="Sprite" parent="Player/CameraPivot/Camera"]
 texture = ExtResource( 5 )
+
+[node name="gameover-text" type="MeshInstance" parent="Player/CameraPivot/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 19.1632, -6.26362 )
+mesh = ExtResource( 12 )
+material/0 = ExtResource( 11 )
+
+[node name="GameOverAnim" type="AnimationPlayer" parent="Player/CameraPivot/Camera/gameover-text"]
+anims/game-over = SubResource( 9 )
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
 
@@ -133,3 +160,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="tree_exited" from="." to="." method="_on_Game_tree_exited"]
+[connection signal="animation_finished" from="Player/CameraPivot/Camera/gameover-text/GameOverAnim" to="." method="_on_GameOverAnim_animation_finished"]

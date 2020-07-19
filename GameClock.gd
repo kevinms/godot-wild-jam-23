@@ -15,7 +15,7 @@ func _ready():
 func _process(delta):
 	var t = GlobalStats.game_time
 	
-	var seconds = floor(t)
+	var seconds = fmod(t, 60.0)#floor(t)
 	var minutes = t / 60.0
 	
 	var s = ""

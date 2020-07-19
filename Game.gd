@@ -23,8 +23,12 @@ func _input(event):
 
 func execute_game_over_steps():
 	$GameOverSubtitle.visible = true
+	$"Player/CameraPivot/Camera/gameover-text/GameOverAnim".play("game-over")
 
 func check_for_game_over():
+	if GlobalStats.game_over:
+		return
+	
 	if GlobalStats.player_dead or GlobalStats.population == 0:
 		# Game over events!
 		GlobalStats.game_over = true
@@ -40,8 +44,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("enter"):
 		get_tree().reload_current_scene()
 	
-	if Input.is_action_just_pressed("rmb"):
-		GlobalStats.health = 0
+	#if Input.is_action_just_pressed("rmb"):
+	#	GlobalStats.health = 0
 	
 	check_for_game_over()
 	if GlobalStats.game_over:
@@ -329,3 +333,7 @@ func spawn_powerup():
 	#pickup.global_transform.origin = spawn_point
 	pickup.translate(spawn_point)
 	add_child(pickup)
+
+
+func _on_GameOverAnim_animation_finished(anim_name):
+	$"Player/CameraPivot/Camera/gameover-text/GameOverAnim".stop()

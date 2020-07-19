@@ -83,9 +83,6 @@ tracks/0/keys = {
 collision_layer = 2048
 collision_mask = 2048
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Mesh" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
