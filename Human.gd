@@ -18,7 +18,7 @@ func set_fear(v: float):
 	if fear < mark_radius and v > mark_radius:
 		$ExclamationPlayer.play("Squishy bounce")
 		$ExclamationMark.show()
-		if randf() < 1.1:
+		if randf() < 0.6:
 			$Scared.stream = AudioLibrary.random_human_noise()
 			$Scared.play()
 	if fear > mark_radius and v < mark_radius:
@@ -33,7 +33,7 @@ func set_fear(v: float):
 
 func _ready():
 	add_to_group("humans")
-	print(alien)
+	#print(alien)
 
 var speed = 1
 var jump = 3

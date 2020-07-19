@@ -170,9 +170,9 @@ func launch_surface_missile(start: Vector3, end: Vector3):
 			
 			var norm_dist = 1.0 - clamp((dist - min_sound_dist) / (max_sound_dist - min_sound_dist), 0.0, 1.0)
 			
-			print(norm_dist)
+			#print(norm_dist)
 			missile.sound_db = range_lerp(norm_dist, 0.0, 1.0, -12.0, 0.0)
-			print("sound db: ", missile.sound_db)
+			#print("sound db: ", missile.sound_db)
 		
 		missile.init(start, end, from, height_from_mid)
 		add_child(missile)
@@ -194,7 +194,7 @@ func nearest_surface_point(pos: Vector3, height: float = 0.2):
 			print("Woah, what are you shooting at? We'll consider this a misfire.")
 			return Vector3.ZERO
 		
-		print("new pos")
+		#print("new pos")
 		return result.position + (up * height)
 	return Vector3.ZERO
 
@@ -278,7 +278,7 @@ func spawn_humans():
 		
 		GlobalStats.population += 1
 		
-		human.connect("launch_surface_missile", self, "_on_Emitter_launch_surface_missile")
+		#human.connect("launch_surface_missile", self, "_on_Emitter_launch_surface_missile")
 
 onready var missile_scene = load("res://Missile.tscn")
 

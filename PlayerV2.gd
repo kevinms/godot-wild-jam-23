@@ -180,7 +180,7 @@ func _on_DeathTimer_timeout():
 	#queue_free()
 	$Death/DeathParticles.emitting = false
 	GlobalStats.player_dead = true
-	print("he's dead poop head")
+	print("he's dead jim")
 
 func _on_DeathSound_finished():
 	$Death/DeathSound.playing = false

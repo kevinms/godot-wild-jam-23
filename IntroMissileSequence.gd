@@ -157,7 +157,7 @@ func spawn_humans():
 		
 		GlobalStats.population += 1
 		
-		human.connect("launch_surface_missile", self, "_on_Emitter_launch_surface_missile")
+		#human.connect("launch_surface_missile", self, "_on_Emitter_launch_surface_missile")
 
 func random_point_on_sphere(radius: float):
 	# I don't think this is a uniform distribution on the sphere,
