@@ -6,7 +6,7 @@ var max_distance: float = 1000.0
 var start: Vector3
 var dir: Vector3
 
-var blast_radius: float = 5.0
+var blast_radius: float = 4.0
 var impacted = false
 
 var sound = true

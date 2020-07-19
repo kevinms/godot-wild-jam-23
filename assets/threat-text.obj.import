@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/threat-text.obj-8025453a67280ab6028a08b7210fa2b2.mesh"
+
+[deps]
+
+files=[ "res://.import/threat-text.obj-8025453a67280ab6028a08b7210fa2b2.mesh" ]
+
+source_file="res://assets/threat-text.obj"
+dest_files=[ "res://.import/threat-text.obj-8025453a67280ab6028a08b7210fa2b2.mesh", "res://.import/threat-text.obj-8025453a67280ab6028a08b7210fa2b2.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -72,6 +72,8 @@ func check_for_game_over():
 	if GlobalStats.health <= 0:
 		$Player.death()
 
+var active_mega_missile = null
+
 func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
@@ -87,6 +89,9 @@ func _process(delta):
 	fire_missile_occasionally(delta)
 	#occasionally_fire_surface_missile()
 	spawn_every_n_seconds(delta)
+	
+	if !active_mega_missile:
+		$"Player/CameraPivot/Camera/threat-text".visible = false
 	
 	mega_spawn_every_n_seconds(delta)
 	
@@ -112,6 +117,11 @@ func spawn_mega_missile():
 	
 	mega.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
 	mega.connect("surface_missile_impact", self, "_on_Emitter_surface_missile_impact")
+	
+	active_mega_missile = mega
+	
+	$"Player/CameraPivot/Camera/threat-text".visible = true
+	$"Player/CameraPivot/Camera/threat-text/ThreatAnim".play("threat")
 	
 	add_child(mega)
 

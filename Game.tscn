@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://CameraRig.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
 [ext_resource path="res://Icosphere.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/crosshair.png" type="Texture" id=5]
+[ext_resource path="res://assets/threat-text.obj" type="ArrayMesh" id=6]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://LavaMaterial.tres" type="Material" id=8]
 [ext_resource path="res://Settings.tscn" type="PackedScene" id=9]
@@ -38,6 +39,37 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.207189, 0.550356, 0.777501, 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "threat"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.0865685, 0.0865685, 0.0865685 ), Vector3( 0.093129, 0.093129, 0.093129 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.54902, 0.933333, 0.12549, 1 ), Color( 0.12549, 0.458824, 0.933333, 1 ) ]
 }
 
 [sub_resource type="SphereMesh" id=2]
@@ -84,11 +116,22 @@ texture = ExtResource( 5 )
 [node name="gameover-text" type="MeshInstance" parent="Player/CameraPivot/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 7.55761, -6.26362 )
 visible = false
+cast_shadow = 0
 mesh = ExtResource( 12 )
 material/0 = ExtResource( 11 )
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="Player/CameraPivot/Camera/gameover-text"]
 anims/game-over = SubResource( 1 )
+
+[node name="threat-text" type="MeshInstance" parent="Player/CameraPivot/Camera"]
+transform = Transform( 0.0918635, 0, 0, 0, 0.0918635, 2.57227e-08, 0, -2.57227e-08, 0.0918635, 0, -0.382466, -0.912766 )
+cast_shadow = 0
+mesh = ExtResource( 6 )
+material/0 = SubResource( 6 )
+
+[node name="ThreatAnim" type="AnimationPlayer" parent="Player/CameraPivot/Camera/threat-text"]
+autoplay = "threat"
+anims/threat = SubResource( 7 )
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
 collision_layer = 32769

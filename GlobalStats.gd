@@ -6,7 +6,7 @@ var health: int = 100
 var population: int = 0
 var deaths: int = 0
 
-var num_shields: int = 1
+var num_shields: int = 6
 
 var mouse_sensitivity: float = 0.00098 # radians / pixel
 var game_time: float = 0.0
@@ -27,7 +27,7 @@ func reset():
 	population = 0
 	deaths = 0
 	
-	num_shields = 1
+	num_shields = 6
 	
 	game_time = 0.0
 	

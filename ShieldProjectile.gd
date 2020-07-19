@@ -1,6 +1,6 @@
 extends KinematicBody
 
-var speed: float = 15
+var speed: float = 20
 
 var max_distance: float = 200.0
 var start: Vector3
