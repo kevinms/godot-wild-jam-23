@@ -149,9 +149,17 @@ func death():
 	$Death/DeathParticles.emitting = true
 	$Death/DeathTimer.start()
 	
+	#$Death/DeathSound.stream = AudioLibrary.random_beep_noise()
+	$Death/DeathSound.play()
+	
 	GlobalStats.population -= 1
 	GlobalStats.deaths += 1
 
 func _on_DeathTimer_timeout():
 	$Death/DeathParticles.emitting = false
 	queue_free()
+
+
+func _on_DeathSound_finished():
+	$Death/DeathSound.stop()
+	$Death/DeathSound.playing = false

@@ -128,4 +128,5 @@ func align_with_y(xform, new_y):
 
 func _on_DeathTimer_timeout():
 	$Death/DeathParticles.emitting = false
+	$Death/DeathSound.playing = false
 	queue_free()

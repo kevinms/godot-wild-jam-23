@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Human.gd" type="Script" id=1]
 [ext_resource path="res://assets/exclamation-mark.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://Human.tres" type="Material" id=3]
+[ext_resource path="res://assets/sfx/beep/2.wav" type="AudioStream" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -100,4 +101,7 @@ draw_pass_1 = SubResource( 7 )
 [node name="DeathTimer" type="Timer" parent="Death"]
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="Death"]
+stream = ExtResource( 4 )
+volume_db = -12.0
 [connection signal="timeout" from="Death/DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="finished" from="Death/DeathSound" to="." method="_on_DeathSound_finished"]
