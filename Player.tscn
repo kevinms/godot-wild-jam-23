@@ -83,6 +83,7 @@ shape = SubResource( 4 )
 
 [node name="Gizmo" type="Spatial" parent="."]
 transform = Transform( 0.432, 0, 0, 0, 0.432, 0, 0, 0, 0.432, 0, 0, 0 )
+visible = false
 
 [node name="Z" type="MeshInstance" parent="Gizmo"]
 transform = Transform( 0.0723377, 0, 0, 0, 0.0723377, 0, 0, 0, 0.555103, 0, 0, 1.60792 )
@@ -101,6 +102,7 @@ material/0 = SubResource( 8 )
 
 [node name="Debug" type="Spatial" parent="."]
 transform = Transform( 0.432, 0, 0, 0, 0.432, 0, 0, 0, 0.432, 0, 0, 0 )
+visible = false
 
 [node name="Alien" parent="." instance=ExtResource( 3 )]
 transform = Transform( -0.374162, 0, -5.64969e-08, 0, 0.374162, 0, 5.64969e-08, 0, -0.374162, 0, -0.658784, 0 )
@@ -121,3 +123,5 @@ draw_pass_1 = SubResource( 9 )
 [node name="DeathTimer" type="Timer" parent="Death"]
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="Death"]
+[connection signal="timeout" from="Death/DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="finished" from="Death/DeathSound" to="." method="_on_DeathSound_finished"]

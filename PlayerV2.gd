@@ -62,10 +62,10 @@ var jump_magnitude = 40
 var jump_time_delta = 0
 
 var jumping = false
-var dead = false
+var dieing = false
 
 func _physics_process(delta):
-	if dead:
+	if dieing:
 		return
 	
 	var world_up = (global_transform.origin - planet.global_transform.origin).normalized()
@@ -135,6 +135,11 @@ func _physics_process(delta):
 		jumping = false
 		jump_time_delta = 0
 	
+	for i in range(get_slide_count()):
+		var collision = get_slide_collision(i)
+		if collision.collider.is_in_group("lava"):
+			death()
+	
 	# Option #3
 	#var snap = (-global_transform.basis.y + dir) * 2.0
 	#velocity = move_and_slide_with_snap(velocity, snap, world_up, true)
@@ -162,7 +167,10 @@ func align_with_y(xform, new_y):
 	return xform
 
 func death():
-	dead = true
+	if dieing:
+		return
+	dieing = true
+
 	$Alien.visible = false
 	$Death/DeathTimer.start()
 	$Death/DeathParticles.emitting = true
@@ -170,3 +178,8 @@ func death():
 func _on_DeathTimer_timeout():
 	#queue_free()
 	$Death/DeathParticles.emitting = false
+	GlobalStats.player_dead = true
+	print("he's dead poop head")
+
+func _on_DeathSound_finished():
+	$Death/DeathSound.playing = false

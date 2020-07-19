@@ -96,7 +96,6 @@ func _physics_process(delta):
 			var collision = get_slide_collision(i)
 			if collision.collider.is_in_group("lava"):
 				death()
-				
 
 
 func safe_jump_direction():

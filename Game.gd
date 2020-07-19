@@ -21,7 +21,18 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # delta is a fraction of a second
 
+func execute_game_over_steps():
+	$GameOverSubtitle.visible = true
+
 func check_for_game_over():
+	if GlobalStats.player_dead or GlobalStats.population == 0:
+		# Game over events!
+		GlobalStats.game_over = true
+		execute_game_over_steps()
+		return
+	
+	#OK, it's not quite game over, but some pre conditions might be met.
+	
 	if GlobalStats.health <= 0:
 		$Player.death()
 
@@ -29,7 +40,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("enter"):
 		get_tree().reload_current_scene()
 	
+	if Input.is_action_just_pressed("rmb"):
+		GlobalStats.health = 0
+	
 	check_for_game_over()
+	if GlobalStats.game_over:
+		if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_accept"):
+			Global.goto_scene("res://MainMenu.tscn")
 	
 	fire_missile_occasionally(delta)
 	#occasionally_fire_surface_missile()
@@ -93,7 +110,10 @@ func pick_surface_missile_source_target():
 	var all_humans = get_tree().get_nodes_in_group("humans")
 	var population = all_humans.size()
 	
-	# Pick a source human	
+	if population <= 0:
+		return
+	
+	# Pick a source human
 	var which = randi() % population
 	var source = all_humans[which]
 	
@@ -200,7 +220,7 @@ func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
 			continue
 		elif collider.name == "Player":
 			print("Ouchie")
-			GlobalStats.health -= 100
+			GlobalStats.health -= 30
 		elif collider.is_in_group("humans"):
 			#if collider.get_groups().find("humans") >= 0:
 			#GlobalStats.population -= 1
@@ -222,8 +242,6 @@ func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
 #	var impact_site = target.global_transform.origin
 #	launch_surface_missile(launch_site, impact_site)
 
-var launch_interval_sec = 10.0
-
 var next_fire: float
 var sec_elapsed = 0.0
 func fire_missile_occasionally(delta):
@@ -234,7 +252,7 @@ func fire_missile_occasionally(delta):
 	#fire_missile()
 	pick_surface_missile_source_target()
 	
-	next_fire = rand_range(0, launch_interval_sec)
+	next_fire = rand_range(0, GlobalStats.launch_interval_sec)
 	sec_elapsed = 0
 
 func spawn_humans():
