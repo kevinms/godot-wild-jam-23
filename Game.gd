@@ -17,9 +17,40 @@ func _input(event):
 			get_tree().set_input_as_handled()
 	
 	#click_raycast(event)
+	click_fire_shield_projectile(event)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-# delta is a fraction of a second
+onready var shield_projectile_scene = load("res://ShieldProjectile.tscn")
+
+var prev_shield_projectile
+
+func click_fire_shield_projectile(event):
+	if event.is_action_pressed("lmb"):
+		print("Firing projectile!")
+		if GlobalStats.num_shields <= 0:
+			return
+		GlobalStats.num_shields -= 1
+		
+		var camera = get_viewport().get_camera()
+		var from = $Player/CameraPivot/CameraTarget.global_transform.origin
+		var dir = camera.project_ray_normal(event.position)
+		
+		# Launch Shield Projetile
+		var projectile = shield_projectile_scene.instance()
+		projectile.dir = dir
+		projectile.translate(from)
+		projectile.connect("deploy_shield", self, "_on_Emitter_deploy_shield")
+		add_child(projectile)
+		
+		prev_shield_projectile = projectile
+	
+	if event.is_action_pressed("rmb"):
+		prev_shield_projectile.deploy()
+
+func _on_Emitter_deploy_shield(global_point):
+	print("global_point ", global_point)
+	var shield = shield_scene.instance()
+	shield.translate(global_point)
+	add_child(shield)
 
 func execute_game_over_steps():
 	$GameOverSubtitle.visible = true

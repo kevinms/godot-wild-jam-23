@@ -12,7 +12,7 @@
 [ext_resource path="res://IntroSubtitleMaterial.tres" type="Material" id=11]
 [ext_resource path="res://assets/gameover-text.obj" type="ArrayMesh" id=12]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=1]
 resource_name = "game-over"
 length = 0.5
 tracks/0/type = "value"
@@ -28,9 +28,9 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 19.1632, -6.26362 ), Vector3( 0, -0.179443, -6.26362 ) ]
 }
 
-[sub_resource type="SphereMesh" id=7]
+[sub_resource type="SphereMesh" id=2]
 
-[sub_resource type="SphereShape" id=8]
+[sub_resource type="SphereShape" id=3]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 3 )
@@ -67,7 +67,7 @@ mesh = ExtResource( 12 )
 material/0 = ExtResource( 11 )
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="Player/CameraPivot/Camera/gameover-text"]
-anims/game-over = SubResource( 9 )
+anims/game-over = SubResource( 1 )
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
 
@@ -79,12 +79,12 @@ anims/game-over = SubResource( 9 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Lava"]
 transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, -0.0377636, -7.62939e-06, -0.00828552 )
-mesh = SubResource( 7 )
+mesh = SubResource( 2 )
 material/0 = ExtResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Lava"]
 transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="Settings" parent="." instance=ExtResource( 9 )]
 
