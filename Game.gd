@@ -88,8 +88,32 @@ func _process(delta):
 	#occasionally_fire_surface_missile()
 	spawn_every_n_seconds(delta)
 	
+	mega_spawn_every_n_seconds(delta)
+	
 	if Input.is_action_just_pressed("shield"):
 		spawn_shield()
+
+var mega_since_spawn_sec: float = 40.0
+var mega_spawn_interval_sec: float = 60.0
+func mega_spawn_every_n_seconds(delta):
+	mega_since_spawn_sec += delta
+	if mega_since_spawn_sec > mega_spawn_interval_sec:
+		spawn_mega_missile()
+		mega_since_spawn_sec = 0.0
+
+onready var mega_scene = load("res://MegaSpaceMissile.tscn")
+
+func spawn_mega_missile():
+	var mega = mega_scene.instance()
+	
+	var point = random_point_on_sphere(200.0)
+	mega.translate(point)
+	mega.dir = ($Planet.global_transform.origin - point).normalized()
+	
+	mega.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
+	mega.connect("surface_missile_impact", self, "_on_Emitter_surface_missile_impact")
+	
+	add_child(mega)
 
 onready var shield_scene = load("res://Shield.tscn")
 

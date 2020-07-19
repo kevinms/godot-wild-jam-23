@@ -12,6 +12,8 @@ func init_noise():
 
 
 func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
+	print("surface impact: ", impact_site, " ", blast_radius)
+	
 	#print("impact_site ", impact_site, " blast_raduis ", blast_radius)
 	var mdt = MeshDataTool.new()
 	mdt.create_from_surface(mesh_inst.mesh, 0)

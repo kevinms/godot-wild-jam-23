@@ -57,7 +57,7 @@ damping = 15.0
 scale = 0.4
 scale_curve = SubResource( 10 )
 
-[sub_resource type="SpatialMaterial" id=12]
+[sub_resource type="SpatialMaterial" id=22]
 vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color( 0.0156863, 0.654902, 0.964706, 1 )
@@ -66,7 +66,7 @@ emission_operator = 0
 emission_on_uv2 = false
 
 [sub_resource type="CubeMesh" id=13]
-material = SubResource( 12 )
+material = SubResource( 22 )
 
 [sub_resource type="Curve" id=14]
 _data = [ Vector2( 0, 0.527273 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.2703, 0.0, 0, 0 ]

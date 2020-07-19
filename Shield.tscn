@@ -23,22 +23,22 @@ refraction_enabled = true
 refraction_scale = 0.01
 refraction_texture_channel = 0
 
-[sub_resource type="SphereShape" id=11]
+[sub_resource type="SphereShape" id=3]
 radius = 3.0
 
-[sub_resource type="Gradient" id=16]
+[sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 0.769438, 0.917969, 0.0537872, 1, 0.996094, 0, 0.98053, 1 )
 
-[sub_resource type="GradientTexture" id=9]
-gradient = SubResource( 16 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0.00399999, 0.645455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.290909 ), -1.95925, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 1
 emission_sphere_radius = 3.0
 spread = 180.0
@@ -47,11 +47,11 @@ initial_velocity = 10.0
 linear_accel = -24.06
 damping = 2.26
 scale = 0.1
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 9 )
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
 hue_variation = 0.08
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=9]
 vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color( 0.0705882, 0.721569, 0.509804, 1 )
@@ -59,10 +59,10 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="CubeMesh" id=7]
-material = SubResource( 6 )
+[sub_resource type="CubeMesh" id=10]
+material = SubResource( 9 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 resource_name = "expand"
 length = 0.5
 step = 0.05
@@ -79,7 +79,9 @@ tracks/0/keys = {
 "values": [ Vector3( 1, 1, 1 ), Vector3( 4, 4, 4 ), Vector3( 2, 2, 2 ), Vector3( 3, 3, 3 ) ]
 }
 
-[node name="Shield" type="Area"]
+[node name="Shield" type="Area" groups=[
+"shield",
+]]
 collision_layer = 2048
 collision_mask = 2048
 script = ExtResource( 2 )
@@ -89,7 +91,7 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 11 )
+shape = SubResource( 3 )
 
 [node name="DurationTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -112,12 +114,12 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 0.47
 local_coords = false
-process_material = SubResource( 10 )
-draw_pass_1 = SubResource( 7 )
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 10 )
 
 [node name="Expand" type="AnimationPlayer" parent="."]
 autoplay = "expand"
-anims/expand = SubResource( 12 )
+anims/expand = SubResource( 11 )
 [connection signal="body_entered" from="." to="." method="_on_Shield_body_entered"]
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]
 [connection signal="finished" from="Down" to="." method="_on_Down_finished"]
