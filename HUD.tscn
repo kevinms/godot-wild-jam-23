@@ -97,7 +97,7 @@ margin_bottom = 100.0
 
 [node name="BG-ChangeSize" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/HelpKey/Margin"]
 margin_right = 200.0
-margin_bottom = 100.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 200, 100 )
 texture = ExtResource( 2 )
 
@@ -107,7 +107,8 @@ anchor_bottom = 1.0
 text = "Controls
 Move: wasd
 Jump: space
-Deploy Shield: e"
+Deploy Shield: e
+Zoom: scroll"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false,
