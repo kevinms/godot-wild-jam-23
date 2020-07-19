@@ -116,4 +116,26 @@ one_shot = true
 [node name="DeathSound" type="AudioStreamPlayer" parent="Death"]
 stream = ExtResource( 3 )
 volume_db = -6.0
+
+[node name="Neutralize" type="Spatial" parent="."]
+
+[node name="NeutralizeParticles" type="Particles" parent="Neutralize" groups=[
+"humans",
+]]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.79
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="NeutralizeTimer" type="Timer" parent="Neutralize"]
+process_mode = 0
+one_shot = true
+
+[node name="NeutralizeSound" type="AudioStreamPlayer" parent="Neutralize"]
+stream = ExtResource( 3 )
+volume_db = -6.0
 [connection signal="timeout" from="Death/DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="timeout" from="Neutralize/NeutralizeTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="finished" from="Neutralize/NeutralizeSound" to="." method="_on_NeutralizeSound_finished"]

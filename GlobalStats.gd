@@ -16,7 +16,7 @@ func reset():
 	health = 100
 	population = 0
 	deaths = 0
-	num_shields = 1
+	num_shields = 100
 	game_time = 0.0
 
 func _process(delta):

@@ -65,6 +65,9 @@ func _physics_process(delta):
 	else:
 		global_transform.origin = new_global_origin
 
+	if at_end:
+		explode()
+
 func explode():
 	if impacted:
 		return
@@ -81,6 +84,30 @@ func explode():
 	#$Explosion.pwrocess_material.initial_
 	
 	emit_surface_missile_impact_signal(end, blast_radius)
+
+func _on_DeathTimer_timeout():
+	$Death/DeathParticles.emitting = false
+	$Death/DeathSound.playing = false
+	queue_free()
+
+
+func neutralize():
+	if impacted:
+		return
+	impacted = true
+	
+	$Particles.emitting = false
+	$MeshInstance.visible = false
+	$CollisionShape.disabled = true
+	$Neutralize/NeutralizeParticles.emitting = true
+	$Neutralize/NeutralizeTimer.start()
+	$Neutralize/NeutralizeSound.play()
+
+func _on_NeutralizeSound_finished():
+	$Neutralize/NeutralizeParticles.emitting = false
+	$Neutralize/NeutralizeSound.playing = false
+	queue_free()
+
 
 #func update_end_point():
 #	# Shoot a ray towards the planet and see what is in the way.
@@ -124,9 +151,3 @@ func align_with_y(xform, new_y):
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
 	return xform
-
-
-func _on_DeathTimer_timeout():
-	$Death/DeathParticles.emitting = false
-	$Death/DeathSound.playing = false
-	queue_free()
