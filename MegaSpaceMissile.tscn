@@ -43,7 +43,7 @@ shader_param/impact_site = Vector3( 0.8, 0, 0 )
 material = SubResource( 29 )
 
 [sub_resource type="SphereShape" id=4]
-radius = 4.0
+radius = 5.0
 
 [sub_resource type="Animation" id=5]
 resource_name = "existance"
