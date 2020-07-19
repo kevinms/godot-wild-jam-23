@@ -44,7 +44,8 @@ func click_fire_shield_projectile(event):
 		prev_shield_projectile = projectile
 	
 	if event.is_action_pressed("rmb"):
-		prev_shield_projectile.deploy()
+		if prev_shield_projectile != null:
+			prev_shield_projectile.deploy()
 
 func _on_Emitter_deploy_shield(global_point):
 	print("global_point ", global_point)
