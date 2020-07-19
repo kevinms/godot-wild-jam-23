@@ -649,12 +649,12 @@ __meta__ = {
 }
 
 [node name="title-title" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.948, -100 )
+transform = Transform( 0.645267, 0, 0, 0, 0.645267, 0, 0, 0, 0.645267, 0, 0.948, -100 )
 mesh = ExtResource( 1 )
 material/0 = null
 
 [node name="title-subtitle" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.848, -100 )
+transform = Transform( 0.645267, 0, 0, 0, 0.645267, 0, 0, 0, 0.645267, 0, -0.848, -100 )
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 3 )
 
@@ -665,7 +665,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.34816 )
 transform = Transform( -1.62921e-07, 0.544639, -0.838671, 0, 0.838671, 0.544639, 1, 8.8733e-08, -1.36637e-07, 0, 0, 0 )
 
 [node name="FakePlayer" type="Spatial" parent="."]
-transform = Transform( -0.117106, -0.070552, 0.884725, 0.0197705, 0.891964, 0.0737462, -0.887313, 0.0291854, -0.115121, -13.9497, -2.02021, -1.93685 )
+transform = Transform( -0.117105, -0.070552, 0.884725, 0.0197705, 0.891964, 0.0737462, -0.887313, 0.0291854, -0.115121, -13.9497, -2.02021, -1.93685 )
 
 [node name="Armature" type="Spatial" parent="FakePlayer"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36764, 0 )
