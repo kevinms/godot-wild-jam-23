@@ -24,18 +24,18 @@ albedo_color = Color( 1, 0, 0, 1 )
 [sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0, 1, 0.180392, 1 )
 
-[sub_resource type="Gradient" id=10]
+[sub_resource type="Gradient" id=9]
 
-[sub_resource type="GradientTexture" id=11]
-gradient = SubResource( 10 )
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
 
-[sub_resource type="Curve" id=14]
+[sub_resource type="Curve" id=11]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.88257, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=15]
-curve = SubResource( 14 )
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
 
-[sub_resource type="ParticlesMaterial" id=12]
+[sub_resource type="ParticlesMaterial" id=13]
 emission_shape = 1
 emission_sphere_radius = 1.0
 spread = 180.0
@@ -44,10 +44,10 @@ initial_velocity = 10.0
 linear_accel = 15.04
 damping = 9.02
 scale = 0.4
-scale_curve = SubResource( 15 )
-color_ramp = SubResource( 11 )
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
 
-[sub_resource type="SpatialMaterial" id=13]
+[sub_resource type="SpatialMaterial" id=14]
 vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color( 0.894118, 0.0509804, 0.964706, 1 )
@@ -55,8 +55,8 @@ emission_energy = 3.87
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="CapsuleMesh" id=9]
-material = SubResource( 13 )
+[sub_resource type="CapsuleMesh" id=15]
+material = SubResource( 14 )
 radius = 0.3
 mid_height = 0.3
 radial_segments = 8
@@ -117,8 +117,8 @@ emitting = false
 amount = 100
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 12 )
-draw_pass_1 = SubResource( 9 )
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 15 )
 
 [node name="DeathTimer" type="Timer" parent="Death"]
 

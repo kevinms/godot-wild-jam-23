@@ -16,7 +16,7 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			get_tree().set_input_as_handled()
 	
-	click_raycast(event)
+	#click_raycast(event)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # delta is a fraction of a second
