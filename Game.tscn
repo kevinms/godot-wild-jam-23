@@ -42,7 +42,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 0.22763, 0.573258, 0.738511, 1 )
+albedo_color = Color( 0.54902, 0.933333, 0.12549, 1 )
 
 [sub_resource type="Animation" id=7]
 resource_name = "threat"
@@ -124,7 +124,7 @@ material/0 = ExtResource( 11 )
 anims/game-over = SubResource( 1 )
 
 [node name="threat-text" type="MeshInstance" parent="Player/CameraPivot/Camera"]
-transform = Transform( 0.0915468, 0, 0, 0, 0.0915469, 2.5634e-08, 0, -2.5634e-08, 0.0915469, 0, -0.382466, -0.912766 )
+transform = Transform( 0.0865685, 0, 0, 0, 0.0865685, 2.424e-08, 0, -2.424e-08, 0.0865685, 0, -0.382466, -0.912766 )
 cast_shadow = 0
 mesh = ExtResource( 6 )
 material/0 = SubResource( 6 )

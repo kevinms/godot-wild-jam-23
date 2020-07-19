@@ -75,6 +75,13 @@ func check_for_game_over():
 var active_mega_missile = null
 
 func _process(delta):
+	if GlobalStats.game_time < 40.0:
+		GlobalStats.launch_interval_sec = 10.0
+	elif GlobalStats.game_time < 120.0:
+		GlobalStats.launch_interval_sec = 5.0
+	elif GlobalStats.game_time < 360.0:
+		GlobalStats.launch_interval_sec = 4.0
+	
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 	

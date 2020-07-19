@@ -18,7 +18,7 @@ var game_over = false
 # 10 is fairly slow
 # 5 can't protect them all with this
 # Scale this for difficulty
-var launch_interval_sec = 5.0
+var launch_interval_sec = 10.0
 
 func reset():
 	humans_to_spawn = 100
