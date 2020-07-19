@@ -147,6 +147,7 @@ func _ready():
 
 func add_surface(st: SurfaceTool, p: Vector3):
 	st.add_color(Color(1, 0, 0))
+	#st.add_color(Color(rand_range(0.5, 1.0), 0, 0))
 	st.add_uv(Vector2(0, 0))
 	st.add_vertex(p)
 

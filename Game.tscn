@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://CameraRig.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -27,10 +27,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector3( 0, 19.1632, -6.26362 ), Vector3( 0, -0.179443, -6.26362 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="SphereMesh" id=2]
 
 [sub_resource type="SphereShape" id=3]
+
+[sub_resource type="ProceduralSky" id=4]
+
+[sub_resource type="Environment" id=5]
+background_mode = 3
+background_sky = SubResource( 4 )
+background_color = Color( 0.117647, 0.137255, 0.160784, 1 )
+glow_enabled = true
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 3 )
@@ -63,6 +83,7 @@ texture = ExtResource( 5 )
 
 [node name="gameover-text" type="MeshInstance" parent="Player/CameraPivot/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 19.1632, -6.26362 )
+visible = false
 mesh = ExtResource( 12 )
 material/0 = ExtResource( 11 )
 
@@ -157,5 +178,8 @@ fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 5 )
 [connection signal="tree_exited" from="." to="." method="_on_Game_tree_exited"]
 [connection signal="animation_finished" from="Player/CameraPivot/Camera/gameover-text/GameOverAnim" to="." method="_on_GameOverAnim_animation_finished"]

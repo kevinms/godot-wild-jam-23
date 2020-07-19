@@ -73,7 +73,7 @@ func check_for_game_over():
 		$Player.death()
 
 func _process(delta):
-	if Input.is_action_just_pressed("enter"):
+	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 	
 	#if Input.is_action_just_pressed("rmb"):
