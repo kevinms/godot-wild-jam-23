@@ -40,6 +40,9 @@ var jump = 3
 var gravity = 2
 
 func _physics_process(delta):
+	if dieing:
+		return
+	
 	var world_up = (global_transform.origin - planet.global_transform.origin).normalized()
 	
 	var xform = align_with_y(global_transform, world_up)
@@ -88,6 +91,12 @@ func _physics_process(delta):
 	if get_slide_count() > 0:
 		jumping = false
 		global_velocity = Vector3()
+		
+		for i in range(get_slide_count()):
+			var collision = get_slide_collision(i)
+			if collision.collider.is_in_group("lava"):
+				death()
+				
 
 
 func safe_jump_direction():
@@ -129,10 +138,19 @@ func align_with_y(xform, new_y):
 	#TODO: Set scale back to before orthonormalized()?
 	return xform
 
+var dieing = false
+
 func death():
+	if dieing:
+		return
+	dieing = true
+	
 	$MeshInstance.visible = false
 	$Death/DeathParticles.emitting = true
 	$Death/DeathTimer.start()
+	
+	GlobalStats.population -= 1
+	GlobalStats.deaths += 1
 
 func _on_DeathTimer_timeout():
 	$Death/DeathParticles.emitting = false

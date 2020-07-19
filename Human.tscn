@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Human.gd" type="Script" id=1]
 [ext_resource path="res://assets/exclamation-mark.obj" type="ArrayMesh" id=2]
@@ -33,12 +33,18 @@ tracks/0/keys = {
 "values": [ Vector3( 0.0649664, 0.0423135, 0.0649664 ), Vector3( 0.0851573, 0.0915458, 0.0692231 ) ]
 }
 
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 1 ), 0.0, 1.01381, 0, 0, Vector2( 1, 0 ), 0.0334224, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
 [sub_resource type="ParticlesMaterial" id=5]
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 6.0
-linear_accel = 15.04
-scale = 0.4
+initial_velocity = 5.0
+scale = 0.05
+scale_curve = SubResource( 12 )
 
 [sub_resource type="SpatialMaterial" id=10]
 vertex_color_use_as_albedo = true
@@ -87,7 +93,7 @@ unit_size = 2.0
 emitting = false
 amount = 100
 one_shot = true
-explosiveness = 0.62
+explosiveness = 0.9
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 7 )
 

@@ -60,12 +60,16 @@ func _physics_process(delta):
 		var velocity_delta = new_global_origin - global_transform.origin
 		var collision = move_and_collide(velocity_delta)
 		if collision:
-			impacted = true
 			explode()
+			
 	else:
 		global_transform.origin = new_global_origin
 
 func explode():
+	if impacted:
+		return
+	impacted = true
+	
 	$Particles.emitting = false
 	$MeshInstance.visible = false
 	$CollisionShape.disabled = true

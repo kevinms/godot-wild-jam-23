@@ -48,7 +48,9 @@ stream = ExtResource( 6 )
 
 [node name="HUD" parent="." instance=ExtResource( 7 )]
 
-[node name="Lava" type="StaticBody" parent="."]
+[node name="Lava" type="StaticBody" parent="." groups=[
+"lava",
+]]
 
 [node name="MeshInstance" type="MeshInstance" parent="Lava"]
 transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, -0.0377636, -7.62939e-06, -0.00828552 )

@@ -87,7 +87,7 @@ func click_raycast(event):
 
 
 onready var surface_missile_scene = load("res://SurfaceMissile.tscn")
-var surface_missile_height = 5
+var surface_missile_height = 10
 
 func pick_surface_missile_source_target():
 	var all_humans = get_tree().get_nodes_in_group("humans")
@@ -203,8 +203,8 @@ func _on_Emitter_surface_missile_impact(impact_site, blast_radius):
 			GlobalStats.health -= 100
 		elif collider.is_in_group("humans"):
 			#if collider.get_groups().find("humans") >= 0:
-			GlobalStats.population -= 1
-			GlobalStats.deaths += 1
+			#GlobalStats.population -= 1
+			#GlobalStats.deaths += 1
 			collider.death()
 			#collider.queue_free()
 
