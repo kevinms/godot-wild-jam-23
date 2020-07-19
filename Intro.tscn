@@ -61,38 +61,28 @@ tracks/1/keys = {
 "values": [ Vector3( -40.2468, 24.2679, 9.60948 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../BattleAudio:playing")
+tracks/2/path = NodePath("../Missiles:begin_sequence")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 10 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ false, true, false ]
 }
-tracks/3/type = "bezier"
+tracks/3/type = "value"
 tracks/3/path = NodePath("../BattleAudio:volume_db")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -80, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 9.75, 10 )
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../Missiles:begin_sequence")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1, 9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
+"times": PoolRealArray( 9, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -71.158 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -3014,6 +3004,7 @@ anims/never-again-pulse = SubResource( 54 )
 
 [node name="SadAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 31 )
+volume_db = -80.0
 
 [node name="BattleAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 32 )

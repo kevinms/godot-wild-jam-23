@@ -28,3 +28,15 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( -23.921, 122.622, -1.34729e-06 ), Vector3( -23.921, 122.622, -1.34729e-06 ), Vector3( -23.921, 20.518, 0 ), Vector3( -23.921, 20.518, 0 ), Vector3( -23.921, 20.518, 0 ), Vector3( -23.921, 20.518, 0 ), Vector3( -23.921, 2.34002, 8.48444e-07 ), Vector3( -23.921, 2.34002, 8.48444e-07 ), Vector3( -23.921, 3.44502, 7.95673e-07 ), Vector3( -23.921, 3.44502, 7.95673e-07 ), Vector3( -23.921, 3.44502, 7.95673e-07 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("../BattleAudio:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
