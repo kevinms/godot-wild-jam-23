@@ -26,6 +26,10 @@ AudioLibrary="*res://AudioLibrary.gd"
 GlobalStats="*res://GlobalStats.gd"
 Global="*res://Global.gd"
 
+[display]
+
+window/size/fullscreen=true
+
 [input]
 
 forward={

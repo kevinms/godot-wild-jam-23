@@ -11,6 +11,7 @@ var num_shields: int = 1
 var mouse_sensitivity: float = 0.00098 # radians / pixel
 var game_time: float = 0.0
 
+var player_dieing = false
 var player_dead = false
 var game_over = false
 
@@ -26,10 +27,11 @@ func reset():
 	population = 0
 	deaths = 0
 	
-	num_shields = 100
+	num_shields = 1
 	
 	game_time = 0.0
 	
+	player_dieing = false
 	player_dead = false
 	game_over = false
 	

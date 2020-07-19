@@ -170,6 +170,7 @@ func death():
 	if dieing:
 		return
 	dieing = true
+	GlobalStats.player_dieing = true
 
 	$Alien.visible = false
 	$Death/DeathTimer.start()

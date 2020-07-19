@@ -13,6 +13,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if GlobalStats.player_dieing or GlobalStats.player_dead or GlobalStats.game_over:
+		return
+	
 	var t = GlobalStats.game_time
 	
 	var seconds = fmod(t, 60.0)#floor(t)
