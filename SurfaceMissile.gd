@@ -78,6 +78,9 @@ func explode():
 	$CollisionShape.disabled = true
 	$Death/DeathParticles.emitting = true
 	$Death/DeathTimer.start()
+	if !sound:
+		# We rely on the sound finishing to free the object so let it play but essentially mute it.
+		$Death/DeathSound.volume_db = -80.0
 	$Death/DeathSound.play()
 	
 	#var up = (global_transform.origin - core).normalized()

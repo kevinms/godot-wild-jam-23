@@ -166,63 +166,93 @@ func pick_surface_missile_source_target():
 
 func launch_surface_missile(start: Vector3, end: Vector3):
 	if start == Vector3.ZERO or end == Vector3.ZERO:
+		print("zero")
 		return
 	
 	var mid = start.linear_interpolate(end, 0.5)
 	var core_to_mid = mid - $Planet.global_transform.origin
 	var up = core_to_mid.normalized()
 	
-	var from = $Planet.global_transform.origin
-	var to = up * 1000
+	var point = nearest_surface_point(mid, surface_missile_height)
+	var height_from_core = (point - $Planet.global_transform.origin).length()
+	var height_from_mid = height_from_core - core_to_mid.length()
 	
-	var space_state = get_world().direct_space_state
-	var result = space_state.intersect_ray(from, to, [self])
+	# Create a new surface missile
+	var missile = surface_missile_scene.instance()
 	
-	if result:
-		if $Planet.get_instance_id() != result.collider_id:
-			print("Woah, what are you shooting at? We'll consider this a misfire.")
-			return
-		
-		var height_from_core = (result.position - from).length()
-		
-		# How high above the surface do we want the missile?
-		height_from_core += surface_missile_height
-		
-		var height_from_mid = height_from_core - core_to_mid.length()
-		
-		# Create a new surface missile
-		var missile = surface_missile_scene.instance()
-		
-		var max_sound_dist = 12.0
-		var min_sound_dist = 4.0
-		
-		var dist = ($Player.global_transform.origin - start).length()
-		if dist > min_sound_dist:
-			#var norm_dist = 1.0 - (dist - min_sound_dist / max_sound_dist - min_sound_dist)
-			
-			var norm_dist = 1.0 - clamp((dist - min_sound_dist) / (max_sound_dist - min_sound_dist), 0.0, 1.0)
-			
-			#print(norm_dist)
-			missile.sound_db = range_lerp(norm_dist, 0.0, 1.0, -12.0, 0.0)
-			#print("sound db: ", missile.sound_db)
-		
-		missile.init(start, end, from, height_from_mid)
-		add_child(missile)
-		
-		missile.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
-		missile.connect("surface_missile_impact", self, "_on_Emitter_surface_missile_impact")
+	var max_sound_dist = 12.0
+	var min_sound_dist = 4.0
+	
+	var dist = ($Player.global_transform.origin - start).length()
+	if dist > min_sound_dist:
+		var norm_dist = 1.0 - clamp((dist - min_sound_dist) / (max_sound_dist - min_sound_dist), 0.0, 1.0)
+		missile.sound_db = range_lerp(norm_dist, 0.0, 1.0, -12.0, 0.0)
+		#print("sound db: ", missile.sound_db)
+	
+	missile.init(start, end, $Planet.global_transform.origin, height_from_mid)
+	add_child(missile)
+	
+	missile.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
+	missile.connect("surface_missile_impact", self, "_on_Emitter_surface_missile_impact")
+	
+	
+	
+	
+#	var from = $Planet.global_transform.origin
+#	var to = up * 1000
+#
+#	var space_state = get_world().direct_space_state
+#	var result = space_state.intersect_ray(from, to, [self])
+#
+#	if result:
+#		if $Planet.get_instance_id() != result.collider_id:
+#			print("HELLO Woah, what are you shooting at? We'll consider this a misfire.")
+#			return
+#
+#		var height_from_core = (result.position - from).length()
+#
+#		# How high above the surface do we want the missile?
+#		height_from_core += surface_missile_height
+#
+#		var height_from_mid = height_from_core - core_to_mid.length()
+#
+#		# Create a new surface missile
+#		var missile = surface_missile_scene.instance()
+#
+#		var max_sound_dist = 12.0
+#		var min_sound_dist = 4.0
+#
+#		var dist = ($Player.global_transform.origin - start).length()
+#		if dist > min_sound_dist:
+#			#var norm_dist = 1.0 - (dist - min_sound_dist / max_sound_dist - min_sound_dist)
+#
+#			var norm_dist = 1.0 - clamp((dist - min_sound_dist) / (max_sound_dist - min_sound_dist), 0.0, 1.0)
+#
+#			#print(norm_dist)
+#			missile.sound_db = range_lerp(norm_dist, 0.0, 1.0, -12.0, 0.0)
+#			#print("sound db: ", missile.sound_db)
+#
+#		missile.init(start, end, from, height_from_mid)
+#		add_child(missile)
+#
+#		missile.connect("surface_missile_impact", $Planet, "_on_Emitter_surface_missile_impact")
+#		missile.connect("surface_missile_impact", self, "_on_Emitter_surface_missile_impact")
 
 func nearest_surface_point(pos: Vector3, height: float = 0.2):
 	var up = (pos - $Planet.global_transform.origin).normalized()
 	
-	var from = $Planet.global_transform.origin
-	var to = up * 1000
+#	var from = $Planet.global_transform.origin
+#	var to = up * 1000
+	
+	var from = $Planet.global_transform.origin + (up * 500)
+	var to = $Planet.global_transform.origin
 	
 	var space_state = get_world().direct_space_state
-	var result = space_state.intersect_ray(from, to, [self])
+	var result = space_state.intersect_ray(from, to, [self], Global.PLANET_MASK)
 	
 	if result:
-		if $Planet.get_instance_id() != result.collider_id:
+		#if $Planet.get_instance_id() != result.collider_id:
+		if result.collider != $Planet and result.collider != $Lava:
 			print("Woah, what are you shooting at? We'll consider this a misfire.")
 			return Vector3.ZERO
 		

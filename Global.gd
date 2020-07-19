@@ -1,5 +1,7 @@
 extends Node
 
+const PLANET_MASK = 1<<15
+
 var current_scene = null
 
 func _ready():

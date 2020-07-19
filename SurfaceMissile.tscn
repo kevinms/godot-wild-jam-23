@@ -41,22 +41,22 @@ vertex_color_use_as_albedo = true
 [sub_resource type="CubeMesh" id=8]
 material = SubResource( 7 )
 
-[sub_resource type="Curve" id=12]
+[sub_resource type="Curve" id=9]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.2703, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=13]
-curve = SubResource( 12 )
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=11]
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 20.0
 linear_accel = 15.04
 damping = 15.0
 scale = 0.4
-scale_curve = SubResource( 13 )
+scale_curve = SubResource( 10 )
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=12]
 vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color( 0.0156863, 0.654902, 0.964706, 1 )
@@ -64,8 +64,8 @@ emission_energy = 3.54
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="CubeMesh" id=11]
-material = SubResource( 10 )
+[sub_resource type="CubeMesh" id=13]
+material = SubResource( 12 )
 
 [node name="SurfaceMissile" type="KinematicBody" groups=[
 "missile",
@@ -106,8 +106,8 @@ emitting = false
 amount = 100
 one_shot = true
 explosiveness = 0.79
-process_material = SubResource( 9 )
-draw_pass_1 = SubResource( 11 )
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 13 )
 
 [node name="DeathTimer" type="Timer" parent="Death"]
 process_mode = 0
@@ -126,8 +126,8 @@ emitting = false
 amount = 100
 one_shot = true
 explosiveness = 0.79
-process_material = SubResource( 9 )
-draw_pass_1 = SubResource( 11 )
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 13 )
 
 [node name="NeutralizeTimer" type="Timer" parent="Neutralize"]
 process_mode = 0

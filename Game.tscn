@@ -91,12 +91,16 @@ material/0 = ExtResource( 11 )
 anims/game-over = SubResource( 1 )
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
+collision_layer = 32769
+collision_mask = 32769
 
 [node name="HUD" parent="." instance=ExtResource( 7 )]
 
 [node name="Lava" type="StaticBody" parent="." groups=[
 "lava",
 ]]
+collision_layer = 32769
+collision_mask = 32769
 
 [node name="MeshInstance" type="MeshInstance" parent="Lava"]
 transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, -0.0377636, -7.62939e-06, -0.00828552 )
