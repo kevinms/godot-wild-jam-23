@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/sfx/Alarm_Loop_01.wav" type="AudioStream" id=1]
 [ext_resource path="res://MegaSpaceMissile.gd" type="Script" id=2]
@@ -85,35 +85,11 @@ material = SubResource( 25 )
 radius = 3.0
 height = 6.0
 
-[sub_resource type="Curve" id=14]
-_data = [ Vector2( 0, 0.527273 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.2703, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=15]
-curve = SubResource( 14 )
-
-[sub_resource type="ParticlesMaterial" id=16]
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
-linear_accel = 15.04
-damping = 54.08
-scale = 0.4
-scale_curve = SubResource( 15 )
-color = Color( 0.866667, 0.945098, 0.168627, 1 )
-
-[sub_resource type="SpatialMaterial" id=17]
-vertex_color_use_as_albedo = true
-emission_enabled = true
-emission = Color( 0.0156863, 0.964706, 0.254902, 1 )
-emission_energy = 3.54
-emission_operator = 0
-emission_on_uv2 = false
-
-[sub_resource type="CubeMesh" id=18]
-material = SubResource( 17 )
-size = Vector3( 1, 1, 1 )
-
-[node name="MegaSpaceMissile" type="KinematicBody"]
+[node name="MegaSpaceMissile" type="KinematicBody" groups=[
+"missile",
+]]
+collision_layer = 2049
+collision_mask = 2049
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -137,9 +113,7 @@ anims/existance = SubResource( 5 )
 
 [node name="Death" type="Spatial" parent="."]
 
-[node name="DeathParticles" type="Particles" parent="Death" groups=[
-"humans",
-]]
+[node name="DeathParticles" type="Particles" parent="Death"]
 emitting = false
 amount = 100
 one_shot = true
@@ -157,16 +131,13 @@ volume_db = -6.0
 
 [node name="Neutralize" type="Spatial" parent="."]
 
-[node name="NeutralizeParticles" type="Particles" parent="Neutralize" groups=[
-"humans",
-]]
+[node name="NeutralizeParticles" type="Particles" parent="Neutralize"]
 emitting = false
 amount = 100
-lifetime = 0.5
 one_shot = true
-explosiveness = 0.79
-process_material = SubResource( 16 )
-draw_pass_1 = SubResource( 18 )
+explosiveness = 0.94
+process_material = SubResource( 21 )
+draw_pass_1 = SubResource( 26 )
 
 [node name="NeutralizeTimer" type="Timer" parent="Neutralize"]
 process_mode = 0

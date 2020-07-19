@@ -105,6 +105,9 @@ func _process(delta):
 
 var mega_since_spawn_sec: float = 0.0
 var mega_spawn_interval_sec: float = rand_range(40.0, 60.0)
+#var mega_since_spawn_sec: float = 10.0
+#var mega_spawn_interval_sec: float = 10
+
 func mega_spawn_every_n_seconds(delta):
 	mega_since_spawn_sec += delta
 	if mega_since_spawn_sec > mega_spawn_interval_sec:
