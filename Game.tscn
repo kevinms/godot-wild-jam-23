@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://CameraRig.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
 [ext_resource path="res://Icosphere.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/crosshair.png" type="Texture" id=5]
-[ext_resource path="res://assets/audio/music/One Man Symphony - Royalty Free Soundtrack Collection - 70 Landing Mission on Kepler-186f.mp3.wav" type="AudioStream" id=6]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://LavaMaterial.tres" type="Material" id=8]
 [ext_resource path="res://Settings.tscn" type="PackedScene" id=9]
@@ -71,9 +70,6 @@ material/0 = ExtResource( 11 )
 anims/game-over = SubResource( 9 )
 
 [node name="Planet" parent="." instance=ExtResource( 4 )]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
 
 [node name="HUD" parent="." instance=ExtResource( 7 )]
 
